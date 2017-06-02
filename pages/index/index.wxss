@@ -1,0 +1,27 @@
+/**index.wxss**/
+.page-bt{
+    margin-top:20rpx;
+    padding:0 15rpx
+}
+.page .divide{
+    height:170rpx
+}
+.logo {
+    height:150px;
+    background-color:#1955A7;
+    margin-bottom:20px;
+}
+.logo .l1{
+    height:50px
+}
+.logo .logo_hd {
+    height:22px;
+    width:222px;
+    margin-left:auto;
+    margin-right:auto;
+    display:block
+}
+.weui-grids{
+   background:#fff;
+   margin-bottom:20px
+}

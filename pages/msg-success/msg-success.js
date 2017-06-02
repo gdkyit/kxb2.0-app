@@ -1,0 +1,12 @@
+Page({
+    data:{
+        title:'',
+        desc:''
+    },
+    onLoad:function(option){
+        this.setData({
+            title:option.title,
+            desc:option.desc
+        })
+    }
+})

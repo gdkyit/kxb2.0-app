@@ -6,7 +6,9 @@ var pageObject = {
   data: {
     ysykbh: '',
     loading: false,
-    btnDisabled: false
+    btnDisabled: false,
+    nav:{navbar: ['首页', '搜索', '我'],
+    currentTab: 0}
   },
   onLoad: function (e) {
 

@@ -5,5 +5,5 @@ App({
     
   },
   globalData:{},
-  host:"https://app.gdkyit.com/kxb"
+  host:"http://120.76.241.230:8090"
 })

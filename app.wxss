@@ -69,6 +69,7 @@ button[loading][type="primary"]{
   flex: auto;
   text-align: center;
   line-height: 80rpx;
+  font-family: '微软雅黑';
 }
 .navbar .item.active{
   color: #1955A7;
@@ -82,4 +83,20 @@ button[loading][type="primary"]{
   right: 0;
   height: 4rpx;
   background: #1955A7;
+}
+.rankLevel{
+    display:flex;
+    /*flex-direction:column;
+    align-items:center;*/
+
+}
+.rank_icon{
+    width: 40rpx;
+    height: 40rpx;
+}
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
 }

@@ -9,6 +9,12 @@
 App({
   onLaunch: function () {
     //调用API从本地缓存中获取数据
+    const token = wx.getStorageSync('token');
+    if(!token){
+      wx.redirectTo({
+        url: 'pages/login/login',
+      })
+    }
 
   },
   globalData: {},

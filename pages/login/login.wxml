@@ -1,0 +1,4 @@
+<!--login.wxml-->
+<view class="page">
+<image src="/resource/img/login.jpg" mode="aspectFill"></image>
+</view>

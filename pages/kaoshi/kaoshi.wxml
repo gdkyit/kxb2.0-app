@@ -1,0 +1,13 @@
+ <view class="page">
+
+  <navigator url="#" open-type="redirect">
+  <image src="/resource/img/module-kaoshi.jpg"> </image>
+  </navigator>
+   <navigator url="#" open-type="redirect">
+  <image src="/resource/img/module-qiangda.jpg"></image>
+  </navigator>
+  <navigator url="#" open-type="redirect">
+  <image src="/resource/img/module-myrecord.jpg" ></image>
+  </navigator>
+
+ </view>

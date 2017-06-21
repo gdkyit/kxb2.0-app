@@ -1,0 +1,2 @@
+var pageObject ={}
+Page(pageObject)

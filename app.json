@@ -10,34 +10,35 @@
     "pages/user_ObtainCorrection/user_ObtainCorrection",
     "pages/user_ViewGroups/user_ViewGroups",
     "pages/user_joinGroups/user_joinGroups",
-    "pages/user_userMain/user_userMain"
+    "pages/user_userMain/user_userMain",
+    "pages/kaoshi/kaoshi"
   ],
   "tabBar": {
-    "selectedColor":"#1955A7",
-    "color":"#ddd",
+    "selectedColor":"#515151",
+    "color":"#bfbfbf",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "style/img/icon-paihangbang.png",
-        "selectedIconPath":"style/img/icon-paihangbang-act.png",
+        "iconPath": "resource/img/icon-paihangbang.png",
+        "selectedIconPath":"resource/img/icon-paihangbang-act.png",
         "text": "排行榜"
       },
       {
-        "pagePath": "pages/navTamplate/navTamplate",
-        "iconPath": "style/img/icon-xuexi.png",
-        "selectedIconPath":"style/img/icon-xuexi-act.png",
+        "pagePath": "pages/user_userMain/user_userMain",
+        "iconPath": "resource/img/icon-xuexi.png",
+        "selectedIconPath":"resource/img/icon-xuexi-act.png",
         "text": "学习"
       },
       {
-        "pagePath": "pages/write",
-        "iconPath": "style/img/icon-kaoshi.png",
-        "selectedIconPath":"style/img/icon-kaoshi-act.png",
+        "pagePath": "pages/kaoshi/kaoshi",
+        "iconPath": "resource/img/icon-kaoshi.png",
+        "selectedIconPath":"resource/img/icon-kaoshi-act.png",
         "text": "考试"
       },
       {
-        "pagePath": "pages/myself",
-        "iconPath": "style/img/icon-me.png",
-        "selectedIconPath":"style/img/icon-me-act.png",
+        "pagePath": "pages/user_userMain/user_userMain",
+        "iconPath": "resource/img/icon-me.png",
+        "selectedIconPath":"resource/img/icon-me-act.png",
         "text": "我的"
       }
     ]

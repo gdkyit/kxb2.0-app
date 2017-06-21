@@ -13,8 +13,8 @@
                     <view class="weui-grid__label">个人信息维护</view>
                 </navigator>
                 <navigator url="../user_learningSubscription/user_learningSubscription" class="weui-grid" hover-class="weui-grid_active">
-                    <image class="weui-grid__icon" src="../../style/img/bookmark.svg" />
-                    <view class="weui-grid__label">订阅学习内容</view>
+                    <i class="iconfont czs-image-l" ></i>
+                    <view class="weui-grid__label">订阅学习内容 <span class="czs-image-l" ></span></view>
                 </navigator>
                 <navigator url="../user_rankSetting/user_rankSetting" class="weui-grid" hover-class="weui-grid_active">
                     <image class="weui-grid__icon" src="../../style/img/settingsColorful.svg" />

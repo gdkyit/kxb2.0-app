@@ -1,0 +1,2 @@
+<import src="../template/navTamplate.wxml"/>
+<template is="TopNav" data="{{navType:'ExaminingNav',currNum:0}}" />

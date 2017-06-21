@@ -1,6 +1,16 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/exam_examine/exam_examine",
+    "pages/exam_answerRace/exam_answerRace",
+    "pages/user_userInfoUpdate/user_userInfoUpdate",
+    "pages/user_learningSubscription/user_learningSubscription",
+    "pages/user_rankSetting/user_rankSetting",
+    "pages/user_ObtainLike/user_ObtainLike",
+    "pages/user_ObtainCorrection/user_ObtainCorrection",
+    "pages/user_ViewGroups/user_ViewGroups",
+    "pages/user_joinGroups/user_joinGroups",
+    "pages/user_userMain/user_userMain"
   ],
   "tabBar": {
     "selectedColor":"#1955A7",
@@ -39,4 +49,4 @@
     "navigationBarTextStyle": "white",
     "backgroundColor": "#f5f5f9"
   }
-}
+} 

@@ -1,0 +1,46 @@
+<view >
+    <view class="domain">
+        <view class="container">
+                <image class="userinfo-avatar" src="http://202.104.10.34:83/images/18665002969/avatar.jpg?date=Tue%20Jun%2013%202017%2010:20:35%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)" mode="aspectFill" />
+                <text class="userinfo-nickname">郑拱强</text>
+                <import src="../template/rankLevel.wxml"/>
+                <template is="rankLevel" data="{{score:'65557'}}"  />
+        </view>
+        <view class="page__bd">
+            <view class="weui-grids">
+                <navigator url="../user_userInfoUpdate/user_userInfoUpdate" class="weui-grid" hover-class="weui-grid_active">
+                    <image class="weui-grid__icon" src="../../style/img/user.svg" style="position: relative;" />
+                    <view class="weui-grid__label">个人信息维护</view>
+                </navigator>
+                <navigator url="../user_learningSubscription/user_learningSubscription" class="weui-grid" hover-class="weui-grid_active">
+                    <image class="weui-grid__icon" src="../../style/img/bookmark.svg" />
+                    <view class="weui-grid__label">订阅学习内容</view>
+                </navigator>
+                <navigator url="../user_rankSetting/user_rankSetting" class="weui-grid" hover-class="weui-grid_active">
+                    <image class="weui-grid__icon" src="../../style/img/settingsColorful.svg" />
+                    <view class="weui-grid__label">设置默认积分榜</view>
+                </navigator>
+                <navigator url="../user_ObtainLike/user_ObtainLike" class="weui-grid" hover-class="weui-grid_active">
+                    <image class="weui-grid__icon" src="../../style/img/like.svg" />
+                    <view class="weui-grid__label">收到的出题点赞</view>
+                </navigator>
+                <navigator url="../user_ObtainCorrection/user_ObtainCorrection" class="weui-grid" hover-class="weui-grid_active">
+                    <image class="weui-grid__icon" src="../../style/img/resume.svg" />
+                    <view class="weui-grid__label">收到的出题纠错</view>
+                </navigator>
+                <navigator url="../updating/updating" class="weui-grid" hover-class="weui-grid_active">
+                    <image class="weui-grid__icon" src="../../style/img/favorite.svg" />
+                    <view class="weui-grid__label">出题贡献值</view>
+                </navigator>
+                <navigator url="../user_ViewGroups/user_ViewGroups" class="weui-grid" hover-class="weui-grid_active">
+                    <image class="weui-grid__icon" src="../../style/img/users.svg" />
+                    <view class="weui-grid__label">所属群组的查看</view>
+                </navigator>
+                <navigator url="../user_joinGroups/user_joinGroups" class="weui-grid" hover-class="weui-grid_active">
+                    <image class="weui-grid__icon" src="../../style/img/plus.svg" />
+                    <view class="weui-grid__label">申请加入群组</view>
+                </navigator>
+            </view>
+        </view>
+    </view>
+</view>

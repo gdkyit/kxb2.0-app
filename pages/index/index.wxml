@@ -1,5 +1,5 @@
 
-<import src="../navTamplate/navTamplate.wxml"/>
+<import src="../template/navTamplate.wxml"/>
 <template is="TopNav" data="{{navType:'LearningNav',currNum:1}}" />
 
   <view class="page">

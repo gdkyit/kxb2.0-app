@@ -1,0 +1,8 @@
+image {
+    width: 750rpx;
+    height: 375rpx;
+}
+.page {
+    line-height:0;
+    font-size:0
+}

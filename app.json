@@ -26,7 +26,7 @@
         "pagePath": "pages/navTamplate/navTamplate",
         "iconPath": "style/img/Newspaper_notebook45.svg",
         "selectedIconPath":"style/img/Newspaper_notebook45Clicked.svg",
-        "text": "答题学习"
+        "text": "学习"
       },
       {
         "pagePath": "pages/exam_examine/exam_examine",
@@ -38,7 +38,7 @@
         "pagePath": "pages/user_userMain/user_userMain",
         "iconPath": "style/img/user_user145.svg",
         "selectedIconPath":"style/img/user_user145Clicked.svg",
-        "text": "个人"
+        "text": "我的"
       }
     ]
   },

@@ -1,6 +1,6 @@
 /**weui.wxss**/
 @import 'style/weui.wxss';
-@import 'style/CaoMei-master/style.css';
+@import 'style/CaoMei-master/style.wxss';
 /**app.wxss**/
 .container {
   height: 100%;

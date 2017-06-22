@@ -15,8 +15,33 @@
   font-family: 黑体;
   padding-bottom:25px;
 }
-.container{
+/*.container{
     padding: 80rpx 0 40rpx;
     background:-webkit-gradient(linear, 0 0, 0 bottom, from(#38f), to(rgba(255, 255, 255, 0.5)));
+
+}*/
+.userTop{
+  padding-left:20rpx;
+  background:-webkit-gradient(linear, 0 0, 0 bottom, from(#3FBE69), to(rgba(255, 255, 255, 0.5))); 
+}
+
+.userHeader{
+  float: left;
+  width: 90px;
+
+}
+
+.userHeaderName{
+  padding-top: 50rpx;
+}
+
+.userIcon{
+  margin-right: 5px;
+  font-size:30px;
+  color:#3FBE69;
+}
+
+navigator{
+  height: 40px;
 
 }

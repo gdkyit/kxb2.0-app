@@ -43,20 +43,18 @@ page{
     text-align: left;
     font-size: 14px;
 }
-button[type="primary"]{
-    background:#1955A7
+button[type="primary"] {
+color:#FFFFFF;
+background-color:#3FBE69;
 }
-button[loading][type="primary"]{
-    background:#1955A7
+button[disabled][type="primary"] {
+background-color:#d9f2e1;
 }
 .weui-navbar__item.weui-bar__item_on {
   color: #1955A7;
 }
 .weui-navbar__slider{
     background-color:#1955A7
-}
-.btn-hover{
-    background:#678FC5
 }
 .navbar{
   flex: none;

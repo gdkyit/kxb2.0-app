@@ -67,7 +67,4 @@
         <button class="weui-btn" type="primary">修改密码</button>
         </view>
     </view>
-        <view class="weui-btn-area">
-        <button class="weui-btn" type="default">返回</button>
-        </view>
 </view>

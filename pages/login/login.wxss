@@ -1,14 +1,4 @@
 /* login.wxss */
-/*
-* #000000 主要内容、标题字色
-* #888888 次要信息字色
-* #353535 大段的说明且属于主要内容
-* #bfbfbf 暗提示色
-* #f4333c 错误、警示色
-* #ff5b05 重点提醒色
-* #f5f5f9 app底色
-* #3FBE69 app主题色
-*/
 page {
   height: 100%;
 }
@@ -38,7 +28,7 @@ image {
 .input-box {
   background-color: rgba(255, 255, 255, 0.3);
   padding: 40rpx 0;
-  margin-bottom: 1px;
+  margin-bottom: 1rpx;
 }
 
 input {
@@ -65,3 +55,11 @@ input {
   color:#fff;
   border-radius: 2px;
 }
+button[type="primary"] {
+    background-color: #406880;
+}
+
+button[disabled][type="primary"] {
+  background-color: #9fb3bf;
+}
+    

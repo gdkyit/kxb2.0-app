@@ -9,15 +9,15 @@
 //#3FBE69 app主题色
 App({
   onLaunch: function () {
-    //wx.setStorageSync('token','admin')
     //调用API从本地缓存中获取数据
+  },
+  onShow:function(){
     const token = wx.getStorageSync('token');
-    if(!!token){
-      wx.redirectTo({
-        url: 'pages/login/login',
-      })
-    }
-
+        if (!token) {
+            wx.redirectTo({
+                url: 'pages/login/login',
+            })
+        }
   },
   globalData: {},
   host: "http://120.76.241.230:8090"

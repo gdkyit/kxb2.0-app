@@ -1,2 +1,1 @@
-var pageObject ={}
-Page(pageObject)
+Page({})

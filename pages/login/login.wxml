@@ -14,7 +14,7 @@
         <input class="input" placeholder="输入密码" name="password" type="password" placeholder-class="placeholder" />
       </view>
       <view class="weui-btn-area">
-        <button class="weui-btn" loading="{{loading}}" disabled="{{btnDisabled}}" formType="submit" hover-class="btn-hover">登录</button>
+        <button class="weui-btn" loading="{{loading}}" disabled="{{loading}}" formType="submit" hover-class="btn-hover" type="primary">登录</button>
       </view>
     </view>
   </form>

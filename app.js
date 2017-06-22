@@ -10,14 +10,7 @@
 App({
   onLaunch: function () {
     //调用API从本地缓存中获取数据
-  },
-  onShow:function(){
-    const token = wx.getStorageSync('token');
-        if (!token) {
-            wx.redirectTo({
-                url: 'pages/login/login',
-            })
-        }
+    wx.removeStorageSync('token')
   },
   globalData: {},
   host: "http://120.76.241.230:8090"

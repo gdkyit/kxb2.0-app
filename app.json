@@ -12,7 +12,8 @@
     "pages/user_ViewGroups/user_ViewGroups",
     "pages/user_joinGroups/user_joinGroups",
     "pages/user_userMain/user_userMain",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/ranking/ranking"
   ],
   "tabBar": {
     "selectedColor": "#515151",
@@ -31,7 +32,7 @@
         "text": "学习"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/ranking/ranking",
         "iconPath": "resource/img/icon-paihangbang.png",
         "selectedIconPath": "resource/img/icon-paihangbang-act.png",
         "text": "排行榜"

@@ -34,8 +34,8 @@ Page({
         success: res => {
           if(res.statusCode == 200){
             wx.setStorageSync('token', res.data.token)
-            wx.switchTab({
-              url: '/pages/kaoshi/kaoshi',
+            wx.reLaunch({
+              url: '../kaoshi/kaoshi'
             })
           }else{
             wx.showModal({

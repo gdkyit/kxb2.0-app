@@ -16,7 +16,13 @@ Page({
   },
   formSubmit(e) {
     let that = this;
-    if (!!e.detail.value.password && !!e.detail.value.username) {
+    let username = e.detail.value.username;
+    let password = e.detail.value.password;
+    /* 测试使用账户，正式环境去掉 */
+    username = '13829397905';
+    password = '666666'
+    /* ====================================  */
+    if (!!username && !!password) {
       let app = getApp();
       that.setData({
         loading: true
@@ -24,8 +30,8 @@ Page({
       wx.request({
         url: app.host + '/api/auth',
         data: {
-          username: e.detail.value.username,
-          password: e.detail.value.password
+          username: username,
+          password: password
         },
         method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
         header: {

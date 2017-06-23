@@ -5,14 +5,31 @@
                 <image class="userinfo-avatar" src="http://202.104.10.34:83/images/18665002969/avatar.jpg?date=Tue%20Jun%2013%202017%2010:20:35%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)" mode="aspectFill" />
                 </view>
                 <view class="userHeader userHeaderName">
-                <text class="userinfo-nickname">郑拱强</text>
+                <text class="userinfo-nickname" >郑拱强</text>
                 <import src="../template/rankLevel.wxml"/>
                 <template is="rankLevel" data="{{score:'65557'}}"  />
                 </view>
-                <view style="float:right;padding:40rpx 50rpx;"><text style="color:#ffffff;font-size:12px">出题贡献值：0</text></view>
-                <view style="clear:both"></view>
+                <view style="float:right;padding:40rpx 50rpx;"><text style="font-size:12px">出题贡献值：0</text></view>
+                <view style="clear:both;"></view>
+                <view class="rankLeft topBoder" >
+                    <text class="rankTitle">总积分</text>
+                    <view class="rankValue">39.00</view>
+                </view>
+                <view class="rankRight topBoder" >
+                    <text class="rankTitle">总积分排名</text>
+                    <view class="rankValue">39</view>
+                </view>
+                <view class="rankLeft" >
+                    <text class="rankTitle">已做题目</text>
+                    <view class="rankValue">39</view>
+                </view>
+                <view class="rankRight" >
+                    <text class="rankTitle">正确率</text>
+                    <view class="rankValue">39%</view>
+                </view>
         </view>
-        <view class="weui-cells weui-cells_after-title">
+        <view style="clear:both"></view>
+        <view class="weui-cells weui-cells_after-title userList">
             <navigator url="../user_userInfoUpdate/user_userInfoUpdate" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <view class="weui-cell__hd">
                     <i class="userIcon czs-user-l" ></i>
@@ -62,6 +79,9 @@
                 <view class="weui-cell__bd">申请加入群组</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </navigator>
+        </view>
+        <view class="weui-btn-area">
+            <button class="weui-btn" type="default">退出账号</button>
         </view>
     </view>
 </view>

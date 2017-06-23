@@ -15,7 +15,4 @@
         <view class="weui-btn-area">
         <button class="weui-btn" type="primary">提交申请</button>
         </view>
-        <view class="weui-btn-area">
-        <button class="weui-btn" type="default">返回</button>
-    </view>
 </view>

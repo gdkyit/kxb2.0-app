@@ -1,2 +1,47 @@
 <!--ranking.wxml-->
-<text>ranking.wxml</text>
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-panel">
+            <view class="weui-panel__hd hd-picker">
+                <picker value="{{current}}" range="{{phblist}}" bindchange="bindPhbChange">
+                     <view class="weui-flex">
+                         <view class="weui-flex__item"><i class="czs-category-l"/> </view>
+                         <view class="weui-flex__item"><i>{{phblist[current]}}</i></view>
+                         <view class="weui-flex__item"><i class="czs-angle-down-l" /></view>
+                    </view>
+                </picker>
+            </view>
+        </view>
+        <view class="weui-cells__title">我的排位</view>
+        <view class="weui-panel weui-panel_access">
+            <view class="weui-panel__bd">
+                <view  class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <view class="weui-media-box__thumb">{{userScoreRank.rank}}</view>
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">{{userScoreRank.user_name}}</view>
+                        <view>{{userScoreRank.score}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="weui-cells__title">积分排行</view>
+        <view class="weui-panel">
+            <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_small-appmsg">
+                    <view class="weui-cells weui-cells_in-small-appmsg">
+                        <view wx:for="{{scoreRank}}" wx:key="{{user_id}}" class="weui-cell" hover-class="weui-cell_active">
+                            <view class="weui-cell__hd">
+                                <view >{{item.rank}}</view>
+                                </view>
+                            <view class="weui-cell__bd weui-cell_primary">
+                                <view>{{item.user_name}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

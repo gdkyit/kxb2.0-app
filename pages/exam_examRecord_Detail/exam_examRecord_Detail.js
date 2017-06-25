@@ -6,21 +6,20 @@ Page({
     onLoad:function(option){
     let app = getApp();
     let that=this;
-    wx.getStorage({//获取token
+    wx.getStorage({
         key: 'token',
         success: function(res) {
             that.setData({
                 token:res.data
             })
             wx.request({
-                url: app.host + '/api/exam?type=1',
+                url: app.host + '/api/examRecordDetail?examId='+option.examId,
                 method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
                 header: {
                 'content-type': 'application/json',
                 'x-auth-token': res.data
                 }, // 设置请求的 header
                 success: reqRes => {
-                    console.log(reqRes);
                     if(reqRes.data.code=="200"){
                         that.setData({
                             recordList:reqRes.data.data,
@@ -75,20 +74,6 @@ Page({
             })
         }
     })
-    },
-    selectExam:function(event){
-        wx.showModal({
-                title: '尚未登录',
-                content: '你需要登录才能使用本功能',
-                showCancel: false,
-                confirmText: '去登录',
-                success: res => {
-                    if(res.confirm) {
-                        wx.redirectTo({
-                            url: '../login/login',
-                        })
-                    }
-                }
-            })
     }
+    
 })

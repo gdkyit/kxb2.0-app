@@ -81,7 +81,7 @@
             </navigator>
         </view>
         <view class="weui-btn-area">
-            <button class="weui-btn" type="default">退出账号</button>
+            <button class="weui-btn" type="default" bindtap="loginOut" >退出账号</button>
         </view>
     </view>
 </view>

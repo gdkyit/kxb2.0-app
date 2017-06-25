@@ -1,7 +1,48 @@
 /* ranking.wxss */
 .weui-panel__hd{
-    color:#353535
+    color:#000
 }
 .hd-picker{
-    width:40%
+    width:50%
+}
+.pt-u  {
+    vertical-align: middle;
+    margin-right: 10rpx;
+}
+.mc{
+    width:100rpx
+}
+.cj {
+    width:150rpx
+}
+.time{
+    width:150rpx
+}
+.my-jf{
+    width:120rpx
+}
+.my-rank{
+    width: 140rpx;
+    text-align: center
+}
+.my-time{
+    width:150rpx
+}
+.gr-b{
+    color:#3FBE69;
+    font-size: 30px;
+    font-weight: bold
+}
+.gr {
+    color:#3FBE69
+}
+.picker-title span.pt-u{
+    margin-right: 20rpx
+}
+.bold{
+    font-weight:bold
+}
+.current-p {
+    font-weight: bold;
+    background-color: #DBF3E3
 }

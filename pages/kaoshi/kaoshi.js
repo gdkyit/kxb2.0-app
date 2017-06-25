@@ -1,5 +1,5 @@
 Page({
-    onLoad: function (e) {
+    onReady: function (e) {
         const token = wx.getStorageSync('token');
         if (!token) {
             wx.showModal({

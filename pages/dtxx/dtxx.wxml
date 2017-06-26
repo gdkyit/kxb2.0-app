@@ -1,15 +1,48 @@
 <!--dtxx.wxml-->
 <view class="page">
-    <view class="page__bd">
-         <view class="weui-footer weui-footer_fixed-bottom">
-                <view class="weui-flex">
-                <view class="weui-flex__item">
-                    <button type="primary" >确定</button>
-                </view>
-                <view class="weui-flex__item">
-                    <button disabled="true">下一题</button>
-                </view>
-                </view>
+  <view class="page__bd">
+    <view class="weui-panel">
+      <view class="weui-panel__hd">题目来源：{{questions[index].lytitle}}</view>
+      <view class="weui-panel__bd">
+        <view class="weui-media-box weui-media-box_text">
+          <view class="title">{{index+1}}.{{mode[questions[index].MODE]}} {{questions[index].CONTENT}}</view>
+          <view class="content">
+            <block wx:if="{{questions[index].MODE == 1}}">
+              <radio-group class="radio-group" bindchange="bindDXChange">
+                <label class="weui-cell weui-check__label no-br" wx:for="{{answers}}" wx:key="{{ID_}}">
+                  <radio value="{{item.XZ_KEY}}" />{{item.XZ_KEY}} . {{item.CONTENT}}
+                </label>
+              </radio-group>
+            </block>
+            <block wx:elif="{{questions[index].MODE == 2}}">
+              <checkbox-group bindchange="bindFXChange">
+                <label class="weui-cell weui-check__label no-br" wx:for="{{answers}}">
+                  <checkbox value="{{item.XZ_KEY}}"/>{{item.XZ_KEY}} . {{item.CONTENT}}
+                </label>
+              </checkbox-group>
+            </block>
+            <block wx:elif="{{questions[index].MODE == 0}}">
+                <radio-group class="radio-group" bindchange="bindPDChange">
+                <label class="weui-cell weui-check__label no-br" wx:for="{{answers}}" wx:key="{{ID_}}">
+                  <radio value="{{item.XZ_KEY}}" />{{item.XZ_KEY}} . {{item.CONTENT}}
+                </label>
+              </radio-group>
+            </block>
+          </view>
         </view>
+      </view>
     </view>
+    <view class="weui-footer weui-footer_fixed-bottom">
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <button type="primary" bindtap="commitAnwer">
+            <i class="czs-right-clipboard-l" />确定</button>
+        </view>
+        <view class="weui-flex__item">
+          <button disabled="{{next}}" bindtap="next">
+            <i class="czs-angle-right-l" />下一题</button>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>

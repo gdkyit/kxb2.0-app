@@ -7,7 +7,7 @@
                 <view class="userHeader userHeaderName">
                 <text class="userinfo-nickname" >郑拱强</text>
                 <import src="../template/rankLevel.wxml"/>
-                <template is="rankLevel" data="{{score:'65557'}}"  />
+                <template is="rankLevel" data="{{score:'39'}}"  />
                 </view>
                 <view style="float:right;padding:40rpx 50rpx;"><text style="font-size:12px">出题贡献值：0</text></view>
                 <view style="clear:both;"></view>

@@ -5,7 +5,7 @@
 <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell" wx:for="{{checkboxItems}}" wx:key="value">
                 <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
-                    <image src="../../style/img/likeFull.svg" style="width: 30px; height: 30px; display: block"/>
+                    <i class="czs-heart" style="color:#e10000;font-size:28px" ></i>
                 </view>
                 <view class="weui-cell__bd">
                     <view>{{item.user_name}}</view>

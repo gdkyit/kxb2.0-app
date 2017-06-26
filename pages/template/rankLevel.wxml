@@ -9,7 +9,7 @@
                 </block>
 
                 <block wx:if="{{score >=4501}}" wx:for="{{(score <=6500?1:(score >=6501 && score <=9500)?2:(score >=9501 && score <=16000)?3:(score >=16001 && score <=40000)?4:(score >=40001)?5:0)}}" wx:key="unique" >
-                    <i class="czs-medal" style="color:#fee604;font-weight:bold" ></i>
+                    <i class="czs-medal" style="color:#fee604;" ></i>
                 </block>
     </view>
 </template>

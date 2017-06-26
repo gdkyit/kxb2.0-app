@@ -63,6 +63,9 @@ page {
 button[type="primary"] {
     background-color: #3FBE69;
 }
+button[loading][type="primary"]{
+    background-color: #3FBE69;
+}
 
 button[disabled][type="primary"] {
     background-color: #9fdeb4;

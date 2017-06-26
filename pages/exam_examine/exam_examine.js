@@ -20,7 +20,6 @@ Page({
                 'x-auth-token': res.data
                 }, // 设置请求的 header
                 success: reqRes => {
-                    console.log(reqRes);
                     if(reqRes.data.code=="200"){
                         that.setData({
                             recordList:reqRes.data.data,
@@ -78,14 +77,13 @@ Page({
     },
     selectExam:function(event){
         wx.showModal({
-                title: '尚未登录',
-                content: '你需要登录才能使用本功能',
-                showCancel: false,
-                confirmText: '去登录',
+                title: '备注',
+                content: event.currentTarget.dataset.remark,
+                confirmText: '开始考试',
                 success: res => {
                     if(res.confirm) {
                         wx.redirectTo({
-                            url: '../login/login',
+                            url: '../exam_examine_testing/exam_examine_testing?examId='+event.currentTarget.dataset.examid,
                         })
                     }
                 }

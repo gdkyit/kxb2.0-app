@@ -1,0 +1,61 @@
+<block wx:if="{{!endExam}}">
+    <form bindsubmit="putAnswer" >
+    <view class="weui-panel weui-panel_access">
+            <view class="weui-panel__hd">题目来源：{{currContext.lytitle}}</view>
+            <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_text">
+                    <view class="weui-media-box__title weui-media-box__title_in-text">{{currIndex+1}}.（{{currContext.MODE==0?'判断题':currContext.MODE==1?'单选题':'多选题'}}）{{currContext.CONTENT}}</view>
+                </view>
+                <view class="weui-media-box weui-media-box_text answerText">
+                    <radio-group name="selectedAnswer" hidden="{{currContext.MODE==2}}" bindchange="radioChange">
+                        <label class="weui-cell weui-check__label" wx:for="{{selectItems}}" wx:key="value">
+                            <radio class="weui-check" value="{{item.XZ_KEY}}" checked="{{item.checked}}"/>
+                            <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                                <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+                                <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+                            </view>
+                            <view class="weui-cell__bd">{{item.CONTENT}}</view>
+                        </label>
+                    </radio-group>
+                    <checkbox-group name="selectedAnswer" hidden="{{currContext.MODE!=2}}" bindchange="checkboxChange">
+                        <label class="weui-cell weui-check__label" wx:for="{{selectItems}}" wx:key="value">
+                            <checkbox value="{{item.XZ_KEY}}" checked="{{item.checked}}"/>
+                            <view class="weui-cell__bd">{{item.CONTENT}}</view>
+                        </label>
+                    </checkbox-group>
+                </view>
+            </view>
+            <view class="weui-panel__ft">
+                <view class="weui-cell weui-cell_access cell-end">
+                    <view >提示信息：<text hidden="{{rs==''}}" >你选择了 {{rs}} {{rsText}}</text></view>
+                </view>
+            </view>
+        </view>
+    <view class="weui-btn-area">
+        <button class="weui-btn" type="primary" formType="submit" loading="{{buttonLoading}}" >提交答案</button>
+    </view>
+    </form>
+<view class="weui-cells__title">共{{totalIss}}道题目，当前第{{currIndex+1}}题</view>
+<view class="weui-cells__title">其中答对{{rightAnswer}}题，答错{{worngAnswer}}题 当前总分数：{{totalScore}}分</view>
+</block>
+<block wx:if="{{endExam}}">
+    <view class="userTop" >
+        <view class="endExamHeader">考试结束</view>
+        <view class="rankLeft topBoder" >
+            <text class="rankTitle">总分数</text>
+            <view class="rankValue">80.00</view>
+        </view>
+        <view class="rankRight topBoder" >
+            <text class="rankTitle">考试总时长</text>
+            <view class="rankValue">1分43秒</view>
+        </view>
+        <view class="rankLeft" >
+            <text class="rankTitle">答对题目</text>
+            <view class="rankValue">40</view>
+        </view>
+        <view class="rankRight" >
+            <text class="rankTitle">正确率</text>
+            <view class="rankValue">100%</view>
+        </view>
+    </view>
+</block>

@@ -1,8 +1,31 @@
 /* learning.wxss */
 
-.l-icon {
-    margin-right: 5px;
+.icon-b {
+    margin-right: 8px;
     vertical-align: middle;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center
+}
+.w-r{
+    padding-top:24px;
+    padding-bottom: 24px;
+}
+.icon {
+    color:#fff;
+}
+.bl{
+    background-color: #7ec2f3
+}
+.gr{
+    background-color:#76d0a3
+}
+.or {
+    background-color:#e09a00
+}
+.ye{
+    background-color:#ffdd76
 }

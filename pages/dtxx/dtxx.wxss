@@ -1,0 +1,7 @@
+/* dtxx.wxss */
+.weui-footer_fixed-bottom{
+    bottom: 0
+}
+button,button::after {
+    border-radius: 0
+}

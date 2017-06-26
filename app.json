@@ -16,7 +16,9 @@
     "pages/user_userMain/user_userMain",
     "pages/login/login",
     "pages/ranking/ranking",
-    "pages/learning/learning"
+    "pages/learning/learning",
+    "pages/tiku/tiku",
+    "pages/dtxx/dtxx"
   ],
   "tabBar": {
     "selectedColor": "#515151",

@@ -3,6 +3,7 @@
     "pages/kaoshi/kaoshi",
     "pages/index/index",
     "pages/exam_examine/exam_examine",
+    "pages/exam_examine_testing/exam_examine_testing",
     "pages/exam_examRace/exam_examRace",
     "pages/exam_examRecord/exam_examRecord",
     "pages/exam_examRecord_Detail/exam_examRecord_Detail",

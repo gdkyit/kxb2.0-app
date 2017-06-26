@@ -61,7 +61,7 @@
 .rankTitle{
   font-size:14px;
   font-family:黑体;
-  color:#3FBE69;
+  color:#353535;
 }
 
 .userIcon{

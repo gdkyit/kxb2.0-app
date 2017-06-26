@@ -1,6 +1,6 @@
 <view class="weui-cells__title">考试记录</view>
 <view class="weui-cells weui-cells_after-title">
-    <block wx:if="{{recordList.size!=0}}" wx:for="{{recordList}}" wx:key="unique">
+    <block wx:if="{{recordList.length!=0}}" wx:for="{{recordList}}" wx:key="unique">
     <navigator url="../exam_examRecord_Detail/exam_examRecord_Detail?examId={{item.exam_id}}" class="weui-cell weui-cell_access weui-flex" hover-class="weui-cell_active">
         <view class="weui-media-box weui-media-box_text weui-flex__item">
             <view class="weui-media-box__title weui-media-box__title_in-text">{{item.title}}</view>
@@ -9,7 +9,7 @@
         <view class="weui-cell__ft weui-cell__ft_in-access placeholder">共{{item.totalCount}}题</view>
     </navigator>
     </block>
-    <block wx:if="{{recordList.size==0}}" >
+    <block wx:if="{{recordList.length==0}}" >
         <view class="page__bd">
             <view class="weui-loadmore weui-loadmore_line">
                 <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>

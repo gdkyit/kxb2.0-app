@@ -1,7 +1,7 @@
 <!--tiku.wxml-->
 <view class="page">
     <view class="page__bd">
-        <view class="weui-cells__title">选择题库</view>
+        <view class="weui-cells__title">选择一种题库类型</view>
         <view class="weui-cells weui-cells_after-title">
             <navigator wx:for="{{list}}" wx:key="{{ID_}}" url="../dtxx/dtxx?tkId={{item.ID_}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <view class="weui-cell__bd">{{item.TKMC}}</view>

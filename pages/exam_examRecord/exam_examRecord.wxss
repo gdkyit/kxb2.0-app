@@ -1,0 +1,12 @@
+.weui-media-box{
+    padding: 0;
+    width:70%;
+}
+.weui-media-box__title{
+    font-size:16px;
+    font-weight:bold;
+
+}
+.weui-cell__ft_in-access{
+    font-size: 14px;
+}

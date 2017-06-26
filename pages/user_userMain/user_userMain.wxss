@@ -15,11 +15,7 @@
   font-family: 黑体;
   padding-bottom:25px;
 }
-/*.container{
-    padding: 80rpx 0 40rpx;
-    background:-webkit-gradient(linear, 0 0, 0 bottom, from(#38f), to(rgba(255, 255, 255, 0.5)));
 
-}*/
 .userTop{
   /*background-color: #8192d6;*/
   /*background:-webkit-gradient(linear, 0 0, 0 bottom, from(#3FBE69), to(rgba(255, 255, 255, 0.5))); */
@@ -60,19 +56,12 @@
   font-family:黑体;
   font-size:30px;
   color:#3FBE69;
-
+  line-height: 30px;
 }
 .rankTitle{
   font-size:14px;
   font-family:黑体;
   color:#3FBE69;
-}
-
-.userList{
-  /*background-color: #83fcd8;*/
-}
-.weui-cell__bd{
-  /*color: #ffffff;*/
 }
 
 .userIcon{

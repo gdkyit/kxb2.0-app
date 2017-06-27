@@ -205,7 +205,7 @@ Page({
                 
             }else{
                 setTimeout(
-                    this.completePOST,2000
+                    this.completePOST,200
                 )
             }
             // let examItem={

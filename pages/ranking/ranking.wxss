@@ -46,3 +46,6 @@
     font-weight: bold;
     background-color: #DBF3E3
 }
+.no-ws{
+    white-space:normal 
+}

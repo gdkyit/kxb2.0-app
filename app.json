@@ -16,7 +16,10 @@
     "pages/user_joinGroups/user_joinGroups",
     "pages/user_userMain/user_userMain",
     "pages/login/login",
-    "pages/ranking/ranking"
+    "pages/ranking/ranking",
+    "pages/learning/learning",
+    "pages/tiku/tiku",
+    "pages/dtxx/dtxx"
   ],
   "tabBar": {
     "selectedColor": "#515151",
@@ -29,7 +32,7 @@
         "text": "考试"
       },
       {
-        "pagePath": "pages/user_userMain/user_userMain",
+        "pagePath": "pages/learning/learning",
         "iconPath": "resource/img/icon-xuexi.png",
         "selectedIconPath": "resource/img/icon-xuexi-act.png",
         "text": "学习"

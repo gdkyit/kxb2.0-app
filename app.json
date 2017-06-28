@@ -29,7 +29,7 @@
         "pagePath": "pages/kaoshi/kaoshi",
         "iconPath": "resource/img/icon-kaoshi.png",
         "selectedIconPath": "resource/img/icon-kaoshi-act.png",
-        "text": "考试"
+        "text": "首页"
       },
       {
         "pagePath": "pages/learning/learning",

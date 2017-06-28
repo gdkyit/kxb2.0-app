@@ -11,7 +11,7 @@
                         <view class="weui-label">姓名：</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <input class="weui-input" value="{{'郑拱强'}}" placeholder="请输入姓名"/>
+                        <input class="weui-input" value="{{'孟小翔'}}" placeholder="请输入姓名"/>
                     </view>
         </view>
         <view class="weui-cell weui-cell_input">

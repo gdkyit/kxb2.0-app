@@ -5,6 +5,9 @@
 button,button::after {
     border-radius: 0
 }
+.include-fixed-bottom{
+    padding-bottom:136px
+}
 
 .tips{
     padding: 15px;
@@ -36,4 +39,16 @@ button,button::after {
 }
 .rd {
     color:#f04134
+}
+.pp{
+    color:#7265e6
+}
+.light{
+    color:#bfbfbf
+}
+.br {
+    flex: 0 0 60%
+}
+.feedback{
+    padding:15px;
 }

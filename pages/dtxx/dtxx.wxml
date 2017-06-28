@@ -1,6 +1,6 @@
 <!--dtxx.wxml-->
 <view class="page">
-  <view class="page__bd">
+  <view class="page__bd include-fixed-bottom">
     <form bindsubmit="commitAnswer">
     <view class="weui-panel">
       <view class="weui-panel__hd">题目来源：{{questions[index].lytitle}}</view>
@@ -10,21 +10,21 @@
           <view class="content">
             <block wx:if="{{questions[index].MODE == 1}}">
               <radio-group class="radio-group" name="single">
-                <label class="weui-cell weui-check__label" wx:for="{{answers}}" wx:key="{{ID_}}">
+                <label class="weui-cell weui-check__label" wx:for="{{answers}}" wx:key="ID_">
                   <radio value="{{item.XZ_KEY}}" />{{item.XZ_KEY}} . {{item.CONTENT}}
                 </label>
               </radio-group>
             </block>
             <block wx:elif="{{questions[index].MODE == 2}}">
               <checkbox-group name="multi">
-                <label class="weui-cell weui-check__label" wx:for="{{answers}}"  wx:key="{{ID_}}">
+                <label class="weui-cell weui-check__label" wx:for="{{answers}}" wx:key="ID_">
                   <checkbox value="{{item.XZ_KEY}}"/>{{item.XZ_KEY}} . {{item.CONTENT}}
                 </label>
               </checkbox-group>
             </block>
             <block wx:elif="{{questions[index].MODE == 0}}">
                 <radio-group class="radio-group" name="yesno">
-                <label class="weui-cell weui-check__label" wx:for="{{answers}}" wx:key="{{ID_}}">
+                <label class="weui-cell weui-check__label" wx:for="{{answers}}" wx:key="ID_">
                   <radio value="{{item.XZ_KEY}}" />{{item.XZ_KEY}} . {{item.CONTENT}}
                 </label>
               </radio-group>
@@ -36,6 +36,11 @@
     <view class="weui-flex tips">
       <view class="tips_hd"><i class="czs-info-l icon"/>提示</view>
       <view class="weui-flex__item">{{feedbackRs}}</view>
+    </view>
+    <view class="weui-flex feedback">
+      <view class="weui-flex__item br"></view>
+      <view class="weui-flex__item feedback-zan {{iszan?'pp':'light'}}" bindtap="bindZan"><i class="czs-thumbs-up-l icon"/>赞</view>
+      <view class="weui-flex__item light"><i class="czs-talk-l icon"/>纠错</view>
     </view>
     <view class="weui-footer weui-footer_fixed-bottom">
       <view class="weui-flex report">

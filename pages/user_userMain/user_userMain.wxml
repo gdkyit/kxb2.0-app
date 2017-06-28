@@ -5,7 +5,7 @@
                 <image class="userinfo-avatar" src="http://202.104.10.34:83/images/18665002969/avatar.jpg?date=Tue%20Jun%2013%202017%2010:20:35%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)" mode="aspectFill" />
                 </view>
                 <view class="userHeader userHeaderName">
-                <text class="userinfo-nickname" >郑拱强</text>
+                <text class="userinfo-nickname" >孟小翔</text>
                 <import src="../template/rankLevel.wxml"/>
                 <template is="rankLevel" data="{{score:'39'}}"  />
                 </view>

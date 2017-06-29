@@ -20,7 +20,8 @@ Page({
     score: 0,
     rightCount: 0,
     wrongCount: 0,
-    last: false
+    last: false,
+    dansGroup:['','','','','','']
   },
 
   /**
@@ -163,11 +164,18 @@ Page({
           let wc = this.data.wrongCount;
           let rc = this.data.rightCount;
           let result = res.data.data.userRs.result;
+          let dansGroup = this.data.dansGroup;
+          let da
           if (result == 'Y') {
             score += res.data.data.userRs.resultScore;
             rc += 1
           } else {
             wc += 1
+            let pointer = { A:0,B:1,C:2,D:3,E:4,F:5}
+            let dans = res.data.data.dans;
+            for (let prop in dans){
+              dansGroup[pointer[prop]] = 'dans-bg'
+            }
           }
           this.setData({
             feedbackUserRs: res.data.data.userRs,
@@ -175,7 +183,8 @@ Page({
             feedbackRs: res.data.data.rs,
             score: score,
             wrongCount: wc,
-            rightCount: rc
+            rightCount: rc,
+            dansGroup:dansGroup
           })
 
         } else {
@@ -213,6 +222,7 @@ Page({
         feedbackUserRs: {},
         feedbackDans: {},
         feedbackRs: '',
+        dansGroup:['','','','','','']
       })
     }else{
       

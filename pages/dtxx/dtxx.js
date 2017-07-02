@@ -277,46 +277,5 @@ Page({
       url:'../jiucuo/jiucuo?tkid='+tkid
     })
   },
-  /**
-   * 提交纠错信息
-   */
-  bindSubmitJiucuo(){
-    const token = wx.getStorageSync('token');
-    let index = this.data.index;
-    let tkid = this.data.questions[index].ID_;
-    let postdata = {
-      zstkId: tkid,
-      dzDate: new Date(),
-      type: '2',
-      remark: '赞'
-    }
-    wx.request({
-      url: app.host + '/api/laudRecord',
-      data: postdata,
-      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      header: {
-        'content-type': 'application/json',
-        'x-auth-token': token
-      }, // 设置请求的 header
-      success: (res) => {
-        if (res.statusCode == '200' && res.data.code == '200') {
-          wx.showToast({
-            title:'纠错已提交',
-            duration: 2000,
-            icon:'success'
-          })
-
-        } else {
-          this.showErr(res.data.error)
-        }
-      },
-      fail: function () {
-        this.showNetErr();
-      },
-      complete: function () {
-        this.setData({jiucuo:false})
-      }
-    })
-  }
 
 })

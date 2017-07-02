@@ -20,7 +20,10 @@
     "pages/learning/learning",
     "pages/tiku/tiku",
     "pages/dtxx/dtxx",
-    "pages/jiucuo/jiucuo"
+    "pages/jiucuo/jiucuo",
+    "pages/dtjl/dtjl",
+    "pages/zsts/zsts",
+    "pages/zstsmx/zstsmx"
   ],
   "tabBar": {
     "selectedColor": "#515151",

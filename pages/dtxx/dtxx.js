@@ -21,7 +21,6 @@ Page({
     last: false,
     iszan: false,
     next: false,
-    jiucuo:false,
     dansGroup:['','','','','','']
   },
 
@@ -223,7 +222,7 @@ Page({
         feedbackUserRs: {},
         feedbackDans: {},
         feedbackRs: '',
-        dansGroup:['','','','','','']
+        dansGroup:['','','','','',''],
       })
     }else{
       
@@ -272,7 +271,11 @@ Page({
    * 纠错
    */
   bindJiucuo(){
-    this.setData({jiucuo:true})
+    let index = this.data.index;
+    let tkid = this.data.questions[index].ID_;
+    wx.navigateTo({
+      url:'../jiucuo/jiucuo?tkid='+tkid
+    })
   },
   /**
    * 提交纠错信息

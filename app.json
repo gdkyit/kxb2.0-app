@@ -19,7 +19,8 @@
     "pages/ranking/ranking",
     "pages/learning/learning",
     "pages/tiku/tiku",
-    "pages/dtxx/dtxx"
+    "pages/dtxx/dtxx",
+    "pages/jiucuo/jiucuo"
   ],
   "tabBar": {
     "selectedColor": "#515151",

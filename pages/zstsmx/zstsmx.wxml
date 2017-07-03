@@ -10,6 +10,8 @@
         <view class="weui-article">
             <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
         </view>
-        
+        <view class="fixed">
+            <image class="back" src="/resource/img/back.png" />
+        </view>
     </view>
 </view>

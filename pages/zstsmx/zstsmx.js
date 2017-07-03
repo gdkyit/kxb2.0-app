@@ -16,9 +16,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let content = options.content;
-    let date = options.date;
-    let title = options.title;
+    let index = options.i;
+    let zsts = wx.getStorageSync('zsts');
+    let content = zsts[index].CONTENT;
+    let title = zsts[index].TITLE;
+    let date = zsts[index].DATE;
     WxParse.wxParse('article', 'html', content, this);
     this.setData({
       date:date,

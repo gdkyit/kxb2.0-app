@@ -30,8 +30,14 @@ Page({
       }, // 设置请求的 header
       success: (res) => {
         if (res.statusCode == '200') {
+          let location = '/sxb-backend/ueditorupload'
+          let data = res.data.data.map(item=>{
+            item.CONTENT = item.CONTENT.replace(/\/sxb-backend\/ueditorupload/g,app.uploadHost + location);
+            return item;
+          })
+          wx.setStorageSync('zsts',data)
           this.setData({
-            list: res.data.data,
+            list:data,
           })
 
         } else {

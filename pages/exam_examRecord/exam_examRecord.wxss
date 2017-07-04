@@ -10,3 +10,6 @@
 .weui-cell__ft_in-access{
     font-size: 14px;
 }
+.weui-media-box__title{
+    white-space:normal;
+}

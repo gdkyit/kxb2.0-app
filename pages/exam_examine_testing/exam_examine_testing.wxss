@@ -4,12 +4,28 @@
     font-size:13px;
 
 }
+
+.fixBottom{
+    padding-bottom: 176px;
+}
+
 .weui-media-box__title{
     white-space:normal;
     margin-bottom:0;
 }
 .answerText{
     font-size:14px; 
+    padding-top:10px;
+}
+.greenSel{
+    background-color: #DBF3E3;
+    /*color: #ffffff;*/
+    /*border-radius:8px; */
+}
+.redSel{
+    background-color: #fde3cf;
+    /*color: #ffffff;*/
+    /*border-radius:8px; */
 }
 
 .endExamHeader{
@@ -54,8 +70,41 @@
   color:#353535;
 }
 
-.userIcon{
-  margin-right: 5px;
-  font-size:30px;
-  color:#3FBE69;
+.weui-footer_fixed-bottom{
+    bottom: 0
+}
+button,button::after {
+    border-radius: 0
+}
+
+.tips{
+    padding: 15px;
+    background: #fff;
+    margin-top:10px;
+    font-size: 12px
+}
+.tips_hd{
+    margin-right: 15px
+}
+.tips_hd .icon{
+    margin-right:5px
+}
+.report {
+    background: #fff;
+    padding: 15px;
+    height: 50px
+}
+.r-hd{
+    font-size:12px;
+    color:#353535;
+}
+.r-ct{
+    font-size:20px;
+    color:#353535
+}
+.gr{
+    color:#3FBE69
+}
+.rd {
+    color:#f04134
 }

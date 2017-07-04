@@ -6,6 +6,12 @@ Page({
     onLoad:function(option){
     let app = getApp();
     let that=this;
+    wx.showToast({
+        title: '加载中',
+        icon: 'loading',
+        mask:true,
+        duration: 5000
+    })
     wx.getStorage({//获取token
         key: 'token',
         success: function(res) {
@@ -23,6 +29,22 @@ Page({
                     if(reqRes.data.code=="200"){
                         that.setData({
                             recordList:reqRes.data.data,
+                        })
+                        wx.hideToast();
+                    }else if(reqRes.data.code=="401"){
+                        wx.hideToast();
+                        wx.showModal({
+                            title: '登陆过期',
+                            content: '登陆信息已过期，你需要登录才能使用本功能',
+                            showCancel: false,
+                            confirmText: '去登录',
+                            success: res => {
+                                if(res.confirm) {
+                                    wx.redirectTo({
+                                        url: '../login/login',
+                                    })
+                                }
+                            }
                         })
                     }else{
                          wx.showModal({

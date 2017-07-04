@@ -1,7 +1,8 @@
 <view class="userInfoUpdate">
+    <form bindsubmit="putUserInfo" >
     <view class="userContainer">
             <view  bindtap="previewImage" id="{{files}}">
-                <image class="userinfo-avatar" src="{{!files?('http://202.104.10.34:83/images/18665002969/avatar.jpg?date=Tue%20Jun%2013%202017%2010:20:35%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)'):files}}" mode="aspectFill" />
+                <image class="userinfo-avatar" src="{{!files?photo:files}}" mode="aspectFill" />
             </view>
             <button class="weui-btn mini-btn" type="default" size="mini" bindtap="chooseImage">上传新头像</button>
     </view>
@@ -11,7 +12,7 @@
                         <view class="weui-label">姓名：</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <input class="weui-input" value="{{'孟小翔'}}" placeholder="请输入姓名"/>
+                        <input name="name" class="weui-input" value="{{name}}" placeholder="请输入姓名"/>
                     </view>
         </view>
         <view class="weui-cell weui-cell_input">
@@ -19,7 +20,7 @@
                         <view class="weui-label">手机：</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <input class="weui-input" value="{{'123123123'}}" placeholder="请输入手机"/>
+                        <input name="phone" class="weui-input" value="{{phone}}" placeholder="请输入手机"/>
                     </view>
         </view>
         <view class="weui-cell weui-cell_input">
@@ -27,8 +28,8 @@
                         <view class="weui-label">出生年月：</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
-                            <view class="weui-input">{{date}}</view>
+                        <picker name="birthday" mode="date" value="{{birthday}}"  end="{{endTime}}" bindchange="bindBirthdayChange">
+                            <view class="weui-input">{{birthday}}</view>
                         </picker>
                     </view>
         </view>
@@ -37,34 +38,17 @@
                         <view class="weui-label">入职日期：</view>
                     </view>
                     <view class="weui-cell__bd">
-                        <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
-                            <view class="weui-input">{{date}}</view>
+                        <picker name="rzday" mode="date" value="{{rzday}}"  end="{{endTime}}" bindchange="bindRzdayChange">
+                            <view class="weui-input">{{rzday}}</view>
                         </picker>
                     </view>
         </view>
         <view class="weui-btn-area">
-        <button class="weui-btn" type="primary">提交修改</button>
+        <button class="weui-btn" disabled="{{disableUserInfo}}" type="primary" formType="submit" loading="{{loadingUserInfo}}" >提交修改</button>
         </view>
     </view>
-    <view>
-        <view class="weui-cell weui-cell_input inputStart">
-                <view class="weui-cell__hd">
-                    <view class="weui-label">新密码：</view>
-                </view>
-                <view class="weui-cell__bd">
-                    <input class="weui-input"  placeholder="请输入新密码"/>
-                </view>
-        </view>
-        <view class="weui-cell weui-cell_input inputEnd">
-                <view class="weui-cell__hd">
-                    <view class="weui-label">确认密码：</view>
-                </view>
-                <view class="weui-cell__bd">
-                    <input class="weui-input"  placeholder="请再次输入新密码"/>
-                </view>
-        </view>
-        <view class="weui-btn-area">
-        <button class="weui-btn" type="primary">修改密码</button>
-        </view>
+    </form>
+    <view class="weui-btn-area">
+        <button class="weui-btn"  type="defult" bindtap="backTo" >返回</button>
     </view>
 </view>

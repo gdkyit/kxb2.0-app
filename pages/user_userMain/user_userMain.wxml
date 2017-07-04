@@ -2,63 +2,72 @@
     <view class="domain">
         <view class="userTop" >
                 <view class="userHeader">
-                <image class="userinfo-avatar" src="http://202.104.10.34:83/images/18665002969/avatar.jpg?date=Tue%20Jun%2013%202017%2010:20:35%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)" mode="aspectFill" />
+                <image wx:if="{{IUrl!=''}}" class="userinfo-avatar" src="{{IUrl}}" mode="aspectFill" />
+                    <view wx:elif="{{IUrl==''}}" class="userinfo-avatar usericonColor" mode="aspectFill" ><i  class="userIcon czs-user "  ></i></view>
                 </view>
                 <view class="userHeader userHeaderName">
-                <text class="userinfo-nickname" >孟小翔</text>
+                <text class="userinfo-nickname" >{{userName}}</text>
                 <import src="../template/rankLevel.wxml"/>
-                <template is="rankLevel" data="{{score:'39'}}"  />
+                <template wx:if="{{!!scoreRank.score}}" is="rankLevel" data="{{score:scoreRank.score}}"  />
                 </view>
-                <view style="float:right;padding:40rpx 50rpx;"><text style="font-size:12px">出题贡献值：0</text></view>
+                <view style="float:right;padding:40rpx 50rpx;"><text style="font-size:12px">出题贡献值：{{contribution}}</text></view>
                 <view style="clear:both;"></view>
                 <view class="rankLeft topBoder" >
                     <text class="rankTitle">总积分</text>
-                    <view class="rankValue">39.00</view>
+                    <view class="rankValue">{{!scoreRank.score?"无":scoreRank.score}}</view>
                 </view>
                 <view class="rankRight topBoder" >
                     <text class="rankTitle">总积分排名</text>
-                    <view class="rankValue">39</view>
+                    <view class="rankValue">{{!scoreRank.score?"无":scoreRank.rank}}</view>
                 </view>
                 <view class="rankLeft" >
                     <text class="rankTitle">已做题目</text>
-                    <view class="rankValue">39</view>
+                    <view class="rankValue">{{!scoreRank.score?"无":totalUserResult.totalCount}}</view>
                 </view>
                 <view class="rankRight" >
                     <text class="rankTitle">正确率</text>
-                    <view class="rankValue">39%</view>
+                    <view class="rankValue">{{rightPersent}}</view>
                 </view>
         </view>
         <view style="clear:both"></view>
+        <view wx:if="{{!scoreRank.score}}" style="text-align:center;color:#888888;"><text style="font-size:12px">{{scoreRank}}</text></view>
         <view class="weui-cells weui-cells_after-title userList">
-            <navigator url="../user_userInfoUpdate/user_userInfoUpdate" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <navigator url="../user_userInfoUpdate/user_userInfoUpdate?userId={{recordMap.id_}}&name={{recordMap.USER_NAME}}&phone={{recordMap.PHONE}}&birthday={{recordMap.BIRTHDAY}}&rzday={{recordMap.RZSJ}}&photo={{recordMap.PHOTO}}" open-type="redirect" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <view class="weui-cell__hd">
                     <i class="userIcon czs-user-l" ></i>
                 </view>
                 <view class="weui-cell__bd">个人信息维护</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </navigator>
-            <navigator url="../user_learningSubscription/user_learningSubscription" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <navigator url="../user_changedPassword/user_changedPassword?userId={{recordMap.id_}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__hd">
+                    <i class="userIcon czs-lock-l" ></i>
+                </view>
+                <view class="weui-cell__bd">修改用户密码</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+            <navigator url="../user_learningSubscription/user_learningSubscription?userId={{recordMap.id_}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <view class="weui-cell__hd">
                     <i class="userIcon czs-bookmark-l" ></i>
                 </view>
                 <view class="weui-cell__bd">订阅学习内容</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </navigator>
-            <navigator url="../user_rankSetting/user_rankSetting" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <navigator url="../user_rankSetting/user_rankSetting?userId={{recordMap.id_}}" class="weui-cell weui-cell_access" open-type="redirect" hover-class="weui-cell_active">
                 <view class="weui-cell__hd">
                     <i class="userIcon czs-setting-l" ></i>
                 </view>
                 <view class="weui-cell__bd">设置默认积分榜</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </navigator>
-            <navigator url="../user_ObtainLike/user_ObtainLike" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <navigator url="../user_obtainLike/user_obtainLike" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <view class="weui-cell__hd">
                     <i class="userIcon czs-heart-l" ></i>
                 </view>
                 <view class="weui-cell__bd">收到的出题点赞</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </navigator>
-            <navigator url="../user_ObtainCorrection/user_ObtainCorrection" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <navigator url="../user_obtainCorrection/user_obtainCorrection" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <view class="weui-cell__hd">
                     <i class="userIcon czs-right-clipboard-l" ></i>
                 </view>
@@ -72,7 +81,7 @@
                 <view class="weui-cell__bd">所属群组的查看</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </navigator>
-            <navigator url="../user_joinGroups/user_joinGroups" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <navigator url="../user_joinGroups/user_joinGroups?userId={{recordMap.id_}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <view class="weui-cell__hd">
                     <i class="userIcon czs-come-l" ></i>
                 </view>

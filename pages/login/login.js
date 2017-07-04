@@ -19,8 +19,8 @@ Page({
     let username = e.detail.value.username;
     let password = e.detail.value.password;
     /* 测试使用账户，正式环境去掉 */
-    username = '13829397905';
-    password = '666666'
+    // username = '13829397905';
+    // password = '666666'
     /* ====================================  */
     if (!!username && !!password) {
       let app = getApp();

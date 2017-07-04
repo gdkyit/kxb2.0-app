@@ -6,13 +6,21 @@ Page({
         userRsList:[],
         selectItems: [],
         rs:"",
+        answerStyle:[],
         buttonLoading:false,
-        rightAnswer:0,
-        worngAnswer:0,
+        rightCount:0,
+        worngCount:0,
         totalScore:0.00,
+        totalTime:0,
         endExam:false
     },
     onLoad:function(option){
+    wx.showToast({
+        title: '加载中',
+        icon: 'loading',
+        mask:true,
+        duration: 5000
+    })
     let that=this;
     wx.getStorage({//获取token
         key: 'token',
@@ -20,6 +28,7 @@ Page({
             that.setData({
                 token:res.data
             })
+            //获取全部试题
             wx.request({
                 url: app.host + '/api/examDetail?examId='+option.examId,
                 method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
@@ -28,11 +37,21 @@ Page({
                 'x-auth-token': res.data
                 }, // 设置请求的 header
                 success: reqRes => {
-                    console.log(reqRes)
                     let currIndex=0;
                     let examList=reqRes.data.data.examDetail;
                     let userRsList=reqRes.data.data.userRs;
                     let currContext=examList[currIndex];
+                    let score=0,tTime=0,errCount=0,rightCount=0;
+                    for(var i=0;i<userRsList.length;i++){
+                        let result = userRsList[i];
+                        score +=result.resultScore;
+                        tTime +=result.resultTime;
+                        if('Y' == result.result){
+                            rightCount+=1;
+                        }else{
+                            errCount+=1;
+                        }
+                    }
                     if(reqRes.data.code=="200"){
                         //获取答案选项
                         wx.request({
@@ -43,7 +62,6 @@ Page({
                             'x-auth-token': res.data
                             }, // 设置请求的 header
                             success: reqResAnswer => {
-                                console.log(reqResAnswer);
                                 if(reqResAnswer.data.code=="200"){
                                     that.setData({
                                         examList:examList,
@@ -51,10 +69,34 @@ Page({
                                         currContext:currContext,
                                         selectItems:reqResAnswer.data.data,
                                         startTime:new Date(),
-                                        totalIss:examList.length,
+                                        rightCount:rightCount,
+                                        worngCount:errCount,
+                                        totalScore:score.toFixed(2),
+                                        totalTime:tTime,
+                                        totalIss:examList.length+userRsList.length,
                                         finishIss:userRsList.length
                                     })
+                                    that.setData({
+                                        
+                                    })
+                                    wx.hideToast();
+                                }else if(reqRes.data.code=="401"){
+                                    wx.hideToast();
+                                    wx.showModal({
+                                        title: '登陆过期',
+                                        content: '登陆信息已过期，你需要登录才能使用本功能',
+                                        showCancel: false,
+                                        confirmText: '去登录',
+                                        success: res => {
+                                            if(res.confirm) {
+                                                wx.redirectTo({
+                                                    url: '../login/login',
+                                                })
+                                            }
+                                        }
+                                    })
                                 }else{
+                                    //获取答案选项错误
                                     wx.showModal({
                                         title: '后台服务错误',
                                         content: reqRes.data.error,
@@ -72,6 +114,7 @@ Page({
                             
                             },
                             fail: e => {
+                                //获取答案选项错误
                                 wx.showModal({
                                     title: '网络访问故障',
                                     content: e,
@@ -88,6 +131,7 @@ Page({
                             },
                         })
                     }else{
+                        //获取全部试题错误
                          wx.showModal({
                             title: '后台服务错误',
                             content: reqRes.data.error,
@@ -105,6 +149,7 @@ Page({
                 
                 },
                 fail: e => {
+                    //获取全部试题错误
                     wx.showModal({
                         title: '网络访问故障',
                         content: e,
@@ -122,6 +167,7 @@ Page({
             })
         },
         fail:err =>{
+            //获取token错误
             wx.showModal({
                 title: '尚未登录',
                 content: '你需要登录才能使用本功能',
@@ -138,9 +184,14 @@ Page({
         }
     })
     },
+    onUnload: function () {
+        wx.showModal({
+                title: '重新进入考试可继续完成未完成考试',
+                showCancel: false,
+                confirmText: '确定',
+            })
+    },
     radioChange: function (e) {
-        console.log('radio发生change事件，携带value值为：', e.detail.value);
-
         var radioItems = this.data.selectItems;
         for (var i = 0, len = radioItems.length; i < len; ++i) {
             radioItems[i].checked = radioItems[i].XZ_KEY == e.detail.value;
@@ -151,8 +202,6 @@ Page({
         });
     },
     checkboxChange: function (e) {
-        console.log('checkbox发生change事件，携带value值为：', e.detail.value);
-
         var checkboxItems = this.data.selectItems, values = e.detail.value;
         let rs="";
         for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
@@ -163,7 +212,6 @@ Page({
                     checkboxItems[i].checked = true;
                     if(rs.length>0){
                         rs +=';'
-                        
                     }
                     rs += values[j];
                     break;
@@ -176,107 +224,110 @@ Page({
         });
     },
     putAnswer:function(event){
-        this.setData({buttonLoading:true,rsText:"回答正确"})
+        //提交答案方法
+        this.setData({buttonLoading:true,buttonDisable:true})
         let answers=event.detail.value.selectedAnswer;
-        if(answers.length>0){
-
+        let that=this;
+        if(answers.length>0){//判断是否选择答案
             let currContext=this.data.currContext;
             let rs = this.data.rs;
-            // let examItem ={
-            //     tkId:currContext.ID_,
-            //     result:rs,
-            //     startTime:this.data.startTime,
-            //     endTime:new Date(),
-            //     mode:currContext.MODE,
-            //     examDetailId:currContext.detailId
-            // };
-            let examItem ={
-                tkId:"d81c3c69382c47c4aa0f800725c0e082",
+            let examItem ={//构造post参数
+                tkId:currContext.ID_,
                 result:rs,
                 startTime:this.data.startTime,
                 endTime:new Date(),
                 mode:currContext.MODE,
-                examDetailId:3688
+                examDetailId:currContext.detailId
             };
-            if(this.data.currIndex==(this.data.examList.length-1)){
-                setTimeout(
-                    this.setData({endExam:true}).bind(this),2000
-                )
+            wx.request({
+                //post答案
+                url: app.host + '/api/checkExamItem',
+                method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+                data: examItem,
+                header: {
+                'content-type': 'application/json',
+                'x-auth-token': this.data.token
+                }, // 设置请求的 header
+                success: reqResAnswer => {
+                    let answerStyle=[];
+                    let selectItems=that.data.selectItems;
+                    let rAnswers=reqResAnswer.data.data.dans;
+                    for(let i=0;i<selectItems.length;i++){//反馈回答情况
+                        answerStyle[i]=rAnswers.hasOwnProperty(selectItems[i].XZ_KEY)?'greenSel':(answers.includes(selectItems[i].XZ_KEY)?'redSel':'')
+                    }
+                    if(reqResAnswer.data.code=="200"){
+                        that.setData({rsText:reqResAnswer.data.data.rs,answerComparison:reqResAnswer.data.data.dans,answerStyle:answerStyle})
+                        if(that.data.finishIss+1==that.data.totalIss){//判断是否完成全部试题
+                            setTimeout(
+                                that.setData({
+                                    endExam:true,
+                                    rightPersent:(that.data.rightCount/that.data.totalIss*100).toFixed(2)
+                                }),1000
+                            )
+                        }else{
+                            setTimeout(function(){
+                                that.completePOST(reqResAnswer.data.data.userRs);
+                            }
+                                ,1000
+                            )
+                        }
+                    }else{
+                        //post答案错误
+                        wx.showModal({
+                            title: '后台服务错误',
+                            content: '已做题目将保存并退出考试',
+                            showCancel: false,
+                            confirmText: '退出考试',
+                            success: res => {
+                                if(res.confirm) {
+                                    wx.redirectTo({
+                                        url: wx.navigateBack({delta: 1}),
+                                    })
+                                }
+                            }
+                        })
+                    }
                 
-            }else{
-                setTimeout(
-                    this.completePOST,200
-                )
-            }
-            // let examItem={
-            //     endTime:"2017-06-26T08:28:38.446Z",
-            //     examDetailId:3701,
-            //     mode:"1",
-            //     result:"B",
-            //     startTime:"2017-06-26T08:28:26.800Z",
-            //     tkId:"a1def54e73f84cfc98d5e83621c4ec7a",
-            // }
-            // wx.request({
-            //     url: app.host + '/api/checkExamItem',
-            //     method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-            //     data: examItem,
-            //     header: {
-            //     'content-type': 'application/json',
-            //     'x-auth-token': this.data.token
-            //     }, // 设置请求的 header
-            //     success: reqResAnswer => {
-            //         console.log(reqResAnswer);
-            //         if(reqResAnswer.data.code=="200"){
-            //             // that.setData({
-            //             // })
-            //         }else{
-            //             wx.showModal({
-            //                 title: '后台服务错误',
-            //                 content: '已做题目将保存并退出考试',
-            //                 showCancel: false,
-            //                 confirmText: '返回',
-            //                 success: res => {
-            //                     if(res.confirm) {
-            //                         wx.redirectTo({
-            //                             url: wx.navigateBack({delta: 1}),
-            //                         })
-            //                     }
-            //                 }
-            //             })
-            //         }
-                
-            //     },
-            //     fail: e => {
-            //         wx.showModal({
-            //             title: '网络访问故障',
-            //             content: '已做题目将保存并退出考试',
-            //             showCancel: false,
-            //             confirmText: '返回',
-            //             success: res => {
-            //                 if(res.confirm) {
-            //                     wx.redirectTo({
-            //                         url: wx.navigateBack({delta: 1}),
-            //                     })
-            //                 }
-            //             }
-            //         })
-            //     },
-            // })
+                },
+                fail: e => {
+                    //post答案错误
+                    wx.showModal({
+                        title: '网络访问故障',
+                        content: '已做题目将保存并退出考试',
+                        showCancel: false,
+                        confirmText: '退出考试',
+                        success: res => {
+                            if(res.confirm) {
+                                wx.redirectTo({
+                                    url: wx.navigateBack({delta: 1}),
+                                })
+                            }
+                        }
+                    })
+                },
+            })
         }else{
             wx.showToast({
             title: '请选择答案',
             image: '/resource/img/error.png',
             duration: 1000
           });
+          this.setData({
+                buttonLoading:false,
+                buttonDisable:false
+          })
         }
     },
-    completePOST:function(){
+    completePOST:function(param){
+        //下一题操作
         let index=this.data.currIndex;
         let examList=this.data.examList;
-        let rAnswer=this.data.rightAnswer+1
-        let tScore=(parseInt(this.data.totalScore) +2).toFixed(2);
+        let tTime=this.data.totalTime+param.resultTime;
+        let vCount=param.result;
+        let tScore=(parseInt(this.data.totalScore) +param.resultScore).toFixed(2);
         let that=this;
         wx.request({
+            //获取答案选项
             url: app.host + '/api/tkxzx?tkId='+examList[index+1].ID_,
             method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
             header: {
@@ -284,19 +335,25 @@ Page({
             'x-auth-token': this.data.token
             }, // 设置请求的 header
             success: reqResAnswer => {
-                console.log(reqResAnswer);
                 if(reqResAnswer.data.code=="200"){
                     that.setData({
                         currIndex:index+1,
                         currContext:examList[index+1],
                         selectItems:reqResAnswer.data.data,
+                        startTime:new Date(),
+                        rightCount:that.data.rightCount+ (vCount=="Y"?1:0),
+                        worngCount:that.data.worngCount+ (vCount=="N"?1:0),
+                        totalTime:tTime,
+                        totalScore:tScore,
+                        finishIss:that.data.finishIss+1,
                         rs:"",
                         rsText:"",
-                        rightAnswer:rAnswer,
-                        totalScore:tScore,
-                        buttonLoading:false
+                        answerStyle:[],
+                        buttonLoading:false,
+                        buttonDisable:false
                     })
                 }else{
+                    //获取答案选项错误
                     wx.showModal({
                         title: '后台服务错误',
                         content: reqRes.data.error,
@@ -314,6 +371,7 @@ Page({
             
             },
             fail: e => {
+                //获取答案选项错误
                 wx.showModal({
                     title: '网络访问故障',
                     content: e,

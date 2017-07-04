@@ -1,18 +1,20 @@
 
 <view>
 <view class="weui-cells__title">群组列表</view>
+    <form bindsubmit="postList">
         <view class="weui-cells weui-cells_after-title">
-            <checkbox-group bindchange="checkboxChange">
+            <checkbox-group name="groups" bindchange="checkboxChange">
                 <label class="weui-cell weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
-                    <checkbox  value="{{item.value}}" checked="{{item.checked}}"/>
+                    <checkbox  value="{{item.ID_}}" checked="{{item.ID_==userItems[index].ID_}}"/>
                     <view class="weui-cell__bd">
-                        <view>{{item.group}}</view>
-                        <view style="font-size: 13px;color: #888888;">{{item.scope}}</view>
+                        <view>{{item.GROUP_NAME}}</view>
+                        <view style="font-size: 13px;color: #888888;">{{item.MS}}</view>
                     </view>
                 </label>
             </checkbox-group>
         </view>
         <view class="weui-btn-area">
-        <button class="weui-btn" type="primary">提交申请</button>
+        <button class="weui-btn" disabled="{{disableButton}}" type="primary" formType="submit" loading="{{loadingButton}}" >提交申请</button>
         </view>
+    </form>
 </view>

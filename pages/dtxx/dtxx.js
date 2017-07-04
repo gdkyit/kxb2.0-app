@@ -196,7 +196,7 @@ Page({
     if(index == this.data.questions.length){
       last = true
     }
-    this.setData({index:index,next:false,last:last})
+    this.setData({index:index,next:false,last:last,answers:[]})
 
   }
 

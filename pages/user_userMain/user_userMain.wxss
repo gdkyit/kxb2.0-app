@@ -3,8 +3,15 @@
   flex-direction: column;
   align-items: center;
 }
-
-
+.usericonColor{
+  line-height:68px;
+  text-indent:17px;
+  background-color: #ffffff
+}
+.iconNull{
+  margin-top: 64rpx;
+  margin-left: 64rpx;
+}
 
 .userinfo-nickname {
   color: #000;

@@ -1,11 +1,11 @@
 
 <view>
-<view class="weui-cells__title">所属群组查看</view>
+<view class="weui-cells__title">所属群组</view>
         <view class="weui-cells weui-cells_after-title">
-                <label class="weui-cell weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
+                <label class="weui-cell weui-check__label" wx:for="{{selectItems}}" wx:key="value">
                     <view class="weui-cell__bd">
-                        <view>{{item.group}}</view>
-                        <view style="font-size: 13px;color: #888888;">{{item.scope}}</view>
+                        <view>{{item.GROUP_NAME}}</view>
+                        <view style="font-size: 13px;color: #888888;">{{item.MS}}</view>
                     </view>
                 </label>
         </view>

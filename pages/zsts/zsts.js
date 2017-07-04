@@ -1,12 +1,11 @@
-// tiku.js
-const app = getApp();
+// zsts.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list: []
+    list:[]
   },
 
   /**
@@ -17,13 +16,14 @@ Page({
   },
 
   /**
-   * 获取题库分类列表
+   * 获取知识库列表
    */
   getList: function () {
+    const app = getApp();
     wx.showNavigationBarLoading()
     const token = wx.getStorageSync('token');
     wx.request({
-      url: app.host + '/api/tkfl',
+      url: app.host + '/api/userZskTs',
       method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       header: {
         'content-type': 'application/json',
@@ -31,8 +31,14 @@ Page({
       }, // 设置请求的 header
       success: (res) => {
         if (res.statusCode == '200') {
+          let location = '/sxb-backend/ueditorupload'
+          let data = res.data.data.map(item=>{
+            item.CONTENT = item.CONTENT.replace(/\/sxb-backend\/ueditorupload/g,app.uploadHost + location);
+            return item;
+          })
+          wx.setStorageSync('zsts',data)
           this.setData({
-            list: res.data.data,
+            list:data,
           })
 
         } else {

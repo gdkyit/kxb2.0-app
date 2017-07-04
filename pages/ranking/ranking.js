@@ -67,6 +67,7 @@ Page({
 
   },
   getJfb: function () {
+    wx.showNavigationBarLoading()
     const token = wx.getStorageSync('token');
     wx.request({
       url: app.host + '/api/jfb',
@@ -103,7 +104,7 @@ Page({
         });
       },
       complete: function () {
-        // complete
+        wx.hideNavigationBarLoading()
       }
     })
   },
@@ -111,6 +112,7 @@ Page({
    * 获取群组榜列表
    */
   getQzbList: function () {
+    wx.showNavigationBarLoading()
     const token = wx.getStorageSync('token');
     wx.request({
       url: app.host + '/api/userGroup',
@@ -141,7 +143,7 @@ Page({
         });
       },
       complete: function () {
-        // complete
+        wx.hideNavigationBarLoading()
       }
     })
   },
@@ -149,6 +151,7 @@ Page({
    * 获取特定群组榜单
    */
   getQzb: function (gid) {
+    wx.showNavigationBarLoading()
     const token = wx.getStorageSync('token');
     wx.request({
       url: app.host + '/api/qzb',
@@ -186,7 +189,7 @@ Page({
         });
       },
       complete: function () {
-        // complete
+        wx.hideNavigationBarLoading()
       }
     })
   },
@@ -194,6 +197,7 @@ Page({
    * 获取考试榜列表
    */
   getKsbList: function () {
+    wx.showNavigationBarLoading()
     const token = wx.getStorageSync('token');
     wx.request({
       url: app.host + '/api/userExam',
@@ -224,7 +228,7 @@ Page({
         });
       },
       complete: function () {
-        // complete
+        wx.hideNavigationBarLoading()
       }
     })
   },
@@ -232,6 +236,7 @@ Page({
    * 获取特定考试榜单
    */
   getKsb: function (eid) {
+    wx.showNavigationBarLoading()
     const token = wx.getStorageSync('token');
     wx.request({
       url: app.host + '/api/ksb',
@@ -269,7 +274,7 @@ Page({
         });
       },
       complete: function () {
-        // complete
+        wx.hideNavigationBarLoading()
       }
     })
   },
@@ -277,6 +282,7 @@ Page({
    * 获取业务榜列表
    */
   getFlpmList: function () {
+    wx.showNavigationBarLoading()
     const token = wx.getStorageSync('token');
     wx.request({
       url: app.host + '/api/tkfl',
@@ -307,7 +313,7 @@ Page({
         });
       },
       complete: function () {
-        // complete
+        wx.hideNavigationBarLoading()
       }
     })
   },
@@ -315,6 +321,7 @@ Page({
    * 获取特定分类业务榜单
    */
   getFlpm: function (eid) {
+    wx.showNavigationBarLoading()
     const token = wx.getStorageSync('token');
     wx.request({
       url: app.host + '/api/flpm',
@@ -352,7 +359,7 @@ Page({
         });
       },
       complete: function () {
-        // complete
+        wx.hideNavigationBarLoading()
       }
     })
   },
@@ -388,6 +395,12 @@ Page({
     } else if (phb == 3) {
       this.getFlpmList();
       this.setData({ view: '31' })
+    }
+  },
+  bindback(e){
+    let pv = e.currentTarget.dataset.pv;
+    if(!!pv){
+      this.setData({view:pv})
     }
   }
 

@@ -1,7 +1,7 @@
 /* learning.wxss */
 
 .icon-b {
-    margin-right: 8px;
+    margin-right: 15px;
     vertical-align: middle;
     width: 24px;
     height: 24px;

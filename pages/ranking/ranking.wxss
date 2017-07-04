@@ -2,6 +2,9 @@
 .weui-panel__hd{
     color:#000
 }
+.page__bd{
+    padding-bottom: 90px;
+}
 .hd-picker{
     width:50%
 }
@@ -48,4 +51,18 @@
 }
 .no-ws{
     white-space:normal 
+}
+.fixed {
+    position: fixed;
+    bottom: 50px;
+    left: 30px;
+    
+}
+
+.back {
+    width: 100rpx;
+    height: 100rpx;
+    box-shadow: 0 0 1em rgba(0, 0, 0,0.8);
+    border-radius: 50rpx
+    
 }

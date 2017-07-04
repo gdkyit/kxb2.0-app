@@ -1,0 +1,15 @@
+<!--dtjl.wxml-->
+<!--答题记录-->
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-cells__title">答题记录</view>
+        <view class="weui-panel weui-panel_access">
+            <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_text" wx:for="{{list}}">
+                    <view class="weui-media-box__title weui-media-box__title_in-text">共答题{{item.totalCount}}道，答对{{item.rightCount}}题，答错{{item.errorCount}}题</view>
+                    <view class="weui-media-box__desc">答题日期:{{item.start_time}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

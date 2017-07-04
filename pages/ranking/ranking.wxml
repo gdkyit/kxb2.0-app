@@ -26,7 +26,7 @@
         </view>
     </view>
     <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell" wx:for="{{scoreRank}}" wx:key="{{user_id}}">
+        <view class="weui-cell" wx:for="{{scoreRank}}" wx:key="user_id">
             <view class="mc">
                 <view>{{item.rank}}</view>
             </view>
@@ -63,7 +63,7 @@
             <view class="weui-cells__title">选择需查看的群组</view>
             <view class="weui-panel weui-panel_access">
                 <view class="weui-panel__bd">
-                    <view wx:for="{{phbSubList}}" wx:key="{{ID_}}" class="weui-media-box weui-media-box_text" bindtap="bindUserGroup" data-gid="{{item.ID_}}">
+                    <view wx:for="{{phbSubList}}" wx:key="ID_" class="weui-media-box weui-media-box_text" bindtap="bindUserGroup" data-gid="{{item.ID_}}">
                         <view class="weui-media-box__title weui-media-box__title_in-text">{{item.GROUP_NAME}}</view>
                         <view class="weui-media-box__desc">{{item.MS}}</view>
                     </view>
@@ -73,13 +73,14 @@
         <block wx:elif="{{view == '12'}}">
             <template is="selfInfo" data="{{...userScoreRank}}" />
             <template is="rankList" data="{{scoreRank}}" />
+            <image class="back fixed" data-pv="11" src="/resource/img/back.png" bindtap="bindback"/>
         </block>
 
         <block wx:elif="{{view == '21'}}">
             <view class="weui-cells__title">选择需查看的考试记录</view>
             <view class="weui-panel weui-panel_access">
                 <view class="weui-panel__bd">
-                    <view wx:for="{{phbSubList}}" wx:key="{{id_}}" class="weui-media-box weui-media-box_text" bindtap="bindUserExam" data-eid="{{item.id_}}">
+                    <view wx:for="{{phbSubList}}" wx:key="id_" class="weui-media-box weui-media-box_text" bindtap="bindUserExam" data-eid="{{item.id_}}">
                         <view class="weui-media-box__title weui-media-box__title_in-text no-ws">{{item.TITLE}}</view>
                         <view class="weui-media-box__desc">开始时间：{{item.START_TIME}}</view>
                         <view class="weui-media-box__desc">结束时间：{{item.END_TIME}}</view>
@@ -116,7 +117,7 @@
                 </view>
             </view>
             <view class="weui-cells weui-cells_after-title">
-                <view class="weui-cell" wx:for="{{examRank}}" wx:key="{{user_id}}">
+                <view class="weui-cell" wx:for="{{examRank}}" wx:key="user_id">
                     <view class="mc">
                         <view>{{item.rank}}</view>
                     </view>
@@ -131,13 +132,14 @@
                     </view>
                 </view>
             </view>
+            <image class="back fixed" data-pv="21" src="/resource/img/back.png" bindtap="bindback"/>
         </block>
 
         <block wx:elif="{{view == '31'}}">
             <view class="weui-cells__title">选择需查看排名的分类</view>
             <view class="weui-panel weui-panel_access">
                 <view class="weui-panel__bd">
-                    <view wx:for="{{phbSubList}}" wx:key="{{id_}}" class="weui-media-box weui-media-box_text" bindtap="bindUserFlpm" data-eid="{{item.ID_}}">
+                    <view wx:for="{{phbSubList}}" wx:key="id_" class="weui-media-box weui-media-box_text" bindtap="bindUserFlpm" data-eid="{{item.ID_}}">
                         <view class="weui-media-box__title weui-media-box__title_in-text">{{item.TKMC}}</view>
                     </view>
                 </view>
@@ -146,6 +148,7 @@
         <block wx:if="{{view == '32'}}">
             <template is="selfInfo" data="{{...userScoreRank}}" />
             <template is="rankList" data="{{scoreRank}}" />
+            <image class="back fixed" data-pv="31" src="/resource/img/back.png" bindtap="bindback"/>
         </block>
     </view>
 </view>

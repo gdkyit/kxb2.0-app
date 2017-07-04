@@ -73,6 +73,7 @@
         <block wx:elif="{{view == '12'}}">
             <template is="selfInfo" data="{{...userScoreRank}}" />
             <template is="rankList" data="{{scoreRank}}" />
+            <image class="back fixed" data-pv="11" src="/resource/img/back.png" bindtap="bindback"/>
         </block>
 
         <block wx:elif="{{view == '21'}}">
@@ -131,6 +132,7 @@
                     </view>
                 </view>
             </view>
+            <image class="back fixed" data-pv="21" src="/resource/img/back.png" bindtap="bindback"/>
         </block>
 
         <block wx:elif="{{view == '31'}}">
@@ -146,6 +148,7 @@
         <block wx:if="{{view == '32'}}">
             <template is="selfInfo" data="{{...userScoreRank}}" />
             <template is="rankList" data="{{scoreRank}}" />
+            <image class="back fixed" data-pv="31" src="/resource/img/back.png" bindtap="bindback"/>
         </block>
     </view>
 </view>

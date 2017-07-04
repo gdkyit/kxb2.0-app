@@ -1,4 +1,4 @@
-// zstsmx.js
+// xdjlmx.js
 var WxParse = require('../../lib/wxParse/wxParse.js');
 Page({
 
@@ -20,10 +20,10 @@ Page({
    */
   onLoad: function (options) {
     let index = options.i;
-    let zsts = wx.getStorageSync('zsts');
-    let content = zsts[index].CONTENT;
-    let title = zsts[index].TITLE;
-    let date = zsts[index].DATE;
+    let xdjl = wx.getStorageSync('xdjl');
+    let content = xdjl[index].CONTENT;
+    let title = xdjl[index].TITLE;
+    let date = xdjl[index].DATE;
     WxParse.wxParse('article', 'html', content, this);
     this.setData({
       date: date,

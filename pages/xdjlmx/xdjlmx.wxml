@@ -1,5 +1,5 @@
-<!--zstsmx.wxml-->
-<!--知识库文章明细-->
+<!--xdjlmx.wxml-->
+<!--心得交流文章明细-->
 <import src="../../lib/wxParse/wxParse.wxml"/>
 <view class="page" bindtouchstart="bindtouchstart" bindtouchend="bindtouchend">
     <view class="page__hd">

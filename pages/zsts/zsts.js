@@ -20,6 +20,7 @@ Page({
    */
   getList: function () {
     const app = getApp();
+    wx.showNavigationBarLoading()
     const token = wx.getStorageSync('token');
     wx.request({
       url: app.host + '/api/userZskTs',
@@ -56,7 +57,7 @@ Page({
         });
       },
       complete: function () {
-        // complete
+        wx.hideNavigationBarLoading()
       }
     })
   },

@@ -55,6 +55,7 @@ Page({
    * 获取随机题目
    */
   getList: function (flid) {
+    wx.showNavigationBarLoading()
     const token = wx.getStorageSync('token');
     wx.request({
       url: app.host + '/api/tk',
@@ -89,7 +90,7 @@ Page({
         this.showNetErr();
       },
       complete: function () {
-        // complete
+        wx.hideNavigationBarLoading()
       }
     })
   },
@@ -97,6 +98,7 @@ Page({
    * 获取题目答案
    */
   getAnswer: function (tkid) {
+    wx.showNavigationBarLoading()
     const token = wx.getStorageSync('token');
     wx.request({
       url: app.host + '/api/tkxzx',
@@ -123,7 +125,7 @@ Page({
         this.showNetErr();
       },
       complete: function () {
-        // complete
+        wx.hideNavigationBarLoading()
       }
     })
   },

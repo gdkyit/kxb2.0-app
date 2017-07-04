@@ -1,15 +1,2 @@
 /* zstsmx.wxss */
 
-.fixed {
-    position: fixed;
-    bottom: 50px;
-    left: 30px;
-    box-shadow: 0 0 1em #000;
-    border-radius: 50rpx
-}
-
-.back {
-    width: 100rpx;
-    height: 100rpx;
-    
-}

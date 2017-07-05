@@ -146,11 +146,9 @@
 
         <block wx:elif="{{view == '31'}}">
             <view class="weui-cells__title">选择需查看排名的分类</view>
-            <view class="weui-panel weui-panel_access no-br">
-                <view class="weui-panel__bd">
-                    <view wx:for="{{phbSubList}}" wx:key="id_" class="weui-media-box weui-media-box_text" bindtap="bindUserFlpm" data-eid="{{item.ID_}}">
-                        <view class="weui-media-box__title weui-media-box__title_in-text">{{item.TKMC}}</view>
-                    </view>
+            <view class="weui-cells weui-cell_access no-br">
+                <view class="weui-cell weui-cell_access" wx:for="{{phbSubList}}" wx:key="id_" bindtap="bindUserFlpm" data-eid="{{item.ID_}}">
+                    <view class="weui-cell__bd">{{item.TKMC}}</view>
                 </view>
             </view>
         </block>

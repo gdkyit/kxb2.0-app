@@ -15,24 +15,18 @@
 
 .userinfo-nickname {
   color: #000;
-  font-family: '微软雅黑'
 }
 
 .usermotto{
-  font-family: 黑体;
   padding-bottom:25px;
 }
-
-.userTop{
-  /*background-color: #8192d6;*/
-  /*background:-webkit-gradient(linear, 0 0, 0 bottom, from(#3FBE69), to(rgba(255, 255, 255, 0.5))); */
+.user-header-gxz{
+  font-size: 12px;
+  text-align: right
 }
 
 .userHeader{
-  padding-left:20rpx;
-  float: left;
-  width: 90px;
-
+  padding:20rpx;
 }
 
 .userHeaderName{
@@ -41,16 +35,16 @@
 
 .rankLeft{
   text-align:center;
-  float: left;
+  /*float: left;*/
   height: 80px;
-  width: 50%;
+  /*width: 50%;*/
 }
 
 .rankRight{
   text-align:center;
-  float: right;
+  /*float: right;*/
   height: 80px;
-  width: 50%;
+  /*width: 50%;*/
 }
 
 .topBoder{
@@ -60,14 +54,12 @@
 
 .rankValue{
   font-weight:bold;
-  font-family:黑体;
   font-size:30px;
   color:#3FBE69;
   line-height: 30px;
 }
 .rankTitle{
   font-size:14px;
-  font-family:黑体;
   color:#353535;
 }
 

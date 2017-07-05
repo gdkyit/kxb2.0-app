@@ -6,6 +6,3 @@
 .icon{
     margin-right:15px
 }
-.weui-cell {
-    padding:15px
-}

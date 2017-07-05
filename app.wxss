@@ -72,10 +72,10 @@ button[disabled][type="primary"] {
     background-color: #9fdeb4;
 }
 .weui-cell::before{
-    border-top: 1px solid #eee
+    border-top: 1px solid #f0f0f0
 }
 .weui-cells::after{
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #f0f0f0;
     color: #eee
 }
 .no-br::before{
@@ -83,6 +83,9 @@ border-top: none
 }
 .no-br::after{
 border-bottom: none
+}
+.br-lt{
+    border:1px solid #eee;
 }
 
 .weui-navbar__item.weui-bar__item_on {

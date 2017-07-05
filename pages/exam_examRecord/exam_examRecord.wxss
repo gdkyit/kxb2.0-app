@@ -13,3 +13,7 @@
 .weui-media-box__title{
     white-space:normal;
 }
+
+.weui-loadmore__tips_in-line{
+    top: 0;
+}

@@ -11,7 +11,7 @@
     </block>
     <block wx:if="{{recordList.length==0}}" >
         <view class="page__bd">
-            <view class="weui-loadmore weui-loadmore_line">
+            <view class="weui-loadmore ">
                 <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无可进行抢答</view>
             </view>
             <view class="weui-loadmore weui-loadmore_line weui-loadmore_dot">

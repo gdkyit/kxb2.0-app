@@ -78,6 +78,13 @@ button[disabled][type="primary"] {
     border-bottom: 1px solid #eee;
     color: #eee
 }
+.no-br::before{
+border-top: none
+}
+.no-br::after{
+border-bottom: none
+}
+
 .weui-navbar__item.weui-bar__item_on {
     color: #3FBE69;
 }

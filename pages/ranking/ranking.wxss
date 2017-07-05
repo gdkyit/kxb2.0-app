@@ -16,13 +16,13 @@
     width:100rpx
 }
 .cj {
-    width:150rpx
+    width:180rpx
 }
 .time{
     width:150rpx
 }
 .my-jf{
-    width:120rpx
+    width:150rpx
 }
 .my-rank{
     width: 140rpx;

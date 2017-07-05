@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/kaoshi/kaoshi",
-    "pages/index/index",
     "pages/exam_examine/exam_examine",
     "pages/exam_examine_testing/exam_examine_testing",
     "pages/exam_examRace/exam_examRace",
@@ -20,7 +19,13 @@
     "pages/ranking/ranking",
     "pages/learning/learning",
     "pages/tiku/tiku",
-    "pages/dtxx/dtxx"
+    "pages/dtxx/dtxx",
+    "pages/jiucuo/jiucuo",
+    "pages/dtjl/dtjl",
+    "pages/zsts/zsts",
+    "pages/zstsmx/zstsmx",
+    "pages/xdjl/xdjl",
+    "pages/xdjlmx/xdjlmx"
   ],
   "tabBar": {
     "selectedColor": "#515151",
@@ -30,7 +35,7 @@
         "pagePath": "pages/kaoshi/kaoshi",
         "iconPath": "resource/img/icon-kaoshi.png",
         "selectedIconPath": "resource/img/icon-kaoshi-act.png",
-        "text": "考试"
+        "text": "首页"
       },
       {
         "pagePath": "pages/learning/learning",

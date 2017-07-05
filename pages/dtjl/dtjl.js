@@ -1,12 +1,11 @@
-// tiku.js
-const app = getApp();
+// dtjl.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list: []
+    list:[]
   },
 
   /**
@@ -17,13 +16,13 @@ Page({
   },
 
   /**
-   * 获取题库分类列表
+   * 获取答题记录列表
    */
   getList: function () {
-    wx.showNavigationBarLoading()
+    const app = getApp();
     const token = wx.getStorageSync('token');
     wx.request({
-      url: app.host + '/api/tkfl',
+      url: app.host + '/api/dtxxRecordList',
       method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
       header: {
         'content-type': 'application/json',
@@ -51,7 +50,7 @@ Page({
         });
       },
       complete: function () {
-        wx.hideNavigationBarLoading()
+        // complete
       }
     })
   },

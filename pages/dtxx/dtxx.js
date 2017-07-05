@@ -6,21 +6,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    questions:[],
-    mode:['（判断题）','（单选题）','（多选题）'],
-    index:0,
-    next:false,
-    quest:{},
-    answers:[],
-    feedbackUserRs:{},
-    feedbackDans:{},
-    feedbackRs:'',
-    startTime:new Date(),
-    zan:false,
-    score:0,
-    rightCount:0,
-    wrongCount:0,
-    last:false
+    questions: [],
+    mode: ['（判断题）', '（单选题）', '（多选题）'],
+    index: 0,
+    quest: {},
+    answers: [],
+    feedbackUserRs: {},
+    feedbackDans: {},
+    feedbackRs: '',
+    startTime: new Date(),
+    score: 0,
+    rightCount: 0,
+    wrongCount: 0,
+    last: false,
+    iszan: false,
+    next: false,
+    dansGroup:['','','','','','']
   },
 
   /**
@@ -31,9 +32,30 @@ Page({
     this.getList(flid);
   },
   /**
+   * 显示网络错误提示
+   */
+  showNetErr() {
+    wx.showToast({
+      title: '网络访问故障',
+      image: '/resource/img/error.png',
+      duration: 3000
+    });
+  },
+  /**
+   * 显示错误提示
+   */
+  showErr(content) {
+    wx.showToast({
+      title: content,
+      image: '/resource/img/error.png',
+      duration: 2000
+    });
+  },
+  /**
    * 获取随机题目
    */
   getList: function (flid) {
+    wx.showNavigationBarLoading()
     const token = wx.getStorageSync('token');
     wx.request({
       url: app.host + '/api/tk',
@@ -42,32 +64,33 @@ Page({
         'content-type': 'application/json',
         'x-auth-token': token
       }, // 设置请求的 header
-      data:{parentId:flid},
+      data: {
+        tkflId: flid
+      },
       success: (res) => {
         if (res.statusCode == '200') {
           this.setData({
             questions: res.data.data,
-            index:0
+            index: 0
           })
+          //渲染点赞状态
+          let iszan = this.data.questions[0].SFDZ == 'Y' ? true : false;
+          this.setData({
+            iszan: iszan
+          })
+          //获取题目后先取第一题的选项
           let tkid = this.data.questions[0].ID_
           this.getAnswer(tkid);
+
         } else {
-          wx.showToast({
-            title: res.data.error,
-            image: '/resource/img/error.png',
-            duration: 3000
-          });
+          this.showErr(res.data.error)
         }
       },
       fail: function () {
-        wx.showToast({
-          title: '网络访问故障',
-          image: '/resource/img/error.png',
-          duration: 3000
-        });
+        this.showNetErr();
       },
       complete: function () {
-        // complete
+        wx.hideNavigationBarLoading()
       }
     })
   },
@@ -75,6 +98,7 @@ Page({
    * 获取题目答案
    */
   getAnswer: function (tkid) {
+    wx.showNavigationBarLoading()
     const token = wx.getStorageSync('token');
     wx.request({
       url: app.host + '/api/tkxzx',
@@ -83,31 +107,25 @@ Page({
         'content-type': 'application/json',
         'x-auth-token': token
       }, // 设置请求的 header
-      data:{tkId:tkid},
+      data: {
+        tkId: tkid
+      },
       success: (res) => {
         if (res.statusCode == '200') {
           this.setData({
             answers: res.data.data,
-            startTime:new Date()
+            startTime: new Date()
           })
 
         } else {
-          wx.showToast({
-            title: res.data.error,
-            image: '/resource/img/error.png',
-            duration: 3000
-          });
+          this.showErr(res.data.error)
         }
       },
       fail: function () {
-        wx.showToast({
-          title: '网络访问故障',
-          image: '/resource/img/error.png',
-          duration: 3000
-        });
+        this.showNetErr();
       },
       complete: function () {
-        // complete
+        wx.hideNavigationBarLoading()
       }
     })
   },
@@ -120,18 +138,18 @@ Page({
     let mode = this.data.questions[index].MODE;
     let tkid = this.data.questions[index].ID_;
     let postdata = {
-      startTime:this.data.startTime,
-      endTime:new Date(),
-      tkId:tkid,
+      startTime: this.data.startTime,
+      endTime: new Date(),
+      tkId: tkid,
     };
-    if (mode==0){
-      postdata.mode="0";
+    if (mode == 0) {
+      postdata.mode = "0";
       postdata.result = e.detail.value.yesno
-    }else if(mode == 1){
-      postdata.mode="1";
+    } else if (mode == 1) {
+      postdata.mode = "1";
       postdata.result = e.detail.value.single
-    }else if (mode == 2){
-      postdata.mode="2";
+    } else if (mode == 2) {
+      postdata.mode = "2";
       postdata.result = e.detail.value.multi.join(';')
     }
     wx.request({
@@ -141,46 +159,51 @@ Page({
         'content-type': 'application/json',
         'x-auth-token': token
       }, // 设置请求的 header
-      data:postdata,
+      data: postdata,
       success: (res) => {
         if (res.statusCode == '200' && res.data.code == '200') {
           let score = this.data.score;
           let wc = this.data.wrongCount;
           let rc = this.data.rightCount;
           let result = res.data.data.userRs.result;
-          if(result == 'Y'){
+          let dansGroup = this.data.dansGroup;
+          let da
+          if (result == 'Y') {
             score += res.data.data.userRs.resultScore;
             rc += 1
-          }else {
+          } else {
             wc += 1
+            let pointer = { A:0,B:1,C:2,D:3,E:4,F:5}
+            let dans = res.data.data.dans;
+            for (let prop in dans){
+              dansGroup[pointer[prop]] = 'dans-bg'
+            }
           }
           this.setData({
             feedbackUserRs: res.data.data.userRs,
-            feedbackDans:res.data.data.dans,
-            feedbackRs:res.data.data.rs,
-            score:score,
-            wrongCount:wc,
-            rightCount:rc
+            feedbackDans: res.data.data.dans,
+            feedbackRs: res.data.data.rs,
+            score: score,
+            wrongCount: wc,
+            rightCount: rc,
+            dansGroup:dansGroup
           })
 
         } else {
-          wx.showToast({
-            title: res.data.error,
-            image: '/resource/img/error.png',
-            duration: 3000
-          });
+          this.showErr(res.data.error)
         }
       },
       fail: function () {
-        wx.showToast({
-          title: '网络访问故障',
-          image: '/resource/img/error.png',
-          duration: 3000
-        });
+        this.showNetErr();
       },
       complete: () => {
+        let last = false;
+        if (index == this.data.questions.length - 1) {
+          last = true
+        }
         this.setData({
-          next:true
+          last: last,
+          next: true
         })
       }
     })
@@ -188,16 +211,73 @@ Page({
   /**
    * 下一题
    */
-  next:function(){
-    let index = this.data.index+1;
-    let tkid = this.data.questions[index].ID_;
-    let last = false;
-    this.getAnswer(tkid);
-    if(index == this.data.questions.length){
-      last = true
+  next: function () {
+    if (!this.data.last) {
+      let index = this.data.index + 1;
+      let tkid = this.data.questions[index].ID_;
+      let iszan = this.data.questions[index].SFDZ == 'Y' ? true : false;
+      this.getAnswer(tkid);
+      this.setData({
+        index: index,
+        next: false,
+        iszan: iszan,
+        feedbackUserRs: {},
+        feedbackDans: {},
+        feedbackRs: '',
+        dansGroup:['','','','','',''],
+      })
+    }else{
+      
     }
-    this.setData({index:index,next:false,last:last,answers:[]})
+  },
+  /**
+   * 点赞
+   */
+  bindZan() {
+    const token = wx.getStorageSync('token');
+    let index = this.data.index;
+    let tkid = this.data.questions[index].ID_;
+    let postdata = {
+      zstkId: tkid,
+      dzDate: new Date(),
+      type: '1',
+      remark: '赞'
+    }
+    wx.request({
+      url: app.host + '/api/laudRecord',
+      data: postdata,
+      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      header: {
+        'content-type': 'application/json',
+        'x-auth-token': token
+      }, // 设置请求的 header
+      success: (res) => {
+        if (res.statusCode == '200' && res.data.code == '200') {
+          this.setData({
+            iszan: true
+          })
 
-  }
+        } else {
+          this.showErr(res.data.error)
+        }
+      },
+      fail: function () {
+        this.showNetErr();
+      },
+      complete: function () {
+        // complete
+      }
+    })
+  },
+  /**
+   * 纠错
+   */
+  bindJiucuo(){
+    let index = this.data.index;
+    let tkid = this.data.questions[index].ID_;
+    wx.navigateTo({
+      url:'../jiucuo/jiucuo?tkid='+tkid
+    })
+  },
 
 })

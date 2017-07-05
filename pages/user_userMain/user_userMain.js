@@ -58,36 +58,20 @@ Page({
                             }
                         })
                     }else{
-                         wx.showModal({
+                        wx.showToast({
                             title: '后台服务错误',
-                            content: reqRes.data.error,
-                            showCancel: false,
-                            confirmText: '返回',
-                            success: res => {
-                                if(res.confirm) {
-                                    wx.redirectTo({
-                                        url: wx.navigateBack({delta: 1}),
-                                    })
-                                }
-                            }
-                        })
+                            image: '/resource/img/error.png',
+                            duration: 3000
+                        });
                     }
                 
                 },
                 fail: e => {
-                    wx.showModal({
-                        title: '网络访问故障',
-                        content: e,
-                        showCancel: false,
-                        confirmText: '返回',
-                        success: res => {
-                            if(res.confirm) {
-                                wx.redirectTo({
-                                    url: wx.navigateBack({delta: 1}),
-                                })
-                            }
-                        }
-                    })
+                    wx.showToast({
+                            title: '网络访问故障',
+                            image: '/resource/img/error.png',
+                            duration: 3000
+                        });
                 },
             })
         },

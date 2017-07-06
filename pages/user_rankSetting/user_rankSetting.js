@@ -50,8 +50,8 @@ Page({
                                 confirmText: '返回',
                                 success: res => {
                                     if(res.confirm) {
-                                        wx.redirectTo({
-                                            url: wx.navigateBack({delta: 1}),
+                                        wx.reLaunch({
+                                            url: '../user_userMain/user_userMain'
                                         })
                                     }
                                 }
@@ -67,8 +67,8 @@ Page({
                             confirmText: '返回',
                             success: res => {
                                 if(res.confirm) {
-                                    wx.redirectTo({
-                                        url: wx.navigateBack({delta: 1}),
+                                     wx.reLaunch({
+                                        url: '../user_userMain/user_userMain'
                                     })
                                 }
                             }
@@ -151,8 +151,8 @@ Page({
                         confirmText: '返回',
                         success: res => {
                             if(res.confirm) {
-                                wx.redirectTo({
-                                    url: wx.navigateBack({delta: 1}),
+                                 wx.reLaunch({
+                                    url: '../user_userMain/user_userMain'
                                 })
                             }
                         }
@@ -168,8 +168,8 @@ Page({
                     confirmText: '返回',
                     success: res => {
                         if(res.confirm) {
-                            wx.redirectTo({
-                                url: wx.navigateBack({delta: 1}),
+                            wx.reLaunch({
+                                url: '../user_userMain/user_userMain'
                             })
                         }
                     }

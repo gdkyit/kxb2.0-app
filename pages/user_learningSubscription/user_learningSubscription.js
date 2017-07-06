@@ -69,9 +69,7 @@ Page({
                                 confirmText: '返回',
                                 success: res => {
                                     if(res.confirm) {
-                                        wx.redirectTo({
-                                            url: wx.navigateBack({delta: 1}),
-                                        })
+                                        wx.navigateBack({delta: 1})
                                     }
                                 }
                             })
@@ -86,9 +84,7 @@ Page({
                             confirmText: '返回',
                             success: res => {
                                 if(res.confirm) {
-                                    wx.redirectTo({
-                                        url: wx.navigateBack({delta: 1}),
-                                    })
+                                    wx.navigateBack({delta: 1})
                                 }
                             }
                         })
@@ -179,9 +175,7 @@ Page({
                         confirmText: '返回',
                         success: res => {
                             if(res.confirm) {
-                                wx.redirectTo({
-                                    url: wx.navigateBack({delta: 1}),
-                                })
+                                wx.navigateBack({delta: 1})
                             }
                         }
                     })
@@ -196,13 +190,14 @@ Page({
                     confirmText: '返回',
                     success: res => {
                         if(res.confirm) {
-                            wx.redirectTo({
-                                url: wx.navigateBack({delta: 1}),
-                            })
+                            wx.navigateBack({delta: 1})
                         }
                     }
                 })
             },
         })
+    },
+    backTo:function(){
+        wx.navigateBack({delta: 1})
     }
 })

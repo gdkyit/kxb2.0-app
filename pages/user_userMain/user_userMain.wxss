@@ -6,7 +6,8 @@
 .usericonColor{
   line-height:68px;
   text-indent:17px;
-  background-color: #ffffff
+  background-color: #ffffff;
+  overflow:visible;
 }
 .iconNull{
   margin-top: 64rpx;

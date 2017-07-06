@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/kaoshi/kaoshi",
+    "pages/welcome/welcome",
     "pages/exam_examine/exam_examine",
     "pages/exam_examine_testing/exam_examine_testing",
     "pages/exam_examRace/exam_examRace",

@@ -15,7 +15,7 @@ Page({
     })
     let app = getApp();
     let that=this;
-    let urlHost="http://202.104.10.34:83/images";
+    let urlHost=app.host+"/images";
     wx.getStorage({//获取token
         key: 'token',
         success: function(res) {

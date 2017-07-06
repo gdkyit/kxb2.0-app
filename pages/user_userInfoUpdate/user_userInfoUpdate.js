@@ -6,7 +6,7 @@ Page({
         loadingUserInfo:false
     },
     onLoad:function(option){
-        let urlHost="http://202.104.10.34:83/images";
+        let urlHost=app.host+"/images";
         this.setData({
             oldValue:option,
             name:option.name,
@@ -100,7 +100,7 @@ Page({
                         that.setData({
                             oldValue:newValue,//更新旧数据
                         })
-                        if(that.data.files==null){
+                        if(that.data.files==null){//没有照片上传则停止等待
                             that.setData({
                                 disableUserInfo:false,
                                 loadingUserInfo:false,
@@ -190,12 +190,26 @@ Page({
             }, 
             success: function(res){
                 console.log(res);//因uploadFile无法在network中捕获故需打印返回内容
-                that.setData({
-                    files:null,//重置照片
-                    photo:that.data.photo+"&date="+new Date(),//重新访问照片
-                    disableUserInfo:false,
-                    loadingUserInfo:false,
-                })
+                if(res.statusCode==200){
+                    that.setData({
+                        files:null,//重置照片
+                        photo:that.data.photo+"&date="+new Date(),//重新访问照片
+                        disableUserInfo:false,
+                        loadingUserInfo:false,
+                    })
+                }else{
+                    wx.showToast({
+                        title: '照片上传失败，错误代码：'+res.statusCode,
+                        image: '/resource/img/error.png',
+                        duration: 3000
+                    });
+                    that.setData({
+                        files:null,//重置照片
+                        photo:that.data.photo+"&date="+new Date(),//重新访问照片
+                        disableUserInfo:false,
+                        loadingUserInfo:false,
+                    })
+                }
             },
             fail:e=>{
                 wx.showToast({

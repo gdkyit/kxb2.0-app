@@ -3,7 +3,7 @@
   <navigator url="../exam_examine/exam_examine" >
   <image src="/resource/img/module-kaoshi.jpg"> </image>
   </navigator>
-   <navigator url="../welcome/welcome" >
+   <navigator url="" >
   <image src="/resource/img/module-qiangda.jpg"></image>
   </navigator>
   <navigator url="../exam_examRecord/exam_examRecord" >

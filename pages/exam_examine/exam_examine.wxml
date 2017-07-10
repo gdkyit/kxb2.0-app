@@ -6,7 +6,6 @@
             <view class="weui-media-box__title weui-media-box__title_in-text">{{item.TITLE}}</view>
             <view class="weui-media-box__desc"><view>开始时间：{{item.START_TIME}}</view><view>结束时间：{{item.END_TIME}}</view></view>
         </view>
-        <view class="weui-cell__ft weui-cell__ft_in-access placeholder">2017-06-21</view>
     </view>
     </block>
     <block wx:if="{{recordList.length==0}}" >

@@ -3,7 +3,7 @@
         <view class="userTop">
             <view class="weui-flex userHeader">
                 <image wx:if="{{IUrl!=''}}" class="userinfo-avatar" src="{{IUrl}}" mode="aspectFill" />
-                <view wx:else="{{IUrl==''}}" class="userinfo-avatar usericonColor" mode="aspectFill"><i class="userIcon czs-user "></i></view>
+                <view wx:else="{{IUrl==''}}" class="userinfo-avatar userEmtyView" mode="aspectFill"><i class="userEmtyIcon czs-user "></i></view>
                 <view class="user-header-name">
                     <text class="userinfo-nickname">{{userName}}</text>
                     <import src="../template/rankLevel.wxml" />

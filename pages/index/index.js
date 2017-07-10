@@ -4,6 +4,7 @@ Page({
 
     },
     onLoad: function (option) {
+        app.launching = true;
         wx.getStorage({ //获取token
             key: 'token',
             success: function (res) {
@@ -11,14 +12,16 @@ Page({
                     wx.reLaunch({
                         url: '../kaoshi/kaoshi'
                     })
-                },4000)
+                    app.launching = false;
+                    app.onShow();
+                },3000)
             },
             fail: err => { //获取token失败
                 setTimeout(function(){
                     wx.redirectTo({
                         url: '../login/login',
                     })
-                },4000)
+                },3000)
             }
         })
     },

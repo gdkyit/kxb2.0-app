@@ -59,6 +59,7 @@ Page({
                                 }
                             })
                         } else {
+                            wx.hideToast();
                             wx.showToast({
                                 title: '后台服务错误',
                                 image: '/resource/img/error.png',
@@ -68,6 +69,7 @@ Page({
 
                     },
                     fail: e => {
+                        wx.hideToast();
                         wx.showToast({
                             title: '网络访问故障',
                             image: '/resource/img/error.png',
@@ -77,6 +79,7 @@ Page({
                 })
             },
             fail: err => { //获取token失败
+                wx.hideToast();
                 wx.showModal({
                     title: '尚未登录',
                     content: '你需要登录才能使用本功能',

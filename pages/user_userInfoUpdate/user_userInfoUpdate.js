@@ -12,9 +12,9 @@ Page({
             name:option.name,
             phone:option.phone,
             photo:option.photo,
-            photo:option.photo!=null&&option.photo!=""?urlHost+option.photo+"?date="+new Date():"",
-            birthday:this.formatDate(option.birthday),
-            rzday:this.formatDate(option.rzday),
+            photo:option.photo!=null&&option.photo!=""&&option.photo!="null"?urlHost+option.photo+"?date="+new Date():"",
+            birthday:option.birthday=="null"?'':this.formatDate(option.birthday),
+            rzday:option.rzday=="null"?'':this.formatDate(option.rzday),
             userId:option.userId,
             endTime:new Date()
         })
@@ -55,10 +55,10 @@ Page({
             loadingUserInfo:true,
         })
         let newValue=value.detail.value,oldValue=this.data.oldValue;
-        if(newValue.name==""||newValue.phone==""){
+        if(newValue.name==""||newValue.phone==""||newValue.birthday==""||newValue.rzday==""){
             //判断姓名手机是否为空
             wx.showToast({
-                title: '请填写姓名和手机',
+                title: '以上信息均必须填写',
                 image: '/resource/img/error.png',
                 duration: 3000
             });

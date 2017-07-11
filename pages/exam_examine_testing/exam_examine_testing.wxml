@@ -80,4 +80,7 @@
             <view class="rankValue">{{rightPersent}}%</view>
         </view>
     </view>
+    <view class="weui-btn-area">
+        <button class="weui-btn"  type="defult" bindtap="backTo" >返回</button>
+</view>
 </block>

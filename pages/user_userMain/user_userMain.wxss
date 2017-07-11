@@ -64,4 +64,14 @@
   /*font-size:30px;*/
   color:#3FBE69;
 }
-
+.userEmtyView{
+  line-height:68px;
+  text-indent:17px;
+  background-color: #ffffff;
+  overflow:visible;
+}
+.userEmtyIcon{
+  margin-right: 5px;
+  font-size:30px;
+  color:#3FBE69;
+}

@@ -22,7 +22,7 @@ Page({
                     success: reqRes => {
                         let rs=reqRes.data.data;
                         if(reqRes.data.code=="200"){
-                            if(reqRes.data.length>0){//判断是否已经加入群组
+                            if(reqRes.data.data.length>0){//判断是否已经加入群组
                                 that.setData({
                                     selectItems:rs,
                                     userId:option.userId

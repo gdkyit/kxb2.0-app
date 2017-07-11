@@ -40,6 +40,7 @@ Page({
                                 }
                             })
                         }else{
+                            wx.hideNavigationBarLoading();
                             wx.showModal({
                                 title: '后台服务错误',
                                 content: reqRes.data.error,
@@ -55,6 +56,7 @@ Page({
                     
                     },
                     fail: e => {
+                        wx.hideNavigationBarLoading();
                         wx.showModal({
                             title: '网络访问故障',
                             content: e,
@@ -70,6 +72,7 @@ Page({
                 })
             },
             fail:err =>{
+                wx.hideNavigationBarLoading();
                 wx.showModal({
                     title: '尚未登录',
                     content: '你需要登录才能使用本功能',

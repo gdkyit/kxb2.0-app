@@ -19,7 +19,7 @@ Page({
         title: '加载中',
         icon: 'loading',
         mask:true,
-        duration: 5000
+        duration: 50000
     })
     let that=this;
     wx.getStorage({//获取token
@@ -97,6 +97,7 @@ Page({
                                     })
                                 }else{
                                     //获取答案选项错误
+                                    wx.hideToast();
                                     wx.showModal({
                                         title: '后台服务错误',
                                         content: reqRes.data.error,
@@ -113,6 +114,7 @@ Page({
                             },
                             fail: e => {
                                 //获取答案选项错误
+                                wx.hideToast();
                                 wx.showModal({
                                     title: '网络访问故障',
                                     content: e,
@@ -128,6 +130,7 @@ Page({
                         })
                     }else{
                         //获取全部试题错误
+                        wx.hideToast();
                          wx.showModal({
                             title: '后台服务错误',
                             content: reqRes.data.error,
@@ -144,6 +147,7 @@ Page({
                 },
                 fail: e => {
                     //获取全部试题错误
+                    wx.hideToast();
                     wx.showModal({
                         title: '网络访问故障',
                         content: e,
@@ -160,6 +164,7 @@ Page({
         },
         fail:err =>{
             //获取token错误
+            wx.hideToast();
             wx.showModal({
                 title: '尚未登录',
                 content: '你需要登录才能使用本功能',
@@ -176,14 +181,22 @@ Page({
         }
     })
     },
-    onUnload: function () {
-        wx.showModal({
-                title: '重新进入考试可继续完成未完成考试',
-                showCancel: false,
-                confirmText: '确定',
-            })
+    onUnload: function () {//返回触发事件
+        if(this.data.finishIss!=this.data.totalIss){
+            console.log("onUnload")
+            wx.showModal({
+                    title: '重新进入考试可继续完成未完成考试',
+                    showCancel: false,
+                    confirmText: '确定',
+                })
+
+
+        }
     },
-    radioChange: function (e) {
+    backTo:function(){//返回按钮事件
+       wx.navigateBack({delta: 1})
+    },
+    radioChange: function (e) {//单选事件
         var radioItems = this.data.selectItems;
         for (var i = 0, len = radioItems.length; i < len; ++i) {
             radioItems[i].checked = radioItems[i].XZ_KEY == e.detail.value;
@@ -193,7 +206,7 @@ Page({
             rs:e.detail.value+""
         });
     },
-    checkboxChange: function (e) {
+    checkboxChange: function (e) {//多选事件
         var checkboxItems = this.data.selectItems, values = e.detail.value;
         let rs="";
         for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
@@ -250,18 +263,16 @@ Page({
                     if(reqResAnswer.data.code=="200"){
                         that.setData({rsText:reqResAnswer.data.data.rs,answerComparison:reqResAnswer.data.data.dans,answerStyle:answerStyle})
                         if(that.data.finishIss+1==that.data.totalIss){//判断是否完成全部试题
-                            setTimeout(
+                            setTimeout(function(){
                                 that.setData({
                                     endExam:true,
                                     rightPersent:(that.data.rightCount/that.data.totalIss*100).toFixed(2)
-                                }),1000
-                            )
+                                })
+                            },1000)
                         }else{
                             setTimeout(function(){
                                 that.completePOST(reqResAnswer.data.data.userRs);
-                            }
-                                ,1000
-                            )
+                            },1000)
                         }
                     }else{
                         //post答案错误

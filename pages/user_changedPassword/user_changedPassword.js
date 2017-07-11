@@ -57,6 +57,10 @@ Page({
                             }
                         })
                     }else{
+                        that.setData({
+                            disablePassword:false,
+                            loadingPassword:false,
+                        })
                         wx.showToast({
                         title: '修改失败',
                         image: '/resource/img/error.png',
@@ -65,6 +69,10 @@ Page({
                     }
                 },
                 fail: e => {
+                    that.setData({
+                        disablePassword:false,
+                        loadingPassword:false,
+                    })
                     wx.showToast({
                         title: '网络访问故障',
                         image: '/resource/img/error.png',

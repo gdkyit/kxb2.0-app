@@ -22,11 +22,28 @@ Page({
                     success: reqRes => {
                         let rs=reqRes.data.data;
                         if(reqRes.data.code=="200"){
-                            that.setData({
-                                selectItems:rs,
-                                userId:option.userId
-                            })
-                            wx.hideNavigationBarLoading();
+                            if(reqRes.data.length>0){//判断是否已经加入群组
+                                that.setData({
+                                    selectItems:rs,
+                                    userId:option.userId
+                                })
+                                wx.hideNavigationBarLoading();
+                            }else{
+                                wx.hideNavigationBarLoading();
+                                wx.showModal({
+                                    title: '未加入群组',
+                                    content: '需先加入群组才能使用本功能',
+                                    showCancel: false,
+                                    confirmText: '去加入',
+                                    success: res => {
+                                        if(res.confirm) {
+                                            wx.redirectTo({
+                                                url: '../user_joinGroups/user_joinGroups',
+                                            })
+                                        }
+                                    }
+                                })
+                            }
                         }else if(reqRes.data.code=="401"){
                             wx.hideNavigationBarLoading();
                             wx.showModal({

@@ -12,6 +12,7 @@ Page({
                     wx.reLaunch({
                         url: '../kaoshi/kaoshi'
                     })
+                    app.getSysMsg();
                 },3000)
             },
             fail: err => { //获取token失败

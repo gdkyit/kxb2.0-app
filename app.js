@@ -9,7 +9,6 @@ App({
     if (pages.length > 0 && pages[pages.length - 1].route != 'pages/index/index') {
       this.getSysMsg();
     }
-
   },
   getSysMsg() {
     const token = wx.getStorageSync('token');
@@ -23,9 +22,14 @@ App({
       success: (res) => {
         if (res.statusCode == '200') {
           if (res.data.code == '200') {
+            let groups = res.data.data.map((item)=>{
+              return '你已加入'+item.groupname;
+            });
+            let content = groups.join('\r\n')
+
             wx.showModal({
-              title: 'join group',
-              content: 'join group',
+              title: '已被加入新的群组',
+              content: content,
               showCancel: false,
               mask: true
             });
@@ -50,6 +54,6 @@ App({
   },
   globalData: {},
   host: "http://120.76.241.230:8090",
-  uploadHost: 'http://120.76.46.145:82',
+  uploadHost: 'http://120.76.241.230:8090',
   launching: false
 })

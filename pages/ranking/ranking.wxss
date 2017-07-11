@@ -39,8 +39,11 @@
 .gr {
     color:#3FBE69
 }
+.picker-title{
+    font-size: 14px
+}
 .picker-title span.pt-u{
-    margin-right: 20rpx
+    margin-right: 20rpx;
 }
 .bold{
     font-weight:bold

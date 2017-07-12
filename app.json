@@ -27,7 +27,8 @@
     "pages/zstsmx/zstsmx",
     "pages/xdjl/xdjl",
     "pages/xdjlmx/xdjlmx",
-    "pages/person_info/person_info"
+    "pages/person_info/person_info",
+    "pages/dtxxjg/dtxxjg"
   ],
   "tabBar": {
     "selectedColor": "#515151",

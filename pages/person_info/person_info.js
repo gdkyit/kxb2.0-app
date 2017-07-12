@@ -40,14 +40,13 @@ Page({
             PHOTO,
             RZSJ
           } = res.data.data.userInfo;
-          let userScore = res.data.data.userScore;
+          let userScore = res.data.data.userScore.map(item => {
+            item.score = item.score.toFixed(2);
+            return item
+          });
           let dept = res.data.data.userInfo.dept.dept_name;
           let parentDept = res.data.data.userInfo.parentDept.dept_name;
-          if (!!PHOTO) {
-            PHOTO = app.host + '/images' + PHOTO;
-          }else {
-            PHOTO = '../../resource/img/avatar.png'
-          }
+          PHOTO = !!PHOTO ? PHOTO = app.host + '/images' + PHOTO : '../../resource/img/avatar.png'
 
           this.setData({
             USER_NAME,
@@ -79,7 +78,7 @@ Page({
     })
   },
   onImageError(e) {
-    this.setData({PHOTO:'../../resource/img/avatar.png'})
+    this.setData({ PHOTO: '../../resource/img/avatar.png' })
   }
 
 })

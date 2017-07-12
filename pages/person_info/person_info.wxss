@@ -18,6 +18,14 @@
     font-size: 14px
 }
 .info-user-desc{
-    font-size: 12px;
+    margin-top:20rpx;
+    font-size: 14px;
     color: #353535
+}
+.info-rank-score{
+    background-color: #37A45D;
+    border-radius: 4px;
+    font-size:14px;
+    padding:4px;
+    color:#fff
 }

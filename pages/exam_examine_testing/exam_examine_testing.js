@@ -183,7 +183,6 @@ Page({
     },
     onUnload: function () {//返回触发事件
         if(this.data.finishIss!=this.data.totalIss){
-            console.log("onUnload")
             wx.showModal({
                     title: '重新进入考试可继续完成未完成考试',
                     showCancel: false,

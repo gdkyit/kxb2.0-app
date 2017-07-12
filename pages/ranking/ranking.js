@@ -25,47 +25,6 @@ Page({
     this.getJfb()
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
   getJfb: function () {
     wx.showNavigationBarLoading()
     const token = wx.getStorageSync('token');
@@ -88,18 +47,13 @@ Page({
               userScoreRank: res.data.data.userScoreRank,
               scoreRank: res.data.data.scoreRank
             })
-          }else if(res.data.error == '没设置默认积分榜'){
-            wx.showModal({
-              title:'未设置默认积分榜',
-              content:'请先设置默认积分榜',
-              mask:true,
-              showCancel:false,
-              confirmText:'立即设置',
-              success:e=>{
-                wx.redirectTo({
-                  url: '../user_rankSetting/user_rankSetting',
-                })
-              }
+          } else if (res.data.error == '没设置默认积分榜') {
+            this.setData({
+              userScoreRank: {
+                isNull: true,
+                tips: '未设置默认积分榜,请先到个人管理页设置默认积分榜'
+              },
+              scoreRank: []
             })
           }
 
@@ -181,16 +135,26 @@ Page({
       }, // 设置请求的 header
       success: (res) => {
         if (res.statusCode == '200') {
-          res.data.data.userScoreRank.score = res.data.data.userScoreRank.score.toFixed(2)
-          for (let i = 0; i < res.data.data.scoreRank.length; i++) {
-            let user = res.data.data.scoreRank[i];
-            user.score = user.score.toFixed(2);
+          if (res.data.code == '200' && !!res.data.data.userScoreRank ) {
+            res.data.data.userScoreRank.score = res.data.data.userScoreRank.score.toFixed(2)
+            for (let i = 0; i < res.data.data.scoreRank.length; i++) {
+              let user = res.data.data.scoreRank[i];
+              user.score = user.score.toFixed(2);
+            }
+            this.setData({
+              userScoreRank: res.data.data.userScoreRank,
+              scoreRank: res.data.data.scoreRank
+            })
           }
-          this.setData({
-            userScoreRank: res.data.data.userScoreRank,
-            scoreRank: res.data.data.scoreRank
-          })
-
+          else if(res.data.code == '200' && !res.data.data.userScoreRank){
+            this.setData({
+              userScoreRank: {
+                isNull: true,
+                tips: '未加入任何群组,请先到个人管理页申请加入群组'
+              },
+              scoreRank: []
+            })
+          } 
         } else {
           wx.showToast({
             title: res.data.error,

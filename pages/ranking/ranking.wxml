@@ -1,17 +1,23 @@
 <template name="selfInfo">
-    <view class="weui-panel weui-panel_access no-br">
-        <view class="weui-panel__hd"><i class="czs-location-l bold" /> 我的位置 </view>
-        <view class="weui-panel__bd">
-            <view class="weui-media-box weui-flex">
-                <view class="weui-flex__item my-name">{{user_name}}</view>
-                <view class="my-jf">
-                    <view>积分：</view>
-                    <view>{{score}}</view>
+        <view class="weui-panel weui-panel_access no-br">
+            <view class="weui-panel__hd"><i class="czs-location-l bold" /> 我的位置 </view>
+            <view class="weui-panel__bd">
+                <view class="weui-media-box weui-flex">
+
+                    <block wx:if="{{!isNull}}">
+                        <view class="weui-flex__item my-name">{{user_name}}</view>
+                        <view class="my-jf">
+                            <view>积分：</view>
+                            <view>{{score}}</view>
+                        </view>
+                        <view class="my-rank"><span class="gr-b">{{rank}}</span>名</view>
+                    </block>
+                    <block wx:else>
+                        <view class="rank-self-null">{{tips}}</view>
+                    </block>
                 </view>
-                <view class="my-rank"><span class="gr-b">{{rank}}</span>名</view>
             </view>
         </view>
-    </view>
 </template>
 
 <template name="rankList">
@@ -29,7 +35,8 @@
         </view>
     </view>
     <view class="weui-cells weui-cells_after-title no-br">
-        <view class="weui-cell" wx:for="{{scoreRank}}" wx:key="user_id">
+        <navigator class="weui-cell" wx:for="{{scoreRank}}" wx:key="user_id" 
+        url="../person_info/person_info?uid={{item.user_id}}">
             <view class="mc">
                 <view>{{item.rank}}</view>
             </view>
@@ -39,7 +46,7 @@
             <view class="cj">
                 <view>{{item.score}}</view>
             </view>
-        </view>
+        </navigator>
     </view>
 </template>
 
@@ -66,6 +73,7 @@
             <view class="weui-cells__title">选择需查看的群组</view>
             <view class="weui-panel weui-panel_access no-br">
                 <view class="weui-panel__bd">
+                    <view wx:if="{{phbSubList.length == 0}}" class="rank-list-empty">未加入任何群组</view>
                     <view wx:for="{{phbSubList}}" wx:key="ID_" class="weui-media-box weui-media-box_text" bindtap="bindUserGroup" data-gid="{{item.ID_}}">
                         <view class="weui-media-box__title weui-media-box__title_in-text">{{item.GROUP_NAME}}</view>
                         <view class="weui-media-box__desc">{{item.MS}}</view>
@@ -83,6 +91,7 @@
             <view class="weui-cells__title">选择需查看的考试记录</view>
             <view class="weui-panel weui-panel_access no-br">
                 <view class="weui-panel__bd">
+                    <view wx:if="{{phbSubList.length == 0}}" class="rank-list-empty">未有考试记录</view>
                     <view wx:for="{{phbSubList}}" wx:key="id_" class="weui-media-box weui-media-box_text" bindtap="bindUserExam" data-eid="{{item.id_}}">
                         <view class="weui-media-box__title weui-media-box__title_in-text no-ws">{{item.TITLE}}</view>
                         <view class="weui-media-box__desc">开始时间：{{item.START_TIME}}</view>
@@ -126,7 +135,8 @@
                 </view>
             </view>
             <view class="weui-cells weui-cells_after-title no-br">
-                <view class="weui-cell" wx:for="{{examRank}}" wx:key="user_id">
+                <navigator class="weui-cell" wx:for="{{examRank}}" wx:key="user_id" 
+                url="../person_info/person_info?uid={{item.user_id}}">
                     <view class="mc">
                         <view>{{item.rank}}</view>
                     </view>
@@ -139,7 +149,7 @@
                     <view class="cj">
                         <view>{{item.score}}</view>
                     </view>
-                </view>
+                </navigator>
             </view>
             <image class="back fixed" data-pv="21" src="/resource/img/back.png" bindtap="bindback" />
         </block>

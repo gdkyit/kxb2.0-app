@@ -53,7 +53,7 @@ App({
     })
   },
   globalData: {},
-  host: "http://120.76.241.230:8090",
-  uploadHost: 'http://120.76.241.230:8090',
+  host: "https://app.gdkyit.com/kxb",
+  uploadHost: 'https://app.gdkyit.com/kxb',
   launching: false
 })

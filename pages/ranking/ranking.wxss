@@ -69,3 +69,11 @@
     border-radius: 50rpx
     
 }
+.rank-list-empty{
+    text-align: center;
+    padding:2em;
+    color:#bfbfbf
+}
+.rank-self-null{
+    color:#353535;
+}

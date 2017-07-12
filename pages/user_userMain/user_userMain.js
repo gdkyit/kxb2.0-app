@@ -40,7 +40,7 @@ Page({
                                 contribution: !rs.userGxz.gxz ? rs.userGxz.count : rs.userGxz.gxz,
                                 scoreRank: rs.userScoreRank,
                                 totalUserResult: rs.totalUserResult,
-                                rightPersent: !rs.userScoreRank.score ? "无" : (rs.totalUserResult.totalRightCount / rs.totalUserResult.totalCount * 100).toFixed(2) + '%'
+                                rightPersent: !rs.userScoreRank||!rs.userScoreRank.score ? "无" : (rs.totalUserResult.totalRightCount / rs.totalUserResult.totalCount * 100).toFixed(2) + '%'
                             })
                             wx.hideToast();
                         } else if (reqRes.data.code == "401") {

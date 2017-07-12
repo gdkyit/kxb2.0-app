@@ -15,8 +15,8 @@ Page({
         })
         let app = getApp();
         let that = this;
-        // let urlHost = app.uploadHost + "/images";
-        let urlHost = "http://202.104.10.34:83" + "/images";
+        let urlHost = app.host + "/images";
+        // let urlHost = "http://202.104.10.34:83" + "/images";
         wx.getStorage({ //获取token
             key: 'token',
             success: function (res) {
@@ -36,7 +36,7 @@ Page({
                             that.setData({
                                 recordMap: rs.userInfo,
                                 userName: rs.userInfo.USER_NAME,
-                                IUrl: !!rs.userInfo.PHOTO ? urlHost + rs.userInfo.PHOTO + "?date=" + new Date().getTime() : "",
+                                IUrl: !!rs.userInfo.PHOTO ? urlHost + rs.userInfo.PHOTO + "?date=" + new Date().getTime() : '../../resource/img/avatar.png',
                                 contribution: !rs.userGxz.gxz ? rs.userGxz.count : rs.userGxz.gxz,
                                 scoreRank: rs.userScoreRank,
                                 totalUserResult: rs.totalUserResult,
@@ -111,5 +111,8 @@ Page({
                 }
             }
         });
+    },
+    onImageError(e){
+        this.setData({PHOTO:'../../resource/img/avatar.png'})
     }
 })

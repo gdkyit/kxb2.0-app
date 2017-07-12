@@ -2,8 +2,7 @@
     <view class="page__bd domain">
         <view class="userTop">
             <view class="weui-flex userHeader">
-                <image wx:if="{{IUrl!=''}}" class="userinfo-avatar" src="{{IUrl}}" mode="aspectFill" />
-                <view wx:else="{{IUrl==''}}" class="userinfo-avatar userEmtyView" mode="aspectFill"><i class="userEmtyIcon czs-user "></i></view>
+                <image class="userinfo-avatar" src="{{IUrl}}" mode="aspectFill" binderror="onImageError"  />
                 <view class="user-header-name">
                     <text class="userinfo-nickname">{{userName}}</text>
                     <import src="../template/rankLevel.wxml" />

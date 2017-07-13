@@ -28,7 +28,8 @@
     "pages/xdjl/xdjl",
     "pages/xdjlmx/xdjlmx",
     "pages/person_info/person_info",
-    "pages/dtxxjg/dtxxjg"
+    "pages/dtxxjg/dtxxjg",
+    "pages/dtjlmx/dtjlmx"
   ],
   "tabBar": {
     "selectedColor": "#515151",

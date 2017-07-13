@@ -12,7 +12,7 @@ Page({
             name:option.name,
             phone:option.phone,
             photo:option.photo,
-            photo:option.photo!=null&&option.photo!=""&&option.photo!="null"?urlHost+option.photo+"?date="+new Date():"",
+            photo:option.photo!=null&&option.photo!=""&&option.photo!="null"?urlHost+option.photo+"?date="+new Date():"../../resource/img/avatar.png",
             birthday:option.birthday=="null"?'':this.formatDate(option.birthday),
             rzday:option.rzday=="null"?'':this.formatDate(option.rzday),
             userId:option.userId,
@@ -220,5 +220,7 @@ Page({
             }
         })
     },
-
+    onImageError(e){
+        this.setData({PHOTO:'../../resource/img/avatar.png'})
+    }
 });

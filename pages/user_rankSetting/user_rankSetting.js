@@ -4,7 +4,12 @@ Page({
         selectItems: []
     },
     onLoad:function(option){
-        wx.showNavigationBarLoading();
+        wx.showToast({
+            title: '加载中',
+            icon: 'loading',
+            mask: true,
+            duration: 50000
+        })
         let that=this;
         wx.getStorage({//获取token
             key: 'token',
@@ -27,9 +32,9 @@ Page({
                                     selectItems:rs,
                                     userId:option.userId
                                 })
-                                wx.hideNavigationBarLoading();
+                                wx.hideToast();
                             }else{
-                                wx.hideNavigationBarLoading();
+                                wx.hideToast();
                                 wx.showModal({
                                     title: '未加入群组',
                                     content: '需先加入群组才能使用本功能',
@@ -45,7 +50,7 @@ Page({
                                 })
                             }
                         }else if(reqRes.data.code=="401"){
-                            wx.hideNavigationBarLoading();
+                            wx.hideToast();
                             wx.showModal({
                                 title: '登陆过期',
                                 content: '登陆信息已过期，你需要登录才能使用本功能',
@@ -60,7 +65,7 @@ Page({
                                 }
                             })
                         }else{
-                            wx.hideNavigationBarLoading();
+                            wx.hideToast();
                             wx.showModal({
                                 title: '后台服务错误',
                                 content: reqRes.data.error,
@@ -78,7 +83,7 @@ Page({
                     
                     },
                     fail: e => {
-                        wx.hideNavigationBarLoading();
+                        wx.hideToast();
                         wx.showModal({
                             title: '网络访问故障',
                             content: e,
@@ -96,7 +101,7 @@ Page({
                 })
             },
             fail:err =>{
-                wx.hideNavigationBarLoading();
+                wx.hideToast();
                 wx.showModal({
                     title: '尚未登录',
                     content: '你需要登录才能使用本功能',

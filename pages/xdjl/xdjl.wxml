@@ -9,7 +9,7 @@
             <view class="weui-panel__bd">
                 <view class="weui-media-box weui-media-box_text" >
                     <view class="weui-media-box__title weui-media-box__title_in-text title">{{item.TITLE}}</view>
-                    <view class="weui-media-box__desc">创建日期:{{item.CREATE_DATE}}</view>
+                    <view class="weui-media-box__desc">{{item.CREATE_DATE}}</view>
                 </view>
             </view>
         </navigator>

@@ -33,7 +33,7 @@
 }
 
 .user-header-name{
-  padding-top: 50rpx;
+  padding-top: 30rpx;
   padding-left:10px
 }
 

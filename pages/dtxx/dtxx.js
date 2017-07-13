@@ -21,7 +21,7 @@ Page({
     last: false,
     iszan: false,
     next: false,
-    dansGroup:['','','','','','']
+    dansGroup: ['', '', '', '', '', '']
   },
 
   /**
@@ -173,9 +173,9 @@ Page({
             rc += 1
           } else {
             wc += 1
-            let pointer = { A:0,B:1,C:2,D:3,E:4,F:5}
+            let pointer = { A: 0, B: 1, C: 2, D: 3, E: 4, F: 5 }
             let dans = res.data.data.dans;
-            for (let prop in dans){
+            for (let prop in dans) {
               dansGroup[pointer[prop]] = 'dans-bg'
             }
           }
@@ -186,7 +186,7 @@ Page({
             score: score,
             wrongCount: wc,
             rightCount: rc,
-            dansGroup:dansGroup
+            dansGroup: dansGroup
           })
 
         } else {
@@ -224,10 +224,18 @@ Page({
         feedbackUserRs: {},
         feedbackDans: {},
         feedbackRs: '',
-        dansGroup:['','','','','',''],
+        dansGroup: ['', '', '', '', '', ''],
       })
-    }else{
-      
+    } else {
+      let options = {
+        counts: this.data.questions.length,
+        rightCount: this.data.rightCount,
+        wrongCount: this.data.wrongCount,
+        score: this.data.score
+      }
+      wx.redirectTo({
+        url: '../dtxxjg/dtxxjg?counts='+options.counts+'&rightCount='+options.rightCount+'&wrongCount='+options.wrongCount+'&score='+options.score
+      })
     }
   },
   /**
@@ -272,11 +280,11 @@ Page({
   /**
    * 纠错
    */
-  bindJiucuo(){
+  bindJiucuo() {
     let index = this.data.index;
     let tkid = this.data.questions[index].ID_;
     wx.navigateTo({
-      url:'../jiucuo/jiucuo?tkid='+tkid
+      url: '../jiucuo/jiucuo?tkid=' + tkid
     })
   },
 

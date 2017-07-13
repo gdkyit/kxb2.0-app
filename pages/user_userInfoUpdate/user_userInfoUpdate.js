@@ -189,7 +189,7 @@ Page({
                 'x-auth-token': token
             }, 
             success: function(res){
-                console.log(res);//因uploadFile无法在network中捕获故需打印返回内容
+                // console.log(res);//因uploadFile无法在network中捕获故需打印返回内容
                 if(res.statusCode==200){
                     that.setData({
                         files:null,//重置照片

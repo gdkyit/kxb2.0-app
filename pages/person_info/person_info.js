@@ -46,8 +46,10 @@ Page({
           });
           let dept = res.data.data.userInfo.dept.dept_name;
           let parentDept = res.data.data.userInfo.parentDept.dept_name;
-          PHOTO = !!PHOTO ? PHOTO = app.host + '/images' + PHOTO : '../../resource/img/avatar.png'
-
+          PHOTO = !!PHOTO ? PHOTO = app.host + '/images' + PHOTO : '../../resource/img/avatar.png';
+          BIRTHDAY = BIRTHDAY.split(" ")[0];
+          RZSJ = RZSJ.split(" ")[0]
+          
           this.setData({
             USER_NAME,
             BIRTHDAY,

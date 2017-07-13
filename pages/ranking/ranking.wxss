@@ -39,8 +39,11 @@
 .gr {
     color:#3FBE69
 }
+.picker-title{
+    font-size: 14px
+}
 .picker-title span.pt-u{
-    margin-right: 20rpx
+    margin-right: 20rpx;
 }
 .bold{
     font-weight:bold
@@ -65,4 +68,12 @@
     box-shadow: 0 0 1em rgba(0, 0, 0,0.8);
     border-radius: 50rpx
     
+}
+.rank-list-empty{
+    text-align: center;
+    padding:2em;
+    color:#bfbfbf
+}
+.rank-self-null{
+    color:#353535;
 }

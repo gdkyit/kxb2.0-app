@@ -2,8 +2,7 @@
     <form bindsubmit="putUserInfo" >
     <view class="userContainer">
             <view  bindtap="previewImage" id="{{files}}">
-                <image wx:if="{{photo!=''||!!files}}" class="userinfo-avatar" src="{{!files?photo:files}}" mode="aspectFill" />
-                <view wx:elif="{{photo==''&&!files}}" class="userinfo-avatar usericonColor" mode="aspectFill" ><i  class="userIcon czs-user "  ></i></view>
+                <image  class="userinfo-avatar" src="{{!files?photo:files}}" mode="aspectFill" binderror="onImageError" />
             </view>
             <button class="weui-btn mini-btn" type="default" size="mini" bindtap="chooseImage">上传新头像</button>
     </view>

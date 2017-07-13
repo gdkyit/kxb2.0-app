@@ -20,9 +20,6 @@ Page({
         wx.getStorage({ //获取token
             key: 'token',
             success: function (res) {
-                that.setData({
-                    token: res.data
-                })
                 wx.request({
                     url: app.host + '/api/currentUser',
                     method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
@@ -39,8 +36,9 @@ Page({
                                 IUrl: !!rs.userInfo.PHOTO ? urlHost + rs.userInfo.PHOTO + "?date=" + new Date().getTime() : '../../resource/img/avatar.png',
                                 contribution: !rs.userGxz.gxz ? rs.userGxz.count : rs.userGxz.gxz,
                                 scoreRank: rs.userScoreRank,
+                                totalScore:typeof rs.userScoreRank=="string"?"无": rs.userScoreRank.score.toFixed(2),
                                 totalUserResult: rs.totalUserResult,
-                                rightPersent: !rs.userScoreRank||!rs.userScoreRank.score ? "无" : (rs.totalUserResult.totalRightCount / rs.totalUserResult.totalCount * 100).toFixed(2) + '%'
+                                rightPersent: rs.userScoreRank==null?"无":!rs.userScoreRank.score&&rs.userScoreRank.score!=0 ? "无" : (rs.totalUserResult.totalRightCount / rs.totalUserResult.totalCount * 100).toFixed(2) + '%'
                             })
                             wx.hideToast();
                         } else if (reqRes.data.code == "401") {

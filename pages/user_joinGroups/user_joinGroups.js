@@ -8,7 +8,12 @@ Page({
         loadingButton:false
     },
     onLoad:function(option){
-        wx.showNavigationBarLoading();
+        wx.showToast({
+            title: '加载中',
+            icon: 'loading',
+            mask: true,
+            duration: 50000
+        })
         let that=this;
         wx.getStorage({//获取token
             key: 'token',
@@ -25,10 +30,13 @@ Page({
                     }, // 设置请求的 header
                     success: reqRes => {
                         let rs=reqRes.data.data;
-                        let userItems=[];
+                        let userItems=[],isDefault="";
                         for(let i=0;i<rs.groups.length;i++){
                             for(let j=0;j<rs.userGroups.length;j++){
                                 if(rs.groups[i].ID_ == rs.userGroups[j].ID_){
+                                    if(rs.userGroups[j].is_default=="Y"){//把默认积分榜单独出来
+                                        isDefault+=rs.userGroups[j].ID_
+                                    }
                                     userItems[i] = {ID_:rs.userGroups[j].ID_};//重构user已选list
                                     break;
                                 }
@@ -38,11 +46,12 @@ Page({
                             that.setData({
                                 checkboxItems:rs.groups,
                                 userItems:userItems,
+                                isDefault:isDefault,
                                 userId:option.userId
                             })
-                            wx.hideNavigationBarLoading();
+                            wx.hideToast();
                         }else if(reqRes.data.code=="401"){
-                            wx.hideNavigationBarLoading();
+                            wx.hideToast();
                             wx.showModal({
                                 title: '登陆过期',
                                 content: '登陆信息已过期，你需要登录才能使用本功能',
@@ -57,7 +66,7 @@ Page({
                                 }
                             })
                         }else{
-                            wx.hideNavigationBarLoading();
+                            wx.hideToast();
                             wx.showModal({
                                 title: '后台服务错误',
                                 content: reqRes.data.error,
@@ -73,7 +82,7 @@ Page({
                     
                     },
                     fail: e => {
-                        wx.hideNavigationBarLoading();
+                        wx.hideToast();
                         wx.showModal({
                             title: '网络访问故障',
                             content: e,
@@ -89,7 +98,7 @@ Page({
                 })
             },
             fail:err =>{
-                wx.hideNavigationBarLoading();
+                wx.hideToast();
                 wx.showModal({
                     title: '尚未登录',
                     content: '你需要登录才能使用本功能',
@@ -129,7 +138,12 @@ Page({
         let selected =value.detail.value.groups;
         let postList=[];
         for(let i=0;i<selected.length;i++){
-            postList[i]={userId:this.data.userId,groupId:selected[i]}
+            postList[i]={
+                userId:this.data.userId,
+                groupId:selected[i],
+                isDefault:this.data.isDefault==selected[i]?"Y":"N",
+                readMark:"Y"
+            }
         }
         wx.request({
             url: app.host + '/api/saveUserGroups',
@@ -196,6 +210,8 @@ Page({
         })
     },
     backTo:function(){
-        wx.navigateBack({delta: 1})
+        wx.reLaunch({
+              url: '../user_userMain/user_userMain'
+            })
     }
 })

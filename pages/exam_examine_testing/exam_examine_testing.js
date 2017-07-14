@@ -76,9 +76,7 @@ Page({
                                         totalIss:examList.length+userRsList.length,
                                         finishIss:userRsList.length
                                     })
-                                    that.setData({
-                                        
-                                    })
+                                    console.log(new Date().getTime())
                                     wx.hideToast();
                                 }else if(reqRes.data.code=="401"){
                                     wx.hideToast();
@@ -260,7 +258,13 @@ Page({
                         answerStyle[i]=rAnswers.hasOwnProperty(selectItems[i].XZ_KEY)?'greenSel':(answers.includes(selectItems[i].XZ_KEY)?'redSel':'')
                     }
                     if(reqResAnswer.data.code=="200"){
-                        that.setData({rsText:reqResAnswer.data.data.rs,answerComparison:reqResAnswer.data.data.dans,answerStyle:answerStyle})
+                    let tScore=(Number(that.data.totalScore) +reqResAnswer.data.data.userRs.resultScore).toFixed(2);
+                        that.setData({
+                            rsText:reqResAnswer.data.data.rs,
+                            answerComparison:reqResAnswer.data.data.dans,
+                            answerStyle:answerStyle,
+                            totalScore:tScore
+                        })
                         if(that.data.finishIss+1==that.data.totalIss){//判断是否完成全部试题
                             setTimeout(function(){
                                 that.setData({
@@ -322,7 +326,6 @@ Page({
         let examList=this.data.examList;
         let tTime=this.data.totalTime+param.resultTime;
         let vCount=param.result;
-        let tScore=(parseInt(this.data.totalScore) +param.resultScore).toFixed(2);
         let that=this;
         wx.request({
             //获取答案选项
@@ -342,7 +345,6 @@ Page({
                         rightCount:that.data.rightCount+ (vCount=="Y"?1:0),
                         worngCount:that.data.worngCount+ (vCount=="N"?1:0),
                         totalTime:tTime,
-                        totalScore:tScore,
                         finishIss:that.data.finishIss+1,
                         rs:"",
                         rsText:"",

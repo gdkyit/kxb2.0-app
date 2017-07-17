@@ -76,7 +76,6 @@ Page({
                                         totalIss:examList.length+userRsList.length,
                                         finishIss:userRsList.length
                                     })
-                                    console.log(new Date().getTime())
                                     wx.hideToast();
                                 }else if(reqRes.data.code=="401"){
                                     wx.hideToast();

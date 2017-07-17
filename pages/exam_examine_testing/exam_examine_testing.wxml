@@ -5,7 +5,7 @@
                 <view class="weui-panel__hd">题目来源：{{currContext.lytitle}}</view>
                 <view class="weui-panel__bd">
                     <view class="weui-media-box weui-media-box_text">
-                        <view class="weui-media-box__title weui-media-box__title_in-text">{{finishIss+1}}.（{{currContext.MODE==0?'判断题':currContext.MODE==1?'单选题':'多选题'}}）{{currContext.CONTENT}}</view>
+                        <view class="weui-media-box__title weui-media-box__title_in-text">{{num}}.（{{currContext.MODE==0?'判断题':currContext.MODE==1?'单选题':'多选题'}}）{{currContext.CONTENT}}</view>
                         <view class="answerText">
                             <radio-group name="selectedAnswer" hidden="{{currContext.MODE==2}}" bindchange="radioChange">
                                 <label class="weui-cell weui-check__label {{answerStyle[index]}}" wx:for="{{selectItems}}" wx:key="value">

@@ -74,10 +74,8 @@ Page({
                                         totalScore:score.toFixed(2),
                                         totalTime:tTime,
                                         totalIss:examList.length+userRsList.length,
-                                        finishIss:userRsList.length
-                                    })
-                                    that.setData({
-                                        
+                                        finishIss:userRsList.length,
+                                        num:userRsList.length+1
                                     })
                                     wx.hideToast();
                                 }else if(reqRes.data.code=="401"){
@@ -182,7 +180,9 @@ Page({
     })
     },
     onUnload: function () {//返回触发事件
+        console.log(this.data.finishIss,this.data.totalIss)
         if(this.data.finishIss!=this.data.totalIss){
+
             wx.showModal({
                     title: '重新进入考试可继续完成未完成考试',
                     showCancel: false,
@@ -260,8 +260,16 @@ Page({
                         answerStyle[i]=rAnswers.hasOwnProperty(selectItems[i].XZ_KEY)?'greenSel':(answers.includes(selectItems[i].XZ_KEY)?'redSel':'')
                     }
                     if(reqResAnswer.data.code=="200"){
-                        that.setData({rsText:reqResAnswer.data.data.rs,answerComparison:reqResAnswer.data.data.dans,answerStyle:answerStyle})
-                        if(that.data.finishIss+1==that.data.totalIss){//判断是否完成全部试题
+                    let tScore=(Number(that.data.totalScore) +reqResAnswer.data.data.userRs.resultScore).toFixed(2);
+                    let nowFinish=that.data.finishIss+1;  
+                    that.setData({
+                            rsText:reqResAnswer.data.data.rs,
+                            answerComparison:reqResAnswer.data.data.dans,
+                            answerStyle:answerStyle,
+                            finishIss:nowFinish,
+                            totalScore:tScore
+                        })
+                        if(nowFinish==that.data.totalIss){//判断是否完成全部试题
                             setTimeout(function(){
                                 that.setData({
                                     endExam:true,
@@ -322,7 +330,6 @@ Page({
         let examList=this.data.examList;
         let tTime=this.data.totalTime+param.resultTime;
         let vCount=param.result;
-        let tScore=(parseInt(this.data.totalScore) +param.resultScore).toFixed(2);
         let that=this;
         wx.request({
             //获取答案选项
@@ -342,11 +349,10 @@ Page({
                         rightCount:that.data.rightCount+ (vCount=="Y"?1:0),
                         worngCount:that.data.worngCount+ (vCount=="N"?1:0),
                         totalTime:tTime,
-                        totalScore:tScore,
-                        finishIss:that.data.finishIss+1,
                         rs:"",
                         rsText:"",
                         answerStyle:[],
+                        num:that.data.num+1,
                         buttonLoading:false,
                         buttonDisable:false
                     })

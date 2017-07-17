@@ -96,7 +96,7 @@
                 <view class="weui-cell__bd">申请加入群组</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </navigator>
-            <navigator url="../about/about" class="weui-cell weui-cell_access" hover-class="weui-cell_active" open-type="redirect">
+            <navigator url="../about/about" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <view class="weui-cell__hd">
                     <i class="icon czs-product-l"></i>
                 </view>

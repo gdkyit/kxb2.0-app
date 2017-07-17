@@ -137,7 +137,7 @@ Page({
     },
     formatDate:function(date){
         let newDate=new Date(date);
-        return newDate.getFullYear()+"-"+(newDate.getMonth()+1)+"-"+newDate.getDay()
+        return newDate.getFullYear()+"-"+(newDate.getMonth()+1)+"-"+newDate.getDate()
     },
   
     drawCanvas:function(){  // 缩放图片

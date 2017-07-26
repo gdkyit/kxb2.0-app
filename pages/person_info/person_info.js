@@ -44,8 +44,8 @@ Page({
             item.score = item.score.toFixed(2);
             return item
           });
-          let dept = res.data.data.userInfo.dept.dept_name;
-          let parentDept = res.data.data.userInfo.parentDept.dept_name;
+          let dept = !!res.data.data.userInfo.dept?res.data.data.userInfo.dept.dept_name:'';
+          let parentDept = !!res.data.data.userInfo.parentDept?res.data.data.userInfo.parentDept.dept_name:'';
           PHOTO = !!PHOTO ? PHOTO = app.host + '/images' + PHOTO : '../../resource/img/avatar.png';
           BIRTHDAY = Array.isArray(BIRTHDAY)?BIRTHDAY.split(" ")[0]:'';
           RZSJ = Array.isArray(RZSJ)?RZSJ.split(" ")[0]:'';

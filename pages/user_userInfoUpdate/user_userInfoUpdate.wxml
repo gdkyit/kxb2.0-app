@@ -51,5 +51,7 @@
     <view class="weui-btn-area">
         <button class="weui-btn"  type="defult" bindtap="backTo" >返回</button>
     </view>
+      <view  style="visibility:hidden;margin-left:-9999px;" >
         <canvas style="width: {{canWidth}}px;height: {{canHeight}}px;visibility:hidden;" canvas-id="attendCanvasId"/>
+      </view>
 </view>

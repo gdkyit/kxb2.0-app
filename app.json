@@ -36,24 +36,25 @@
     "selectedColor": "#515151",
     "color": "#bfbfbf",
     "list": [
-      {
-        "pagePath": "pages/kaoshi/kaoshi",
-        "iconPath": "resource/img/icon-kaoshi.png",
-        "selectedIconPath": "resource/img/icon-kaoshi-act.png",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/learning/learning",
-        "iconPath": "resource/img/icon-xuexi.png",
-        "selectedIconPath": "resource/img/icon-xuexi-act.png",
-        "text": "学习"
-      },
-      {
+       {
         "pagePath": "pages/ranking/ranking",
         "iconPath": "resource/img/icon-paihangbang.png",
         "selectedIconPath": "resource/img/icon-paihangbang-act.png",
         "text": "排行榜"
       },
+      {
+        "pagePath": "pages/learning/learning",
+        "iconPath": "resource/img/icon-xuexi.png",
+        "selectedIconPath": "resource/img/icon-xuexi-act.png",
+        "text": "答题学习"
+      },
+      {
+        "pagePath": "pages/kaoshi/kaoshi",
+        "iconPath": "resource/img/icon-kaoshi.png",
+        "selectedIconPath": "resource/img/icon-kaoshi-act.png",
+        "text": "考试"
+      },
+     
       {
         "pagePath": "pages/user_userMain/user_userMain",
         "iconPath": "resource/img/icon-me.png",

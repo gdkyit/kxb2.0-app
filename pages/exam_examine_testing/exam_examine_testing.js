@@ -253,34 +253,47 @@ Page({
                 'x-auth-token': this.data.token
                 }, // 设置请求的 header
                 success: reqResAnswer => {
-                    let answerStyle=[];
-                    let selectItems=that.data.selectItems;
-                    let rAnswers=reqResAnswer.data.data.dans;
-                    for(let i=0;i<selectItems.length;i++){//反馈回答情况
-                        answerStyle[i]=rAnswers.hasOwnProperty(selectItems[i].XZ_KEY)?'greenSel':(answers.includes(selectItems[i].XZ_KEY)?'redSel':'')
-                    }
-                    if(reqResAnswer.data.code=="200"){
-                    let tScore=(Number(that.data.totalScore) +reqResAnswer.data.data.userRs.resultScore).toFixed(2);
                     let nowFinish=that.data.finishIss+1;  
-                    that.setData({
-                            rsText:reqResAnswer.data.data.rs,
-                            answerComparison:reqResAnswer.data.data.dans,
-                            answerStyle:answerStyle,
-                            finishIss:nowFinish,
-                            totalScore:tScore
-                        })
-                        if(nowFinish==that.data.totalIss){//判断是否完成全部试题
-                            setTimeout(function(){
-                                that.setData({
-                                    endExam:true,
-                                    rightPersent:(that.data.rightCount/that.data.totalIss*100).toFixed(2)
-                                })
-                            },1000)
-                        }else{
-                            setTimeout(function(){
-                                that.completePOST(reqResAnswer.data.data.userRs);
-                            },1000)
+                    if(reqResAnswer.data.code=="200"){
+                        let answerStyle=[];
+                        let selectItems=that.data.selectItems;
+                        let rAnswers=reqResAnswer.data.data.dans;
+                        for(let i=0;i<selectItems.length;i++){//反馈回答情况
+                            answerStyle[i]=rAnswers.hasOwnProperty(selectItems[i].XZ_KEY)?'greenSel':(answers.includes(selectItems[i].XZ_KEY)?'redSel':'')
                         }
+                        let tScore=(Number(that.data.totalScore) +reqResAnswer.data.data.userRs.resultScore).toFixed(2);
+                        that.setData({
+                                rsText:reqResAnswer.data.data.rs,
+                                answerComparison:reqResAnswer.data.data.dans,
+                                answerStyle:answerStyle,
+                                finishIss:nowFinish,
+                                totalScore:tScore
+                            })
+                            if(nowFinish==that.data.totalIss){//判断是否完成全部试题
+                                setTimeout(function(){
+                                    that.setData({
+                                        endExam:true,
+                                        rightPersent:(that.data.rightCount/that.data.totalIss*100).toFixed(2)
+                                    })
+                                },1000)
+                            }else{
+                                setTimeout(function(){
+                                    that.completePOST(reqResAnswer.data.data.userRs);
+                                },1000)
+                            }
+                    }else if(reqResAnswer.data.code=="400"){//无答案处理
+                        if(nowFinish==that.data.totalIss){//判断是否完成全部试题
+                                setTimeout(function(){
+                                    that.setData({
+                                        endExam:true,
+                                        rightPersent:(that.data.rightCount/that.data.totalIss*100).toFixed(2)
+                                    })
+                                },1000)
+                            }else{
+                                setTimeout(function(){
+                                    that.noAnswer(nowFinish);
+                                },1000)
+                            }
                     }else{
                         //post答案错误
                         wx.showModal({
@@ -352,6 +365,67 @@ Page({
                         rs:"",
                         rsText:"",
                         answerStyle:[],
+                        num:that.data.num+1,
+                        buttonLoading:false,
+                        buttonDisable:false
+                    })
+                }else{
+                    //获取答案选项错误
+                    wx.showModal({
+                        title: '后台服务错误',
+                        content: reqRes.data.error,
+                        showCancel: false,
+                        confirmText: '返回',
+                        success: res => {
+                            if(res.confirm) {
+                                wx.navigateBack({delta: 1})
+                            }
+                        }
+                    })
+                }
+            
+            },
+            fail: e => {
+                //获取答案选项错误
+                wx.showModal({
+                    title: '网络访问故障',
+                    content: e,
+                    showCancel: false,
+                    confirmText: '返回',
+                    success: res => {
+                        if(res.confirm) {
+                           wx.navigateBack({delta: 1})
+                        }
+                    }
+                })
+            },
+        })
+        
+    },
+    noAnswer:function(nowFinish){
+        //下一题操作
+        let index=this.data.currIndex;
+        let examList=this.data.examList;
+        let that=this;
+        wx.request({
+            //获取答案选项
+            url: app.host + '/api/tkxzx?tkId='+examList[index+1].ID_,
+            method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+            header: {
+            'content-type': 'application/json',
+            'x-auth-token': this.data.token
+            }, // 设置请求的 header
+            success: reqResAnswer => {
+                if(reqResAnswer.data.code=="200"){
+                    that.setData({
+                        currIndex:index+1,
+                        currContext:examList[index+1],
+                        selectItems:reqResAnswer.data.data,
+                        startTime:new Date(),
+                        rs:"",
+                        rsText:"",
+                        answerStyle:[],
+                        finishIss:nowFinish,
                         num:that.data.num+1,
                         buttonLoading:false,
                         buttonDisable:false

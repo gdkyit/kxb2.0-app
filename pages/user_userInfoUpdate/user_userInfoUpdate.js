@@ -90,17 +90,17 @@ Page({
                 }, // 设置请求的 header
                 success: res => {
                     if(res.statusCode == 200&&res.data.code=="200"){
-                        wx.showToast({
-                            title: '修改成功',
-                            icon: 'success',
-                            mask:true,
-                            duration: 2000
-                        })
                         
                         that.setData({
                             oldValue:newValue,//更新旧数据
                         })
                         if(that.data.files==null){//没有照片上传则停止等待
+                            wx.showToast({
+                                title: '修改成功',
+                                icon: 'success',
+                                mask:true,
+                                duration: 2000
+                            })
                             that.setData({
                                 disableUserInfo:false,
                                 loadingUserInfo:false,
@@ -146,11 +146,11 @@ Page({
         wx.getImageInfo({
             src: that.data.files,
             success: function (res) {
-                if(res.width>500||res.height>500){//判断图片是否超过500像素
+                if(res.width>300||res.height>300){//判断图片是否超过500像素
                     let scale=res.width/res.height//获取原图比例
                     that.setData({//构造画板宽高
-                        canWidth:500,
-                        canHeight:500/scale
+                        canWidth:200,
+                        canHeight:200/scale
                     })
                     //画出压缩图片
                     ctx.drawImage(that.data.files, 0, 0, that.data.canWidth, that.data.canHeight);
@@ -189,8 +189,14 @@ Page({
                 'x-auth-token': token
             }, 
             success: function(res){
-                console.log(res);//因uploadFile无法在network中捕获故需打印返回内容
+                // console.log(res);//因uploadFile无法在network中捕获故需打印返回内容
                 if(res.statusCode==200){
+                    wx.showToast({
+                            title: '修改成功',
+                            icon: 'success',
+                            mask:true,
+                            duration: 2000
+                        })
                     that.setData({
                         files:null,//重置照片
                         photo:that.data.photo+"&date="+new Date(),//重新访问照片

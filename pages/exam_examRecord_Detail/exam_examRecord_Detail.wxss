@@ -8,3 +8,8 @@
 .weui-cell__ft_in-access{
     font-size: 14px;
 }
+.weui-media-box__desc{
+    overflow: visible;
+    padding-top: 5px;
+    -webkit-line-clamp:100
+}

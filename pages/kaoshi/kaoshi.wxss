@@ -1,6 +1,6 @@
 image {
     width: 750rpx;
-    height: 375rpx;
+    height: 281rpx;
 }
 .page {
     line-height:0;

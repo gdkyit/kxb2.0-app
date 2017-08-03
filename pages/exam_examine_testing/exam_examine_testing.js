@@ -261,13 +261,19 @@ Page({
                         for(let i=0;i<selectItems.length;i++){//反馈回答情况
                             answerStyle[i]=rAnswers.hasOwnProperty(selectItems[i].XZ_KEY)?'greenSel':(answers.includes(selectItems[i].XZ_KEY)?'redSel':'')
                         }
-                        let tScore=(Number(that.data.totalScore) +reqResAnswer.data.data.userRs.resultScore).toFixed(2);
+                        let param=reqResAnswer.data.data.userRs;
+                        let vCount=param.result;
+                        let tTime=that.data.totalTime+param.resultTime;
+                        let tScore=(Number(that.data.totalScore) +param.resultScore).toFixed(2);
                         that.setData({
                                 rsText:reqResAnswer.data.data.rs,
                                 answerComparison:reqResAnswer.data.data.dans,
                                 answerStyle:answerStyle,
                                 finishIss:nowFinish,
-                                totalScore:tScore
+                                totalScore:tScore,
+                                rightCount:that.data.rightCount+ (vCount=="Y"?1:0),
+                                worngCount:that.data.worngCount+ (vCount=="N"?1:0),
+                                totalTime:tTime,
                             })
                             if(nowFinish==that.data.totalIss){//判断是否完成全部试题
                                 setTimeout(function(){
@@ -278,7 +284,7 @@ Page({
                                 },1000)
                             }else{
                                 setTimeout(function(){
-                                    that.completePOST(reqResAnswer.data.data.userRs);
+                                    that.completePOST();
                                 },1000)
                             }
                     }else if(reqResAnswer.data.code=="400"){//无答案处理
@@ -337,12 +343,10 @@ Page({
           })
         }
     },
-    completePOST:function(param){
+    completePOST:function(){
         //下一题操作
         let index=this.data.currIndex;
         let examList=this.data.examList;
-        let tTime=this.data.totalTime+param.resultTime;
-        let vCount=param.result;
         let that=this;
         wx.request({
             //获取答案选项
@@ -359,9 +363,6 @@ Page({
                         currContext:examList[index+1],
                         selectItems:reqResAnswer.data.data,
                         startTime:new Date(),
-                        rightCount:that.data.rightCount+ (vCount=="Y"?1:0),
-                        worngCount:that.data.worngCount+ (vCount=="N"?1:0),
-                        totalTime:tTime,
                         rs:"",
                         rsText:"",
                         answerStyle:[],

@@ -59,34 +59,38 @@
                 <view class="user-header-name">
                     <text class="userinfo-nickname">{{userName}}</text>
                     <import src="../template/rankLevel.wxml" />
-                    <template wx:if="{{(!!scoreRank.score)&&scoreRank.score!=0}}" is="rankLevel" data="{{score:scoreRank.score}}" />
+                    <template wx:if="{{(!!personScoreRank.score)&&personScoreRank.score!=0}}" is="rankLevel" data="{{score:personScoreRank.score}}" />
                 </view>
                 <view class="weui-flex__item user-header-gxz">
                     <text>出题贡献值：{{contribution}}</text>
                 </view>
             </view>
-            <view class="weui-flex t-br rank">
+            <view class="weui-flex  rank">
                 <view class="weui-flex__item  ">
                     <view class="rankTitle">总积分</view>
-                    <view class="rankValue">{{(!scoreRank.score)&&scoreRank.score!=0?"无":totalScore}}</view>
+                    <view class="rankValue">{{(!personScoreRank.score)&&personScoreRank.score!=0?"无":totalScore}}</view>
                 </view>
                 <view class="weui-flex__item   ">
                     <view class="rankTitle">总积分排名</view>
-                    <view class="rankValue">{{(!scoreRank.score)&&scoreRank.score!=0?"无":scoreRank.rank}}</view>
+                    <view class="rankValue">{{(!personScoreRank.score)&&personScoreRank.score!=0?"无":personScoreRank.rank}}</view>
                 </view>
-            </view>
-            <view class="weui-flex rank">
                 <view class="weui-flex__item ">
                     <view class="rankTitle">已做题目</view>
-                    <view class="rankValue">{{(!scoreRank.score)&&scoreRank.score!=0?"无":totalUserResult.totalCount}}</view>
+                    <view class="rankValue">{{(!personScoreRank.score)&&personScoreRank.score!=0?"无":totalUserResult.totalCount}}</view>
                 </view>
+            </view>
+            <!-- <view class="weui-flex rank">
+                
                 <view class="weui-flex__item">
                     <view class="rankTitle">正确率</view>
                     <view class="rankValue">{{rightPersent}}</view>
                 </view>
-            </view>
+            </view> -->
         </view>
-        <view class="weui-panel no-br">
+        <view class ="tabs weui-flex">
+                <view data-phb="{{index}}" class="tab-pane weui-flex__item {{index == current?'current':''}}" bindtap="bindPhbChange" wx:for="{{phblist}}">{{item}}</view>
+        </view>
+        <!-- <view class="weui-panel no-br">
             <view class="weui-panel__hd hd-picker no-br">
                 <picker value="{{current}}" range="{{phblist}}" bindchange="bindPhbChange">
                     <view class="picker-title">
@@ -96,7 +100,7 @@
                     </view>
                 </picker>
             </view>
-        </view>
+        </view> -->
         <block wx:if="{{view == '0'}}">
             <template is="selfInfo" data="{{...userScoreRank}}" />
             <template is="rankList" data="{{scoreRank}}" />

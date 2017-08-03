@@ -22,10 +22,10 @@
     width:150rpx
 }
 .my-jf{
-    width:150rpx
+    width:200rpx
 }
 .my-rank{
-    width: 140rpx;
+    width: 150rpx;
     text-align: center
 }
 .my-time{
@@ -77,8 +77,18 @@
 .rank-self-null{
     color:#353535;
 }
-
-
+.tabs{
+    background-color: #fff;
+    height:45px;
+    line-height: 45px;
+}
+.tab-pane{
+    text-align: center;
+}
+.current {
+    border-bottom:solid 2px #3FBE69
+}
+/*用户数据样式  */
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -93,10 +103,6 @@
 .iconNull{
   margin-top: 64rpx;
   margin-left: 64rpx;
-}
-
-.userinfo-nickname {
-  color: #000;
 }
 
 .usermotto{
@@ -118,7 +124,6 @@
 }
 
 .rank{
-  padding-top:10px;
   text-align:center;
   height: 70px;
 }
@@ -127,31 +132,17 @@
   border-top:1rpx solid #D9D9D9;
 
 }
-/*用户数据样式  */
+
 .rankValue{
   font-weight:bold;
   font-size:30px;
-  color:#3FBE69;
   line-height: 1em;
 }
 .rankTitle{
   font-size:14px;
-  color:#353535;
 }
 
-.icon{
-  margin-right: 15px;
-  /*font-size:30px;*/
-  color:#3FBE69;
-}
-.userEmtyView{
-  line-height:68px;
-  text-indent:17px;
-  background-color: #ffffff;
-  overflow:visible;
-}
-.userEmtyIcon{
-  margin-right: 5px;
-  font-size:30px;
-  color:#3FBE69;
+.userTop{
+    background-color: #3FBE69;
+    color:#fff;
 }

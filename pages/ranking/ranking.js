@@ -44,6 +44,7 @@ Page({
             if (reqRes.data.code == "200") {
               let rs = reqRes.data.data;
               that.setData({
+                personScoreRank: rs.userScoreRank,
                 recordMap: rs.userInfo,
                 userName: rs.userInfo.USER_NAME,
                 IUrl: !!rs.userInfo.PHOTO ? urlHost + rs.userInfo.PHOTO + "?date=" + new Date().getTime() : '../../resource/img/avatar.png',
@@ -452,7 +453,7 @@ Page({
     })
   },
   bindPhbChange: function (e) {
-    let phb = e.detail.value
+    let phb =  e.currentTarget.dataset.phb
     this.setData({
       current: phb
     })

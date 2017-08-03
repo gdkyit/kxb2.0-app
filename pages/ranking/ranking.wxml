@@ -53,6 +53,39 @@
 <!--ranking.wxml-->
 <view class="page">
     <view class="page__bd">
+        <view class="userTop">
+            <view class="weui-flex userHeader">
+                <image class="userinfo-avatar" src="{{IUrl}}" mode="aspectFill" binderror="onImageError"  />
+                <view class="user-header-name">
+                    <text class="userinfo-nickname">{{userName}}</text>
+                    <import src="../template/rankLevel.wxml" />
+                    <template wx:if="{{(!!scoreRank.score)&&scoreRank.score!=0}}" is="rankLevel" data="{{score:scoreRank.score}}" />
+                </view>
+                <view class="weui-flex__item user-header-gxz">
+                    <text>出题贡献值：{{contribution}}</text>
+                </view>
+            </view>
+            <view class="weui-flex t-br rank">
+                <view class="weui-flex__item  ">
+                    <view class="rankTitle">总积分</view>
+                    <view class="rankValue">{{(!scoreRank.score)&&scoreRank.score!=0?"无":totalScore}}</view>
+                </view>
+                <view class="weui-flex__item   ">
+                    <view class="rankTitle">总积分排名</view>
+                    <view class="rankValue">{{(!scoreRank.score)&&scoreRank.score!=0?"无":scoreRank.rank}}</view>
+                </view>
+            </view>
+            <view class="weui-flex rank">
+                <view class="weui-flex__item ">
+                    <view class="rankTitle">已做题目</view>
+                    <view class="rankValue">{{(!scoreRank.score)&&scoreRank.score!=0?"无":totalUserResult.totalCount}}</view>
+                </view>
+                <view class="weui-flex__item">
+                    <view class="rankTitle">正确率</view>
+                    <view class="rankValue">{{rightPersent}}</view>
+                </view>
+            </view>
+        </view>
         <view class="weui-panel no-br">
             <view class="weui-panel__hd hd-picker no-br">
                 <picker value="{{current}}" range="{{phblist}}" bindchange="bindPhbChange">
@@ -126,9 +159,9 @@
                     <view class="weui-flex__item">
                         <view>用户</view>
                     </view>
-                    <view class="time">
+                    <!-- <view class="time">
                         <view>用时</view>
-                    </view>
+                    </view> -->
                     <view class="cj">
                         <view>分数</view>
                     </view>
@@ -143,9 +176,9 @@
                     <view class="weui-flex__item">
                         <view>{{item.user_name}}</view>
                     </view>
-                    <view class="time">
+                    <!-- <view class="time">
                         <view>{{item.time}}秒</view>
-                    </view>
+                    </view> -->
                     <view class="cj">
                         <view>{{item.score}}</view>
                     </view>

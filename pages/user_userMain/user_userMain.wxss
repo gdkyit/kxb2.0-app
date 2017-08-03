@@ -25,7 +25,12 @@
 .user-header-gxz{
   font-size: 12px;
   text-align: right;
-  line-height: 70px
+  /* line-height: 70px */
+  padding-top:30rpx;
+}
+.user-header_button{
+  text-align: right;
+  padding-top:20rpx;
 }
 
 .userHeader{

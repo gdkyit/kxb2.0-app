@@ -16,6 +16,7 @@
     "pages/user_ViewGroups/user_ViewGroups",
     "pages/user_joinGroups/user_joinGroups",
     "pages/user_userMain/user_userMain",
+    "pages/user_CheckIn/user_CheckIn",
     "pages/login/login",
     "pages/ranking/ranking",
     "pages/learning/learning",

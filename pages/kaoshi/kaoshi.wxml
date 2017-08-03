@@ -9,5 +9,8 @@
   <navigator url="../exam_examRecord/exam_examRecord" >
   <image src="/resource/img/module-myrecord.jpg" ></image>
   </navigator>
+   <navigator url="../xdjl/xdjl" >
+  <image src="/resource/img/module-qiangda.jpg"></image>
+  </navigator>
 
  </view>

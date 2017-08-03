@@ -3,8 +3,9 @@
     <block wx:if="{{recordList.length!=0}}" wx:for="{{recordList}}" wx:key="unique">
     <view class="weui-cell weui-cell_access weui-flex" >
         <view class="weui-media-box weui-media-box_text weui-flex__item">
-            <view class="weui-media-box__title weui-media-box__title_in-text">你的答案是{{item.answer}} ,回答{{item.result=="Y"?"正确":"错误"}}，共得分{{item.score}}</view>
+            <view class="weui-media-box__title weui-media-box__title_in-text" style="color:goldenrod">你的答案是{{item.answer}} ,回答{{item.result=="Y"?"正确":"错误"}}，共得分{{item.score}}</view>
             <view class="weui-media-box__desc">{{item.content}}</view>
+            <view class="weui-media-box__desc">正确答案：{{item.da}}</view>
         </view>
     </view>
     </block>

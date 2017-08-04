@@ -65,6 +65,7 @@
                     <text>出题贡献值：{{contribution}}</text>
                 </view>
             </view>
+            
             <view class="weui-flex  rank">
                 <view class="weui-flex__item  ">
                     <view class="rankTitle">总积分</view>
@@ -79,6 +80,7 @@
                     <view class="rankValue">{{(!personScoreRank.score)&&personScoreRank.score!=0?"无":totalUserResult.totalCount}}</view>
                 </view>
             </view>
+            <view class="user-group">积分榜所在群组：{{groupName}}</view>
             <!-- <view class="weui-flex rank">
                 
                 <view class="weui-flex__item">
@@ -111,7 +113,7 @@
             <view class="weui-panel weui-panel_access no-br">
                 <view class="weui-panel__bd">
                     <view wx:if="{{phbSubList.length == 0}}" class="rank-list-empty">未加入任何群组</view>
-                    <view wx:for="{{phbSubList}}" wx:key="ID_" class="weui-media-box weui-media-box_text" bindtap="bindUserGroup" data-gid="{{item.ID_}}">
+                    <view wx:for="{{phbSubList}}" wx:key="ID_" class="weui-media-box weui-media-box_text" bindtap="bindUserGroup" data-gid="{{item.ID_}}" data-scat="{{item.GROUP_NAME}}">
                         <view class="weui-media-box__title weui-media-box__title_in-text">{{item.GROUP_NAME}}</view>
                         <view class="weui-media-box__desc">{{item.MS}}</view>
                     </view>
@@ -129,7 +131,7 @@
             <view class="weui-panel weui-panel_access no-br">
                 <view class="weui-panel__bd">
                     <view wx:if="{{phbSubList.length == 0}}" class="rank-list-empty">未有考试记录</view>
-                    <view wx:for="{{phbSubList}}" wx:key="id_" class="weui-media-box weui-media-box_text" bindtap="bindUserExam" data-eid="{{item.id_}}">
+                    <view wx:for="{{phbSubList}}" wx:key="id_" class="weui-media-box weui-media-box_text" bindtap="bindUserExam" data-eid="{{item.id_}}" data-scat="{{item.TITLE}}">
                         <view class="weui-media-box__title weui-media-box__title_in-text no-ws">{{item.TITLE}}</view>
                         <view class="weui-media-box__desc">开始时间：{{item.START_TIME}}</view>
                         <view class="weui-media-box__desc">结束时间：{{item.END_TIME}}</view>
@@ -194,7 +196,7 @@
         <block wx:elif="{{view == '31'}}">
             <view class="weui-cells__title">选择需查看排名的分类</view>
             <view class="weui-cells weui-cell_access no-br">
-                <view class="weui-cell weui-cell_access" wx:for="{{phbSubList}}" wx:key="id_" bindtap="bindUserFlpm" data-eid="{{item.ID_}}">
+                <view class="weui-cell weui-cell_access" wx:for="{{phbSubList}}" wx:key="id_" bindtap="bindUserFlpm" data-eid="{{item.ID_}}" data-scat="{{item.TKMC}}">
                     <view class="weui-cell__bd">{{item.TKMC}}</view>
                 </view>
             </view>

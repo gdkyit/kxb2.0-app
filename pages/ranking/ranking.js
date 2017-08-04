@@ -14,7 +14,9 @@ Page({
     phbSubList: [],
     userExam: [],
     userExamRank: {},
-    examRank: []
+    examRank: [],
+    groupName:'',
+    currentSubCat:''
   },
 
   /**
@@ -25,6 +27,7 @@ Page({
     this.getJfb();
     this.getUserInfo();
   },
+  
   getUserInfo() {
     let app = getApp();
     let that = this;
@@ -47,6 +50,7 @@ Page({
                 personScoreRank: rs.userScoreRank,
                 recordMap: rs.userInfo,
                 userName: rs.userInfo.USER_NAME,
+                groupName:rs.group.GROUP_NAME,
                 IUrl: !!rs.userInfo.PHOTO ? urlHost + rs.userInfo.PHOTO + "?date=" + new Date().getTime() : '../../resource/img/avatar.png',
                 contribution: !rs.userGxz.gxz ? rs.userGxz.count : rs.userGxz.gxz,
                 totalScore: typeof rs.userScoreRank == "string" ? "无" : rs.userScoreRank.score.toFixed(2),
@@ -433,29 +437,36 @@ Page({
   },
   bindUserGroup(e) {
     let gid = e.currentTarget.dataset.gid
+    let scat = e.currentTarget.dataset.scat
     this.getQzb(gid);
     this.setData({
-      view: '12'
+      view: '12',
+      currentSubCat:scat
     })
   },
   bindUserExam(e) {
     let eid = e.currentTarget.dataset.eid
+    let scat = e.currentTarget.dataset.scat
     this.getKsb(eid);
     this.setData({
-      view: '22'
+      view: '22',
+      currentSubCat:scat
     })
   },
   bindUserFlpm(e) {
     let eid = e.currentTarget.dataset.eid
+    let scat = e.currentTarget.dataset.scat
     this.getFlpm(eid);
     this.setData({
-      view: '32'
+      view: '32',
+      currentSubCat:scat
     })
   },
   bindPhbChange: function (e) {
     let phb =  e.currentTarget.dataset.phb
     this.setData({
-      current: phb
+      current: phb,
+      currentSubCat:''
     })
     if (phb == 0) {
       this.getJfb();

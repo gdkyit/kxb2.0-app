@@ -1,4 +1,5 @@
 <template name="selfInfo">
+    <view class="desc">点击名字可查看用户信息</view>
     <view class="weui-panel weui-panel_access no-br">
         <view class="weui-panel__hd"><i class="czs-location-l bold" /> 我的位置{{currentSubCat?'（'+currentSubCat+'）':''}} </view>
         <view class="weui-panel__bd">
@@ -145,6 +146,7 @@
             </view>
         </block>
         <block wx:elif="{{view == '22'}}">
+            <view class="desc">点击名字可查看用户信息</view>
             <view class="weui-panel weui-panel_access no-br">
                 <view class="weui-panel__hd"><i class="czs-location-l bold" /> 我的位置{{currentSubCat?'（'+currentSubCat+'）':'0'}} </view>
                 <view class="weui-panel__bd">

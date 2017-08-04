@@ -14,7 +14,9 @@ Page({
     phbSubList: [],
     userExam: [],
     userExamRank: {},
-    examRank: []
+    examRank: [],
+    groupName:'',
+    currentSubCat:''
   },
 
   /**
@@ -22,7 +24,92 @@ Page({
    */
   onLoad: function (options) {
 
-    this.getJfb()
+    this.getJfb();
+    this.getUserInfo();
+  },
+  
+  getUserInfo() {
+    let app = getApp();
+    let that = this;
+    let urlHost = app.host + "/images";
+    // let urlHost = "http://202.104.10.34:83" + "/images";
+    wx.getStorage({ //获取token
+      key: 'token',
+      success: function (res) {
+        wx.request({
+          url: app.host + '/api/currentUser',
+          method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+          header: {
+            'content-type': 'application/json',
+            'x-auth-token': res.data
+          }, // 设置请求的 header
+          success: reqRes => {
+            if (reqRes.data.code == "200") {
+              let rs = reqRes.data.data;
+              that.setData({
+                personScoreRank: rs.userScoreRank,
+                recordMap: rs.userInfo,
+                userName: rs.userInfo.USER_NAME,
+                groupName:rs.group.GROUP_NAME,
+                IUrl: !!rs.userInfo.PHOTO ? urlHost + rs.userInfo.PHOTO + "?date=" + new Date().getTime() : '../../resource/img/avatar.png',
+                contribution: !rs.userGxz.gxz ? rs.userGxz.count : rs.userGxz.gxz,
+                totalScore: typeof rs.userScoreRank == "string" ? "无" : rs.userScoreRank.score.toFixed(2),
+                totalUserResult: rs.totalUserResult,
+                rightPersent: rs.userScoreRank == null ? "无" : !rs.userScoreRank.score && rs.userScoreRank.score != 0 ? "无" : (rs.totalUserResult.totalRightCount / rs.totalUserResult.totalCount * 100).toFixed(2) + '%'
+              })
+              wx.hideToast();
+            } else if (reqRes.data.code == "401") {
+              wx.hideToast();
+              wx.showModal({
+                title: '登陆过期',
+                content: '登陆信息已过期，你需要登录才能使用本功能',
+                showCancel: false,
+                confirmText: '去登录',
+                success: res => {
+                  if (res.confirm) {
+                    wx.redirectTo({
+                      url: '../login/login',
+                    })
+                  }
+                }
+              })
+            } else {
+              wx.hideToast();
+              wx.showToast({
+                title: '后台服务错误',
+                image: '/resource/img/error.png',
+                duration: 3000
+              });
+            }
+
+          },
+          fail: e => {
+            wx.hideToast();
+            wx.showToast({
+              title: '网络访问故障',
+              image: '/resource/img/error.png',
+              duration: 3000
+            });
+          },
+        })
+      },
+      fail: err => { //获取token失败
+        wx.hideToast();
+        wx.showModal({
+          title: '尚未登录',
+          content: '你需要登录才能使用本功能',
+          showCancel: false,
+          confirmText: '去登录',
+          success: res => {
+            if (res.confirm) {
+              wx.redirectTo({
+                url: '../login/login',
+              })
+            }
+          }
+        })
+      }
+    })
   },
 
   getJfb: function () {
@@ -135,7 +222,7 @@ Page({
       }, // 设置请求的 header
       success: (res) => {
         if (res.statusCode == '200') {
-          if (res.data.code == '200' && !!res.data.data.userScoreRank ) {
+          if (res.data.code == '200' && !!res.data.data.userScoreRank) {
             res.data.data.userScoreRank.score = res.data.data.userScoreRank.score.toFixed(2)
             for (let i = 0; i < res.data.data.scoreRank.length; i++) {
               let user = res.data.data.scoreRank[i];
@@ -145,8 +232,7 @@ Page({
               userScoreRank: res.data.data.userScoreRank,
               scoreRank: res.data.data.scoreRank
             })
-          }
-          else if(res.data.code == '200' && !res.data.data.userScoreRank){
+          } else if (res.data.code == '200' && !res.data.data.userScoreRank) {
             this.setData({
               userScoreRank: {
                 isNull: true,
@@ -154,7 +240,7 @@ Page({
               },
               scoreRank: []
             })
-          } 
+          }
         } else {
           wx.showToast({
             title: res.data.error,
@@ -351,29 +437,36 @@ Page({
   },
   bindUserGroup(e) {
     let gid = e.currentTarget.dataset.gid
+    let scat = e.currentTarget.dataset.scat
     this.getQzb(gid);
     this.setData({
-      view: '12'
+      view: '12',
+      currentSubCat:scat
     })
   },
   bindUserExam(e) {
     let eid = e.currentTarget.dataset.eid
+    let scat = e.currentTarget.dataset.scat
     this.getKsb(eid);
     this.setData({
-      view: '22'
+      view: '22',
+      currentSubCat:scat
     })
   },
   bindUserFlpm(e) {
     let eid = e.currentTarget.dataset.eid
+    let scat = e.currentTarget.dataset.scat
     this.getFlpm(eid);
     this.setData({
-      view: '32'
+      view: '32',
+      currentSubCat:scat
     })
   },
   bindPhbChange: function (e) {
-    let phb = e.detail.value
+    let phb =  e.currentTarget.dataset.phb
     this.setData({
-      current: phb
+      current: phb,
+      currentSubCat:''
     })
     if (phb == 0) {
       this.getJfb();

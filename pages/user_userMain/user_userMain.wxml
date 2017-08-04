@@ -9,25 +9,25 @@
                     <template wx:if="{{(!!scoreRank.score)&&scoreRank.score!=0}}" is="rankLevel" data="{{score:scoreRank.score}}" />
                 </view>
                 <view class="weui-flex__item ">
-                    <view class="user-header-gxz">
+                    <!-- <view class="user-header-gxz">
                          <text>出题贡献值：{{contribution}}</text>
-                    </view> 
+                    </view>  -->
                        <view class="user-header_button">
                            <button class="weui-btn mini-btn" type="primary" size="mini"  bindtap="checkIn" >签到</button>
                     </view> 
                 </view>
             </view>
-            <view class="weui-flex t-br rank">
+            <!-- <view class="weui-flex t-br rank">
                 <view class="weui-flex__item ">
                     <view class="rankTitle">已做题目</view>
                     <view class="rankValue">{{(!scoreRank.score)&&scoreRank.score!=0?"无":totalUserResult.totalCount}}</view>
                 </view>
-                 <!-- <view class="weui-flex__item">
+                  <view class="weui-flex__item">
                     <view class="rankTitle">正确率</view>
                     <view class="rankValue">{{rightPersent}}</view> 
                 </view> 
             </view>
-            <view class="weui-flex  rank"> -->
+            <view class="weui-flex  rank"> 
                 <view class="weui-flex__item  ">
                     <view class="rankTitle">总积分</view>
                     <view class="rankValue">{{(!scoreRank.score)&&scoreRank.score!=0?"无":totalScore}}</view>
@@ -36,7 +36,7 @@
                     <view class="rankTitle">总积分排名</view>
                     <view class="rankValue">{{(!scoreRank.score)&&scoreRank.score!=0?"无":scoreRank.rank}}</view>
                 </view>
-            </view>
+            </view> -->
         </view>
         <view wx:if="{{(!scoreRank.score)&&scoreRank.score!=0}}" style="text-align:center;color:#888888;">
             <text style="font-size:12px">{{!scoreRank?'无数据':scoreRank}}</text>

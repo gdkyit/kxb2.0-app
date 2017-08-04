@@ -10,7 +10,7 @@ Page({
             success: function (res) {
                 setTimeout(function(){
                     wx.reLaunch({
-                        url: '../kaoshi/kaoshi'
+                        url: '../ranking/ranking'
                     })
                     app.getSysMsg();
                 },3000)

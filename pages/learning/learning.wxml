@@ -10,13 +10,6 @@
                 <view class="weui-cell__bd">题库</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </navigator>
-            <navigator url="../dtjl/dtjl" class="weui-cell weui-cell_access w-r" hover-class="weui-cell_active">
-                <view class="weui-cell__hd">
-                    <view class="icon-b or"><i class="icon czs-paper"/></view>
-                </view>
-                <view class="weui-cell__bd">答题记录</view>
-                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-            </navigator>
             <navigator url="../zsts/zsts" class="weui-cell weui-cell_access w-r" hover-class="weui-cell_active">
                 <view class="weui-cell__hd">
                   <view class="icon-b ye"><i class="icon czs-light"/> </view>
@@ -24,13 +17,13 @@
                 <view class="weui-cell__bd">知识推送</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </navigator>
-            <navigator url="../xdjl/xdjl" class="weui-cell weui-cell_access w-r" hover-class="weui-cell_active">
+            <!-- <navigator url="../xdjl/xdjl" class="weui-cell weui-cell_access w-r" hover-class="weui-cell_active">
                 <view class="weui-cell__hd">
                     <view class="icon-b gr"><i class="icon czs-forum"/> </view>
                 </view>
                 <view class="weui-cell__bd">心得交流</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-            </navigator>
+            </navigator> -->
         </view>
     </view>
 </view>

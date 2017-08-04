@@ -38,15 +38,15 @@ Page({
           'content-type': 'application/json'
         }, // 设置请求的 header
         success: res => {
-          if(res.statusCode == 200){
+          if(res.statusCode == 200 && !!res.data.token){
             wx.setStorageSync('token', res.data.token)
             wx.reLaunch({
-              url: '../kaoshi/kaoshi'
+              url: '../ranking/ranking'
             })
-          }else{
+          }else if(res.statusCode == 200 && res.data.code == '500'){
             wx.showModal({
               title:'登录失败',
-              content:'手机号码/密码不符',
+              content:res.data.error,
               showCancel:false
             })
           }

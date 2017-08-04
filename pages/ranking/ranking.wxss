@@ -22,10 +22,10 @@
     width:150rpx
 }
 .my-jf{
-    width:200rpx
+    width:160rpx
 }
 .my-rank{
-    width: 150rpx;
+    width: 160rpx;
     text-align: center
 }
 .my-time{
@@ -93,6 +93,9 @@
     font-size:12px;
     line-height: 24px;
     background:#6DCE8D
+}
+.clickable-arrow{
+    color:#bfbfbf
 }
 /*用户数据样式  */
 .userinfo {

@@ -65,7 +65,7 @@
 .back {
     width: 100rpx;
     height: 100rpx;
-    box-shadow: 0 0 1em rgba(0, 0, 0,0.8);
+    box-shadow: 0 0 0.75em rgba(0, 0, 0,0.8);
     border-radius: 50rpx
     
 }

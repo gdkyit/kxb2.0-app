@@ -8,10 +8,12 @@
                     <import src="../template/rankLevel.wxml" />
                     <template wx:if="{{(!!scoreRank.score)&&scoreRank.score!=0}}" is="rankLevel" data="{{score:scoreRank.score}}" />
                 </view>
-                <view class="weui-flex__item user-header-gxz">
-                    <view>
+                <view class="weui-flex__item ">
+                    <view class="user-header-gxz">
                          <text>出题贡献值：{{contribution}}</text>
-                        <button class="weui-btn mini-btn" type="primary" size="mini">按钮</button>
+                    </view> 
+                       <view class="user-header_button">
+                           <button class="weui-btn mini-btn" type="primary" size="mini"  bindtap="checkIn" >签到</button>
                     </view> 
                 </view>
             </view>

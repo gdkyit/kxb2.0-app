@@ -172,16 +172,16 @@ Page({
             }, // 设置请求的 header
             success: reqRes => {
                 if(reqRes.data.code=="200"){
-                    wx.showToast({
-                            title: '订阅成功',
-                            icon: 'success',
-                            mask:true,
-                            duration: 2000
-                        })
-                    var st = setTimeout(function(){
-                               wx.navigateBack({delta: 1});
-                                clearTimeout(st);
-                            },2000);
+                    wx.showModal({
+                                content: '签到成功',
+                                showCancel: false,
+                                confirmText: '返回',
+                                success: res => {
+                                    if(res.confirm) {
+                                        wx.navigateBack({delta: 1})
+                                    }
+                                }
+                            })
                 }else if(reqRes.data.code=="401"){
                     wx.showModal({
                         title: '登陆过期',

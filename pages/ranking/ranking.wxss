@@ -95,7 +95,13 @@
     background:#6DCE8D
 }
 .clickable-arrow{
-    color:#bfbfbf
+    color:#999
+}
+.desc{
+    font-size:12px;
+    color:#999;
+    line-height: 14px;
+    padding:15px 15px 0 15px;
 }
 /*用户数据样式  */
 .userinfo {

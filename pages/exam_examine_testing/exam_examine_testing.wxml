@@ -14,13 +14,13 @@
                                         <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
                                         <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
                                     </view>
-                                    <view class="weui-cell__bd ">{{item.CONTENT}}</view>
+                                    <view class="weui-cell__bd ">{{item.XZ_KEY}}.{{item.CONTENT}}</view>
                                 </label>
                             </radio-group>
                             <checkbox-group name="selectedAnswer" hidden="{{currContext.MODE!=2}}" bindchange="checkboxChange">
                                 <label class="weui-cell weui-check__label {{answerStyle[index]}}" wx:for="{{selectItems}}" wx:key="value">
                                     <checkbox value="{{item.XZ_KEY}}" checked="{{item.checked}}"/>
-                                    <view class="weui-cell__bd ">{{item.CONTENT}}</view>
+                                    <view class="weui-cell__bd ">{{item.XZ_KEY}}.{{item.CONTENT}}</view>
                                 </label>
                             </checkbox-group>
                         </view>

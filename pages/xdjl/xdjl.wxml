@@ -3,7 +3,7 @@
 <view class="page" bindtouchstart="bindtouchstart" bindtouchend="bindtouchend">
     <view class="page__bd">
         <view class="no-result" wx:if="{{list.length == 0}}">
-            暂未有心得交流可推送
+            暂未有考试重点可推送
         </view>
         <navigator class="weui-panel panel no-br br-lt" wx:for="{{list}}" url="../xdjlmx/xdjlmx?i={{index}}">
             <view class="weui-panel__bd">

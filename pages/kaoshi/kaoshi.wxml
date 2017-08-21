@@ -38,7 +38,7 @@
                 <view class="weui-cell__hd">
                     <view class="icon-b gr"><i class="icon czs-forum"/> </view>
                 </view>
-                <view class="weui-cell__bd">考试知识要点</view>
+                <view class="weui-cell__bd">考试重点</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </navigator> 
         </view>

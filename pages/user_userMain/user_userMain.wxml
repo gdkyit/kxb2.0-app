@@ -38,9 +38,9 @@
                 </view>
             </view> -->
         </view>
-        <view wx:if="{{(!scoreRank.score)&&scoreRank.score!=0}}" style="text-align:center;color:#888888;">
+        <!--<view wx:if="{{(!scoreRank.score)&&scoreRank.score!=0}}" style="text-align:center;color:#888888;">
             <text style="font-size:12px">{{!scoreRank?'无数据':scoreRank}}</text>
-        </view>
+        </view>-->
         <view class="weui-cells weui-cells_after-title userList">
             <navigator url="../user_userInfoUpdate/user_userInfoUpdate?userId={{recordMap.id_}}&name={{recordMap.USER_NAME}}&phone={{recordMap.PHONE}}&birthday={{recordMap.BIRTHDAY}}&rzday={{recordMap.RZSJ}}&photo={{recordMap.PHOTO}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" >
                 <view class="weui-cell__hd">

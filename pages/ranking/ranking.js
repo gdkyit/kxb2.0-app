@@ -50,12 +50,12 @@ Page({
                 personScoreRank: rs.userScoreRank,
                 recordMap: rs.userInfo,
                 userName: rs.userInfo.USER_NAME,
-                groupName:rs.group.GROUP_NAME,
+                groupName:!!rs.group?rs.group.GROUP_NAME:'未设置默认积分榜',
                 IUrl: !!rs.userInfo.PHOTO ? urlHost + rs.userInfo.PHOTO + "?date=" + new Date().getTime() : '../../resource/img/avatar.png',
                 contribution: !rs.userGxz.gxz ? rs.userGxz.count : rs.userGxz.gxz,
-                totalScore: typeof rs.userScoreRank == "string" ? "无" : rs.userScoreRank.score.toFixed(2),
+                totalScore: !!rs.userScoreRank?rs.userScoreRank.score.toFixed(2):'无',
                 totalUserResult: rs.totalUserResult,
-                rightPersent: rs.userScoreRank == null ? "无" : !rs.userScoreRank.score && rs.userScoreRank.score != 0 ? "无" : (rs.totalUserResult.totalRightCount / rs.totalUserResult.totalCount * 100).toFixed(2) + '%'
+                //rightPersent: rs.userScoreRank == null ? "无" : !rs.userScoreRank.score && rs.userScoreRank.score != 0 ? "无" : (rs.totalUserResult.totalRightCount / rs.totalUserResult.totalCount * 100).toFixed(2) + '%'
               })
               wx.hideToast();
             } else if (reqRes.data.code == "401") {
@@ -125,7 +125,10 @@ Page({
       success: (res) => {
         if (res.statusCode == '200') {
           if (res.data.code == '200') {
-            res.data.data.userScoreRank.score = res.data.data.userScoreRank.score.toFixed(2)
+            if(!!res.data.data.userScoreRank){
+              res.data.data.userScoreRank.score = res.data.data.userScoreRank.score.toFixed(2)
+            }
+            
             for (let i = 0; i < res.data.data.scoreRank.length; i++) {
               let user = res.data.data.scoreRank[i];
               user.score = user.score.toFixed(2);

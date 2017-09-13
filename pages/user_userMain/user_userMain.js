@@ -35,10 +35,10 @@ Page({
                                 userName: rs.userInfo.USER_NAME,
                                 IUrl: !!rs.userInfo.PHOTO ? urlHost + rs.userInfo.PHOTO + "?date=" + new Date().getTime() : '../../resource/img/avatar.png',
                                 contribution: !rs.userGxz.gxz ? rs.userGxz.count : rs.userGxz.gxz,
-                                scoreRank: rs.userScoreRank,
-                                totalScore:typeof rs.userScoreRank=="string"?"无": rs.userScoreRank.score.toFixed(2),
-                                totalUserResult: rs.totalUserResult,
-                                rightPersent: rs.userScoreRank==null?"无":!rs.userScoreRank.score&&rs.userScoreRank.score!=0 ? "无" : (rs.totalUserResult.totalRightCount / rs.totalUserResult.totalCount * 100).toFixed(2) + '%'
+                                //scoreRank: rs.userScoreRank,
+                                //totalScore:!!userScoreRank?rs.userScoreRank.score.toFixed(2):'无',
+                                //totalUserResult: rs.totalUserResult,
+                                //rightPersent: rs.userScoreRank==null?"无":!rs.userScoreRank.score&&rs.userScoreRank.score!=0 ? "无" : (rs.totalUserResult.totalRightCount / rs.totalUserResult.totalCount * 100).toFixed(2) + '%'
                             })
                             wx.hideToast();
                         } else if (reqRes.data.code == "401") {

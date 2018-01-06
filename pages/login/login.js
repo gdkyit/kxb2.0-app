@@ -38,12 +38,13 @@ Page({
           'content-type': 'application/json'
         }, // 设置请求的 header
         success: res => {
+          console.log(res)
           if(res.statusCode == 200 && !!res.data.token){
             wx.setStorageSync('token', res.data.token)
             wx.reLaunch({
               url: '../ranking/ranking'
             })
-          }else if(res.statusCode == 200 && res.data.code == '500'){
+          }else {
             wx.showModal({
               title:'登录失败',
               content:res.data.error,

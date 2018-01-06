@@ -2,7 +2,6 @@ var app = getApp();
 Page({
     data:{
         checkboxItems: [],
-        userItems:[],
         disableButton:false,
         loadingButton:false
     },
@@ -29,20 +28,20 @@ Page({
                     'x-auth-token': res.data
                     }, // 设置请求的 header
                     success: reqRes => {
-                        let rs=reqRes.data.data;
-                        let userItems=[];
-                        for(let i=0;i<rs.tkfl.length;i++){
-                            for(let j=0;j<rs.userTkfldy.length;j++){
-                                if(rs.tkfl[i].ID_ == rs.userTkfldy[j].ID_){
-                                    userItems[rs.tkfl[i].pxh-1] = {ID_:rs.userTkfldy[j].ID_};//按排序号重构user已选list
-                                    break;
+                        if(reqRes.data.code=="200"){
+                            let rs = reqRes.data.data;
+                            for (let item of rs.tkfl){
+                                item.checked = false;
+                                for (let userItem of rs.userTkfldy){
+                                    if (item.ID_ == userItem.ID_){
+                                        item.checked = true
+                                        break
+                                    }
                                 }
                             }
-                        }
-                        if(reqRes.data.code=="200"){
+               
                             that.setData({
                                 checkboxItems:rs.tkfl,
-                                userItems:userItems,
                                 userId:option.userId
                             })
                             wx.hideToast();
@@ -112,18 +111,13 @@ Page({
         })
     },
     checkboxChange: function (e) {
-        var checkboxItems = this.data.checkboxItems, values = e.detail.value;
-        let newUserItems=[];
-        for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
-            for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
-                if(checkboxItems[i].ID_ == values[j]){
-                    newUserItems[checkboxItems[i].pxh-1] = {ID_:values[j]};//按排序号重构user已选list
-                    break;
-                }
-            }
+        let userSelectedItems = e.detail.value
+        let checkboxItems = this.data.checkboxItems
+        for (let cbi of checkboxItems){
+            cbi.checked = userSelectedItems.indexOf(cbi.ID_+'') !== -1
         }
         this.setData({
-            userItems: newUserItems
+            checkboxItems: checkboxItems
         });
     },
     putLearningList:function(value){

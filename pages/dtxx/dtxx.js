@@ -21,6 +21,7 @@ Page({
     last: false,
     iszan: false,
     next: false,
+    btnCommit:false,
     dansGroup: ['', '', '', '', '', '']
   },
 
@@ -133,6 +134,10 @@ Page({
    * 提交答案
    */
   commitAnswer: function (e) {
+    console.log('commit')
+    this.setData({
+      btnCommit:true
+    })
     const token = wx.getStorageSync('token');
     let index = this.data.index;
     let mode = this.data.questions[index].MODE;
@@ -218,6 +223,7 @@ Page({
       let iszan = this.data.questions[index].SFDZ == 'Y' ? true : false;
       this.getAnswer(tkid);
       this.setData({
+        btnCommit:false,
         index: index,
         next: false,
         iszan: iszan,

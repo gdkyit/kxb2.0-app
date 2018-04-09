@@ -53,7 +53,7 @@ App({
     })
   },
   globalData: {},
-  host: "https://app.gdkyit.com/kxb",
-  uploadHost: 'https://app.gdkyit.com/kxb',
+  host: "https://apps.gdkyit.com/kxb",
+  uploadHost: 'https://apps.gdkyit.com/kxb',
   launching: false
 })
